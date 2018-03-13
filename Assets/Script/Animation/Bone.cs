@@ -123,8 +123,8 @@ public class Bone : MonoBehaviour
         {
                 new Vector3(0, 0, 0),
                 new Vector3(Width, Width, 0),
-                new Vector3(Width, -Width, 0),
                 new Vector3(Width, 0, Width),
+                new Vector3(Width, -Width, 0),
                 new Vector3(Width, 0, -Width),
                 new Vector3(1,0,0),
         };
@@ -133,7 +133,18 @@ public class Bone : MonoBehaviour
             V[i] *= Length;
         }
         mesh.vertices = V;
-        mesh.triangles = new int[] { 0, 1, 5, 0, 2, 5, 0, 3, 5, 0, 4, 5 };
+        //mesh.triangles = new int[] { 0, 1, 5, 0, 2, 5, 0, 3, 5, 0, 4, 5 };
+        mesh.triangles = new int[]
+        {
+            2,1,0,
+            3,2,0,
+            4,3,0,
+            1,4,0,
+            1,2,5,
+            2,3,5,
+            3,4,5,
+            4,1,5,
+        };
         mesh.RecalculateNormals();
         mesh.RecalculateBounds();
         Color color;
@@ -142,8 +153,8 @@ public class Bone : MonoBehaviour
         else
             ColorUtility.TryParseHtmlString("#66CCFF", out color);
         _showAsActive = false;
-        Gizmos.color = color;
-        Gizmos.DrawWireMesh(mesh, transform.position,
+        Gizmos.color = Color.white;
+        Gizmos.DrawMesh(mesh, transform.position,
             Quaternion.FromToRotation(Vector3.right, transform.rotation * InitialVector));
     }
 
