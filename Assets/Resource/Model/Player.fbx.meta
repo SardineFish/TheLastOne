@@ -1,0 +1,183 @@
+fileFormatVersion: 2
+guid: b1d42b3967f47d54e9d4d3e5b682a9bd
+timeCreated: 1520510348
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Arm-L
+    100002: Arm-R
+    100004: Bip
+    100006: Elbow-L
+    100008: Elbow-R
+    100010: Finger-L
+    100012: Finger-L-0
+    100014: Finger-L-0-T
+    100016: Finger-L-Top
+    100018: Finger-R
+    100020: Finger-R-0
+    100022: Finger-R-0-T
+    100024: Finger-R-Top
+    100026: Foot-L
+    100028: Foot-R
+    100030: Hand-L
+    100032: Hand-R
+    100034: Head
+    100036: Leg-L
+    100038: Leg-L-Low
+    100040: Leg-R
+    100042: Leg-R-Low
+    100044: Neck
+    100046: Plane001
+    100048: Player
+    100050: //RootNode
+    100052: Spine
+    100054: Spine-2
+    100056: Sword
+    100058: Toe-L
+    100060: Toe-R
+    100062: VRayLight001
+    400000: Arm-L
+    400002: Arm-R
+    400004: Bip
+    400006: Elbow-L
+    400008: Elbow-R
+    400010: Finger-L
+    400012: Finger-L-0
+    400014: Finger-L-0-T
+    400016: Finger-L-Top
+    400018: Finger-R
+    400020: Finger-R-0
+    400022: Finger-R-0-T
+    400024: Finger-R-Top
+    400026: Foot-L
+    400028: Foot-R
+    400030: Hand-L
+    400032: Hand-R
+    400034: Head
+    400036: Leg-L
+    400038: Leg-L-Low
+    400040: Leg-R
+    400042: Leg-R-Low
+    400044: Neck
+    400046: Plane001
+    400048: //RootNode
+    400050: Player
+    400052: Spine
+    400054: Spine-2
+    400056: Sword
+    400058: Toe-L
+    400060: Toe-R
+    400062: VRayLight001
+    2300000: Plane001
+    2300002: Sword
+    3300000: Plane001
+    3300002: Sword
+    4300000: Player
+    4300002: Plane001
+    4300004: Sword
+    9500000: //RootNode
+    13700000: Player
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body
+    second: {fileID: 2100000, guid: 612eec29f2eb39d4e85c5528a8539f0f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #242'
+    second: {fileID: 2100000, guid: a092c7fe6afc6534ab95f663ec1dfc62, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sword
+    second: {fileID: 2100000, guid: 8a4f6766d298f8f43abf801d63de2cd3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sword-Gold
+    second: {fileID: 2100000, guid: 846fa80a573977e438c3d1af3bfbdf7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sword-Handle
+    second: {fileID: 2100000, guid: 375ff6ea137ed6c488d8d2a9b0a6cd86, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.05
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
