@@ -41,4 +41,14 @@ public static class MathUtility
         var quaternion = new Quaternion(halfSin * axis.x, halfSin * axis.y, halfSin * axis.z, halfCos);
         return quaternion;
     }
+
+    public static float ToAng(float y,float x)
+    {
+        return Mathf.Atan2(y, x) * Mathf.Rad2Deg;
+    }
+
+    public static float ToAng(Vector2 v)
+    {
+        return Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
+    }
 }
