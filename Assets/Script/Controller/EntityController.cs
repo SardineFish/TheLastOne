@@ -68,7 +68,7 @@ public class EntityController : MonoBehaviour {
 
     public void Jump()
     {
-
+        
     }
 
     public void FlyUp()
