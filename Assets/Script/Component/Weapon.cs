@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : EntityBehavior<Entity> {
+public class Weapon : MonoBehaviour {
     public float PhysicalDamage;
     public float MagicalDamage;
     public bool DamageOnce = true;
-    public Entity Owner
-    {
-        get
-        {
-            return Entity;
-        }
-    }
+    public Entity Owner;
 
     protected List<Entity> damagedEntities = new List<Entity>();
     
