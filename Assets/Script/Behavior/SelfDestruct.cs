@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelfDescruct : EntityBehavior<Entity>
+public class SelfDestruct : EntityBehavior<Entity>
 {
     public float Time = 1;
 

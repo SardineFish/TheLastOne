@@ -8,6 +8,7 @@ public class CastSkill : AnimationSkill
 {
     public float Range;
     public GameObject ObjectPrefab;
+    public Vector3 InstantiatePosition;
 
     public override bool Activate()
     {
@@ -21,6 +22,12 @@ public class CastSkill : AnimationSkill
 
     public override bool Activate(Vector3 target)
     {
-        
+        if (base.Activate())
+        {
+            GameObject.Instantiate(ObjectPrefab, InstantiatePosition, Quaternion.identity, transform.root);
+            return true;
+        }
+        else
+            return false;
     }
 }

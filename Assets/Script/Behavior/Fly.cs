@@ -9,7 +9,7 @@ public enum FlyType
 }
 public class Fly : EntityBehavior<Entity> {
     public FlyType FlyType;
-    public float Speed;
+    public float Speed = 1;
     public Vector3 Target;
 
     private void FixedUpdate()

@@ -14,4 +14,9 @@ public class SkillController : EntityBehavior<Entity> {
 	void Update () {
 		
 	}
+
+    public void OnAnimationEvent()
+    {
+
+    }
 }
