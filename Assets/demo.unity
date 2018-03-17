@@ -302,6 +302,8 @@ GameObject:
   - component: {fileID: 91018366}
   - component: {fileID: 91018365}
   - component: {fileID: 91018367}
+  - component: {fileID: 91018368}
+  - component: {fileID: 91018369}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -336,6 +338,7 @@ Transform:
   m_LocalPosition: {x: -7.53, y: 0, z: -2.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 791459988}
   - {fileID: 1193996819}
   - {fileID: 323617323}
   - {fileID: 139955295}
@@ -362,6 +365,31 @@ MonoBehaviour:
   CurrentFacing: {x: 0, y: 1}
   CurrentMovement: {x: 0, y: 0}
   CurrentSpeed: 0
+--- !u!114 &91018368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 91018364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be2d0fbaefa386645b5051f784d4483e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &91018369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 91018364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b0920e7f565dc049b30425f54ef4f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skills:
+  - {fileID: 1881661407}
+  ActiveSkill: {fileID: 0}
 --- !u!1 &98090802
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +534,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 91018366}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &217211029
 GameObject:
@@ -787,7 +815,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 91018366}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &323617324
 SkinnedMeshRenderer:
@@ -1424,6 +1452,35 @@ MonoBehaviour:
   AngularLimitZ:
     low: -180
     high: 180
+--- !u!1 &791459987
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 791459988}
+  m_Layer: 0
+  m_Name: Skills
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &791459988
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 791459987}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1881661406}
+  m_Father: {fileID: 91018366}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &823941963
 GameObject:
   m_ObjectHideFlags: 0
@@ -2171,7 +2228,7 @@ Transform:
   - {fileID: 437170828}
   - {fileID: 1931713199}
   m_Father: {fileID: 91018366}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -88.902}
 --- !u!114 &1193996820
 MonoBehaviour:
@@ -3014,6 +3071,49 @@ MonoBehaviour:
   AngularLimitZ:
     low: -180
     high: 180
+--- !u!1 &1881661405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1881661406}
+  - component: {fileID: 1881661407}
+  m_Layer: 0
+  m_Name: Chop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1881661406
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1881661405}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 791459988}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1881661407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1881661405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1cbcecb3e1308e4c9cff21572644632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnimatorController: {fileID: 9100000, guid: 29ae2675198c5ff4faa299316df0a78c, type: 2}
+  Animator: {fileID: 91018365}
+  CoolDown: 1
 --- !u!1 &1885793035
 GameObject:
   m_ObjectHideFlags: 0

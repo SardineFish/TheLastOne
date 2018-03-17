@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class EntityController : MonoBehaviour {
+public class EntityController : EntityBehavior<Entity> {
     public float WalkSpeed;
     public float TurnSpeed;
     public float RunSpeed;
@@ -11,11 +11,13 @@ public class EntityController : MonoBehaviour {
     public float FlySpeed;
     public Animator Animator;
 
+
     public Vector2 CurrentFacing;
     public Vector2 CurrentMovement;
     public float CurrentSpeed;
     Vector2 MoveDirection;
     Vector2 TurnDirection;
+    private SkillController skillController;
 
     int PropSpeed, PropMoveX, PropMoveY;
 	// Use this for initialization
@@ -27,9 +29,14 @@ public class EntityController : MonoBehaviour {
         PropMoveX = Animator.StringToHash("moveX");
         PropMoveY = Animator.StringToHash("moveY");
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnEnable()
+    {
+        skillController = Entity.GetComponent<SkillController>();
+    }
+
+    // Update is called once per frame
+    void Update () {
         CurrentFacing = new Vector2(transform.forward.x, transform.forward.z);
 	}
 
@@ -77,6 +84,16 @@ public class EntityController : MonoBehaviour {
     }
 
     public void FlyDown()
+    {
+
+    }
+
+    public void ActivateSkill(int skillId,Vector3 target)
+    {
+
+    }
+
+    public void ActivateSkill(int skillId,Entity target)
     {
 
     }
