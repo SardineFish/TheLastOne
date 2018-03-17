@@ -6,6 +6,13 @@ using UnityEngine;
 
 public abstract class Message
 {
+    public Message(Entity sender)
+    {
+        this.Sender = sender;
+    }
+
+    public Entity Sender { get; protected set; }
+
     public virtual void Dispatch(Entity receiver)
     {
         receiver.OnMessage(this);

@@ -2,27 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour {
+public class Weapon : EntityBehavior<Entity> {
     public float PhysicalDamage;
-    public float MagicDamage;
+    public float MagicalDamage;
     public bool DamageOnce = true;
+    public Entity Owner
+    {
+        get
+        {
+            return Entity;
+        }
+    }
 
     protected List<Entity> damagedEntities = new List<Entity>();
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-
+    
     private void OnEnable()
     {
         damagedEntities.Clear();
     }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 
     private void OnTriggerStay(Collider other)
     {
@@ -34,6 +31,6 @@ public class Weapon : MonoBehaviour {
         if (DamageOnce && damagedEntities.Contains(entity))
             return;
 
-        
+        var damageMsg = new DamageMessage(Owner, PhysicalDamage, MagicalDamage);
     }
 }

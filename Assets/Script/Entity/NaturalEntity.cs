@@ -4,6 +4,6 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public class Enemy : LifeBody
+public class NaturalEntity:Entity
 {
 }
