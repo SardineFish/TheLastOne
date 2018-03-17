@@ -37,11 +37,11 @@ public class AnimationSkill:Skill
 
     public override bool Activate(Vector3 target)
     {
-        return base.Activate(target);
+        return Activate();
     }
 
     public override bool Activate(Entity target)
     {
-        return base.Activate(target);
+        return Activate();
     }
 }
