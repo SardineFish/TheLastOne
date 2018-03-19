@@ -15,6 +15,7 @@ public class AnimationSkill:Skill
     private void OnEnable()
     {
         animator = Entity.GetComponent<Animator>();
+        
     }
 
     public override bool Activate()
@@ -23,6 +24,7 @@ public class AnimationSkill:Skill
         {
             lastActiveTime = Time.time;
 
+            Entity.GetComponent<EntityController>().MovementLock = true;
             if (Entity.GetComponent<Animator>().runtimeAnimatorController.Equals(AnimatorController))
             {
                 animator.SetTrigger(AnimActiveTrigger);
@@ -43,5 +45,20 @@ public class AnimationSkill:Skill
     public override bool Activate(Entity target)
     {
         return Activate();
+    }
+
+    public void Update()
+    {
+        if (Entity.GetComponent<SkillController>().ActiveSkill != this)
+            return;
+        if(animator)
+        {
+            var state = animator.GetCurrentAnimatorStateInfo(0);
+            if (state.IsTag(ActionManager.AnimTagEnd) && Entity.GetComponent<ActionManager>())
+            {
+                Entity.GetComponent<ActionManager>().EnableMovement();
+                return;
+            }
+        }
     }
 }

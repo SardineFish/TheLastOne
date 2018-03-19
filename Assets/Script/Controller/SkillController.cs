@@ -19,4 +19,15 @@ public class SkillController : EntityBehavior<Entity> {
     {
 
     }
+
+    public void ActivateSkill(int idx,Vector3 target)
+    {
+        if (Skills.Length > idx)
+        {
+            Skills[idx].Activate(target);
+            ActiveSkill = Skills[idx];
+        }
+    }
+
+
 }
