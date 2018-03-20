@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class SkillController : EntityBehavior<Entity> {
     public Skill[] Skills;
     public Skill ActiveSkill;
@@ -10,9 +12,10 @@ public class SkillController : EntityBehavior<Entity> {
 		
 	}
 	
+    [ExecuteInEditMode]
 	// Update is called once per frame
 	void Update () {
-		
+        Skills = GetComponentsInChildren<Skill>().Where(skill => !(skill is MovementSkill)).ToArray();
 	}
 
     public void OnAnimationEvent()

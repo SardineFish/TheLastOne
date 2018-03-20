@@ -304,6 +304,7 @@ GameObject:
   - component: {fileID: 91018367}
   - component: {fileID: 91018368}
   - component: {fileID: 91018369}
+  - component: {fileID: 91018370}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -356,7 +357,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a37d15ad527c748bed6a52de30e24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementLock: 0
   WalkSpeed: 1
   TurnSpeed: 720
   RunSpeed: 1.5
@@ -366,6 +366,7 @@ MonoBehaviour:
   CurrentFacing: {x: 0, y: 1}
   CurrentMovement: {x: 0, y: 0}
   CurrentSpeed: 0
+  MovementSkill: {fileID: 883940281}
 --- !u!114 &91018368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,7 +393,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Skills:
   - {fileID: 1881661407}
+  - {fileID: 1491705990}
   ActiveSkill: {fileID: 0}
+--- !u!114 &91018370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 91018364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c9e4da34f9d2f140acd4f5a2fb5d571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultMovement: {fileID: 0}
 --- !u!1 &98090802
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,6 +1496,7 @@ Transform:
   m_Children:
   - {fileID: 1881661406}
   - {fileID: 1491705989}
+  - {fileID: 883940280}
   m_Father: {fileID: 91018366}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1696,6 +1711,50 @@ MonoBehaviour:
   AngularLimitZ:
     low: -180
     high: 180
+--- !u!1 &883940279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 883940280}
+  - component: {fileID: 883940281}
+  m_Layer: 0
+  m_Name: Movment
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &883940280
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 883940279}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 791459988}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &883940281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 883940279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ac24f742204bb04d9803fb34f3ff7e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CoolDown: 1
+  AnimatorController: {fileID: 9100000, guid: 238534c10969c4e40aafc1c66919aa01, type: 2}
+  MaxSpeed: 2
+  TurnSpeed: 960
 --- !u!4 &894917012 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: b583897edd5f82846a8137283db656b7, type: 3}

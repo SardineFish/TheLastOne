@@ -11,14 +11,23 @@ public static class MathUtility
     {
         return new Vector3(v.x, v.y, v.z);
     }
-    public static Vector2 ToVector3(this Vector2 v)
+    public static Vector3 ToVector3(this Vector2 v)
     {
         return new Vector3(v.x, v.y, 0);
+    }
+    public static Vector3 ToVector3XZ(this Vector2 v)
+    {
+        return new Vector3(v.x, 0, v.y);
     }
 
     public static Vector2 ToVector2(this Vector3 v)
     {
         return new Vector2(v.x, v.y);
+    }
+
+    public static Vector2 ToVector2XZ(this Vector3 v)
+    {
+        return new Vector2(v.x, v.z);
     }
 
     public static float MapAngle(float ang)

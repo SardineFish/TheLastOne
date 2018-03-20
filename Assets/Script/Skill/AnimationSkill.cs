@@ -24,7 +24,6 @@ public class AnimationSkill:Skill
         {
             lastActiveTime = Time.time;
 
-            Entity.GetComponent<EntityController>().MovementLock = true;
             if (Entity.GetComponent<Animator>().runtimeAnimatorController.Equals(AnimatorController))
             {
                 animator.SetTrigger(AnimActiveTrigger);
@@ -47,7 +46,7 @@ public class AnimationSkill:Skill
         return Activate();
     }
 
-    public void Update()
+    public virtual void Update()
     {
         if (Entity.GetComponent<SkillController>().ActiveSkill != this)
             return;

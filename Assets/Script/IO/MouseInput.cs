@@ -18,4 +18,6 @@ public class MouseInput : InputDevice {
             InputManager.SetTarget(hit.point);
         }
     }
+
+
 }
