@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Reflection;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class InputManager : MonoBehaviour {
@@ -10,6 +13,29 @@ public abstract class InputManager : MonoBehaviour {
     public bool Action2;
     public bool Action3;
     public bool Action4;
+
+    KeyCode[] keyCodeList;
+
+    private void Start()
+    {
+        keyCodeList = typeof(KeyCode).GetFields()
+            .Where(val => val.IsStatic && val.DeclaringType == typeof(KeyCode))
+            .Select(field => (KeyCode)field.GetValue(null))
+            .ToArray();
+    }
+
+    private void Update()
+    {
+        var keyPressed = keyCodeList.Where((key) =>
+        {
+            if (Input.GetKeyDown(key))
+                Debug.Log(key);
+            return true;
+        }).ToArray();
+        Debug.Log(Input.GetAxis("Joystick X Axis"));
+        
+        //Input.GetJoystickNames
+    }
 
     public virtual void SetTarget(Vector3 target)
     {
@@ -40,4 +66,9 @@ public abstract class InputManager : MonoBehaviour {
     public virtual void Action3Released() { Action3 = false; }
     public virtual void Action4Pressed() { Action4 = true; }
     public virtual void Action4Released() { Action4 = false; }
+
+    public virtual void WaitInputOnce(Action<KeyCode> callback)
+    {
+
+    }
 }
