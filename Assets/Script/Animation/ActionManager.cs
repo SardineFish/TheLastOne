@@ -29,7 +29,7 @@ public class ActionManager : EntityBehavior<LifeBody>
         if (animator.runtimeAnimatorController == controller)
             return true;
         var state = animator.GetCurrentAnimatorStateInfo(0);
-        if(state.IsTag(AnimTagBegin) || state.IsTag(AnimTagEnd) || state.IsTag(AnimTagGap))
+        if(/*state.IsTag(AnimTagBegin) || */state.IsTag(AnimTagEnd) || state.IsTag(AnimTagGap))
         {
             animator.runtimeAnimatorController = controller;
             return true;

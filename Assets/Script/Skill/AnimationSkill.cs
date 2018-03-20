@@ -22,15 +22,11 @@ public class AnimationSkill:Skill
     {
         if (base.Activate() && animator)
         {
-            lastActiveTime = Time.time;
-
-            if (Entity.GetComponent<Animator>().runtimeAnimatorController.Equals(AnimatorController))
+            if(Entity.GetComponent<ActionManager>().ChangeAction(AnimatorController))
             {
+                lastActiveTime = Time.time;
                 animator.SetTrigger(AnimActiveTrigger);
-            }
-            else
-            {
-                animator.runtimeAnimatorController = AnimatorController;
+                return true;
             }
         }
         return true;

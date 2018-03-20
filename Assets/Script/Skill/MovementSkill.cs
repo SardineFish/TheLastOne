@@ -17,21 +17,29 @@ public class MovementSkill : AnimationSkill
     }
     public override bool Activate(Vector3 direction)
     {
-        if(Entity.GetComponent<ActionManager>().ChangeAction(AnimatorController))
+        if(direction.magnitude<=0.01f)
+        {
+            if(animator.runtimeAnimatorController == AnimatorController)
+            {
+                animator.SetFloat(AnimSpeed, 0);
+                animator.SetFloat(AnimMoveX, 0);
+                animator.SetFloat(AnimMoveY, 0);
+                return true;
+            }
+        }
+        else if(Entity.GetComponent<ActionManager>().ChangeAction(AnimatorController))
         {
             animator.SetFloat(AnimSpeed, Mathf.Clamp01(direction.magnitude) * MaxSpeed);
             animator.SetFloat(AnimMoveX, direction.x);
             animator.SetFloat(AnimMoveY, direction.z);
-            if(direction.magnitude >0)
-            {
-                var ang = MathUtility.MapAngle(MathUtility.ToAng(direction.ToVector2XZ()) - MathUtility.ToAng(Entity.GetComponent<EntityController>().CurrentFacing));
 
-                if (Mathf.Abs(ang) > TurnSpeed * Time.deltaTime)
-                    ang = Mathf.Sign(ang) * TurnSpeed * Time.deltaTime;
+            var ang = MathUtility.MapAngle(MathUtility.ToAng(direction.ToVector2XZ()) - MathUtility.ToAng(Entity.GetComponent<EntityController>().CurrentFacing));
 
-                Entity.transform.Rotate(0, -ang, 0, Space.Self);
-                Entity.GetComponent<EntityController>().CurrentFacing = new Vector2(transform.forward.x, transform.forward.z);
-            }
+            if (Mathf.Abs(ang) > TurnSpeed * Time.deltaTime)
+                ang = Mathf.Sign(ang) * TurnSpeed * Time.deltaTime;
+
+            Entity.transform.Rotate(0, -ang, 0, Space.Self);
+            Entity.GetComponent<EntityController>().CurrentFacing = new Vector2(transform.forward.x, transform.forward.z);
             return true;
         }
         return false;
