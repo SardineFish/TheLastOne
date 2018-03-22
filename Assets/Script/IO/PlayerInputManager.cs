@@ -4,29 +4,46 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public class PlayerInputManager : InputManager
+[ExecuteInEditMode]
+public class PlayerInputManager : Singleton<PlayerInputManager>
 {
-    public EntityController Controller;
-    public override void SetMove(Vector2 direction)
-    {
-        base.SetMove(direction);
+    public Player PlayerInControl;
 
-        if (!Controller)
-            return;
-        if (direction.magnitude > 0)
-            Controller.Walk(direction);
-        else
-            Controller.Stop();
+    public EntityController EntityController;
+
+    public SkillController SkillController;
+
+    public List<KeyCode> SkillKeys = new List<KeyCode>();
+
+    public MovementInput MovementInput;
+
+    [ExecuteInEditMode]
+    private void OnEnable()
+    {
+        MovementInput = GetComponent<MovementInput>();
+        if (!MovementInput)
+            MovementInput = GetComponentInChildren<MovementInput>();
+        
     }
 
-    public override void Action1Pressed()
+    public void Update()
     {
-        base.Action1Pressed();
-        Controller.ActivateSkill(0, Target);
+        if (!PlayerInControl)
+            throw new Exception("A player is required to be controled.");
+        if(!SkillController)
+        {
+            SkillController = PlayerInControl.GetComponent<SkillController>();
+            EntityController = PlayerInControl.GetComponent<EntityController>();
+        }
+        for(var i=0;i<SkillKeys.Count;i++)
+        {
+            if(InputManager.Current.GetKeyDown(SkillKeys[i]))
+            {
+                SkillController.ActivateSkill(i);
+            }
+        }
+        SkillController.ActivateMovementSkill(MovementInput.GetMovement());
     }
-    public override void Action2Pressed()
-    {
-        base.Action2Pressed();
-        Controller.ActivateSkill(1, Target);
-    }
+
+
 }

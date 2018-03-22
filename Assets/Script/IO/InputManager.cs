@@ -5,20 +5,24 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public abstract class InputManager : MonoBehaviour {
-    public Vector2 Move;
-    public Vector2 Turn;
-    public Vector3 Target;
-    public bool Action1;
-    public bool Action2;
-    public bool Action3;
-    public bool Action4;
+[ExecuteInEditMode]
+public class InputManager : Singleton<InputManager> {
+    public float MaxMouseDistance = 500;
 
-    KeyCode[] keyCodeList;
+    [NonSerialized]
+    public KeyCode[] KeyCodeList;
+    public Camera camera;
+    List<Action<KeyCode>> inputCallbackList = new List<Action<KeyCode>>();
 
+    public Vector2 mousePosition { get { return Input.mousePosition; } }
+
+    public Ray mouseToRay { get { return camera.ScreenPointToRay(Input.mousePosition); } }
+
+    [ExecuteInEditMode]
     private void Start()
     {
-        keyCodeList = typeof(KeyCode).GetFields()
+        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        KeyCodeList = typeof(KeyCode).GetFields()
             .Where(val => val.IsStatic && val.DeclaringType == typeof(KeyCode))
             .Select(field => (KeyCode)field.GetValue(null))
             .ToArray();
@@ -26,49 +30,58 @@ public abstract class InputManager : MonoBehaviour {
 
     private void Update()
     {
-        var keyPressed = keyCodeList.Where((key) =>
+        if (inputCallbackList.Count > 0)
         {
-            if (Input.GetKeyDown(key))
-                Debug.Log(key);
-            return true;
-        }).ToArray();
-        Debug.Log(Input.GetAxis("Joystick X Axis"));
-        
-        //Input.GetJoystickNames
+            var keyPressed = KeyCodeList.Where(key => Input.GetKeyDown(key)).FirstOrDefault();
+            if(keyPressed != KeyCode.None)
+            {
+                while(inputCallbackList.Count>0)
+                {
+                    inputCallbackList[0](keyPressed);
+                    inputCallbackList.RemoveAt(0);
+                }
+            }
+        }
     }
 
-    public virtual void SetTarget(Vector3 target)
+    public virtual bool GetKeyDown(KeyCode keyCode)
     {
-        Target = target;
+        return Input.GetKeyDown(keyCode);
     }
 
-    public virtual void SetMove(Vector2 direction)
+    public virtual bool GetKeyUp(KeyCode keyCode)
     {
-        Move = direction;
+        return Input.GetKeyUp(keyCode);
     }
 
-    public virtual void SetTurn(Vector2 direction)
+    public virtual bool GetKey(KeyCode keycode)
     {
-        Turn = direction;
+        return Input.GetKey(keycode);
     }
 
-    public virtual void Action1Pressed()
+    public virtual GameObject MouseOverObject()
     {
-        Action1 = true;
+        var ray = camera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if(Physics.Raycast(ray,out hit,MaxMouseDistance))
+        {
+            return hit.transform.gameObject;
+        }
+        return null;
     }
-    public virtual void Action1Released()
+
+    public virtual Vector3 MouseOnGround()
     {
-        Action2 = false;
+        var ray = camera.ScreenPointToRay(Input.mousePosition);
+        var t = -ray.origin.y / ray.direction.y;
+        var x = ray.direction.x * t + ray.origin.x;
+        var z = ray.direction.z * t + ray.origin.z;
+        return new Vector3(x, 0, z);
     }
-    public virtual void Action2Pressed() { Action2 = true; }
-    public virtual void Action2Released() { Action2 = false; }
-    public virtual void Action3Pressed() { Action3 = true; }
-    public virtual void Action3Released() { Action3 = false; }
-    public virtual void Action4Pressed() { Action4 = true; }
-    public virtual void Action4Released() { Action4 = false; }
+
 
     public virtual void WaitInputOnce(Action<KeyCode> callback)
     {
-
+        inputCallbackList.Add(callback);
     }
 }

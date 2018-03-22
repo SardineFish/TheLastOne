@@ -41,48 +41,4 @@ public class EntityController : EntityBehavior<Entity> {
     void Update () {
         CurrentFacing = new Vector2(transform.forward.x, transform.forward.z);
 	}
-
-
-
-    public void Walk(Vector2 direction)
-    {
-        Run(direction);
-    }
-
-    public void Run(Vector2 direction)
-    {
-        MovementSkill.Activate(direction.ToVector3XZ());
-    }
-
-    public void Stop()
-    {
-        MovementSkill.Activate(Vector3.zero);
-    }
-
-    public void TurnAround(Vector2 direction)
-    {
-        MovementSkill.Activate(direction.ToVector3XZ().normalized * .01f);
-    }
-
-    public void Jump()
-    {
-    }
-
-    public void FlyUp()
-    {
-    }
-
-    public void FlyDown()
-    {
-    }
-
-    public void ActivateSkill(int skillId,Vector3 target)
-    {
-        skillController.ActivateSkill(skillId, target);
-    }
-
-    public void ActivateSkill(int skillId,Entity target)
-    {
-
-    }
 }

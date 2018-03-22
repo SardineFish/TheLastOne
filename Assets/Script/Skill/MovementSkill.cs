@@ -10,7 +10,7 @@ public class MovementSkill : AnimationSkill
 
     public float MaxSpeed = 1;
     public float TurnSpeed = 360;
-    Animator animator;
+
     private void OnEnable()
     {
         animator = Entity.GetComponent<Animator>();

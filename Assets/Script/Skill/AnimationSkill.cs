@@ -9,7 +9,7 @@ public class AnimationSkill:Skill
 {
     public const string AnimActiveTrigger = "active";
     public RuntimeAnimatorController AnimatorController;
-    Animator animator;
+    protected Animator animator;
 
     [ExecuteInEditMode]
     private void OnEnable()

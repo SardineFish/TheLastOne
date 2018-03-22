@@ -7,6 +7,7 @@ using UnityEngine;
 public class SkillController : EntityBehavior<Entity> {
     public Skill[] Skills;
     public Skill ActiveSkill;
+    public MovementSkill MovementSkill;
 	// Use this for initialization
 	void Start () {
 		
@@ -23,14 +24,48 @@ public class SkillController : EntityBehavior<Entity> {
 
     }
 
-    public void ActivateSkill(int idx,Vector3 target)
+    public bool ActivateSkill(int idx)
     {
         if (Skills.Length > idx)
         {
-            Skills[idx].Activate(target);
-            ActiveSkill = Skills[idx];
+            if (Skills[idx].Activate())
+            {
+                ActiveSkill = Skills[idx];
+                return true;
+            }
         }
+        return false;
     }
 
+    public bool ActivateSkill(int idx,Vector3 target)
+    {
+        if (Skills.Length > idx)
+        {
+            if (Skills[idx].Activate(target))
+            {
+                ActiveSkill = Skills[idx];
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public bool ActivateSkill(int idx, Entity target)
+    {
+        if (Skills.Length > idx)
+        {
+            if (Skills[idx].Activate(target))
+            {
+                ActiveSkill = Skills[idx];
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public bool ActivateMovementSkill(Vector2 movement)
+    {
+        return MovementSkill.Activate(movement.ToVector3XZ());
+    }
 
 }
