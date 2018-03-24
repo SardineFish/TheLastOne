@@ -71,12 +71,14 @@ namespace Assets.Editor
         public override void OnInspectorGUI()
         {
             var bone = target as Bone;
+           
             bone.Length = bone.InitialVector.magnitude;
             bone.Length = Mathf.Abs(EditorGUILayout.FloatField("Length", bone.Length));
             if (bone.Length > 0)
                 bone.InitialVector *= bone.Length / bone.InitialVector.magnitude;
             bone.Width = EditorGUILayout.FloatField("Width", bone.Width);
             bone.MaxRotationSpeed = Mathf.Abs(EditorGUILayout.FloatField("Max Rotation Speed",bone.MaxRotationSpeed));
+            bone.SpeedLimit = EditorGUILayout.Toggle("Rotate Speed Limit", bone.SpeedLimit);
             bone.AngularLimit = EditorGUILayout.Toggle("Angular Limit", bone.AngularLimit);
             bone.AngularLimitX = EditorUtility.DrawAngularRangeField("Angular Limit x", bone.AngularLimitX);
             bone.AngularLimitY = EditorUtility.DrawAngularRangeField("Angular Limit y", bone.AngularLimitY);

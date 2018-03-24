@@ -19,7 +19,7 @@ public class IKCCD: IK
     {
         /*var r = Quaternion.Euler(45, 0, 0);
         Quaternion.*/
-        if (Bones.Length != Weights.Length || Bones.Length !=InitialRotation.Length)
+        if (Bones.Length != Weights.Length || Bones.Length != InitialRotation.Length)
         {
             var lengthOld = Weights.Length;
             Array.Resize(ref Weights, Bones.Length);
@@ -27,19 +27,26 @@ public class IKCCD: IK
             for (var i = lengthOld; i < Bones.Length; i++)
                 Weights[i] = 1;
         }
-        Quaternion[] rotations;
-        if (UseInitial)
-            rotations = InverseKinematics(Bones, Weights, transform.position, Iteration, InitialRotation);
-        else
-            rotations = InverseKinematics(Bones, Weights, transform.position, Iteration);
-        for (var i = 0; i < this.Bones.Length; i++)
+        if(Enable)
         {
-            if (i == 0)
-                Bones[i].transform.rotation = rotations[i];
+            Quaternion[] rotations;
+            if (UseInitial)
+                rotations = InverseKinematics(Bones, Weights, transform.position, Iteration, InitialRotation);
             else
-                Bones[i].transform.localRotation = rotations[i];
-            Bones[i].ApplyAngularLimit();
-            //Bones[i].ApplyAngularLimit();
+                rotations = InverseKinematics(Bones, Weights, transform.position, Iteration);
+            for (var i = 0; i < this.Bones.Length; i++)
+            {
+                if (i == 0)
+                    Bones[i].transform.rotation = rotations[i];
+                else
+                    Bones[i].transform.localRotation = rotations[i];
+                Bones[i].ApplyAngularLimit();
+                //Bones[i].ApplyAngularLimit();
+            }
+        }
+        else
+        {
+            transform.position = FK.ForwardKinematics(this.Bones, Bones.Select(bone => bone.transform.localRotation).ToArray());
         }
 
     }
