@@ -17,6 +17,7 @@ public class IKCCD: IK
     [ExecuteInEditMode]
     private void Update()
     {
+        
         /*var r = Quaternion.Euler(45, 0, 0);
         Quaternion.*/
         if (Bones.Length != Weights.Length || Bones.Length != InitialRotation.Length)
