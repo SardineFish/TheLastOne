@@ -16,6 +16,7 @@ public class Bone : MonoBehaviour
     public Quaternion InitialRotation;
 
     public bool AngularLimit = false;
+    public bool SpeedLimit = false;
     public AngularRange AngularLimitX = new AngularRange(-180, 180);
     public AngularRange AngularLimitY = new AngularRange(-180, 180);
     public AngularRange AngularLimitZ = new AngularRange(-180, 180);
@@ -72,10 +73,13 @@ public class Bone : MonoBehaviour
 
     public void ApplyAngularLimit()
     {
-        if (Quaternion.Angle(lastRotation, transform.localRotation) / Time.deltaTime > MaxRotationSpeed)
+        if(SpeedLimit)
         {
-            transform.localRotation = Quaternion.Lerp(lastRotation, transform.localRotation, MaxRotationSpeed / (Quaternion.Angle(lastRotation, transform.localRotation) / Time.deltaTime));
-            lastRotation = transform.localRotation;
+            if (Quaternion.Angle(lastRotation, transform.localRotation) / Time.deltaTime > MaxRotationSpeed)
+            {
+                transform.localRotation = Quaternion.Lerp(lastRotation, transform.localRotation, MaxRotationSpeed / (Quaternion.Angle(lastRotation, transform.localRotation) / Time.deltaTime));
+                lastRotation = transform.localRotation;
+            }
         }
         if (AngularLimit)
         {
