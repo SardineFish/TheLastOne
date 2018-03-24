@@ -44,6 +44,7 @@ public class AnimationSkill:Skill
 
     public virtual void Update()
     {
+        return;
         if (Entity.GetComponent<SkillController>().ActiveSkill != this)
             return;
         if(animator)

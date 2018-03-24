@@ -153,7 +153,7 @@ public class Bone : MonoBehaviour
         else
             ColorUtility.TryParseHtmlString("#66CCFF", out color);
         _showAsActive = false;
-        Gizmos.color = Color.white;
+        Gizmos.color = Color.cyan;
         Gizmos.DrawMesh(mesh, transform.position,
             Quaternion.FromToRotation(Vector3.right, transform.rotation * InitialVector));
     }
