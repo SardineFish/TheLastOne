@@ -7,7 +7,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class PlayerInputManager : Singleton<PlayerInputManager>
 {
-    public Player PlayerInControl;
+    public Entity PlayerInControl;
 
     public EntityController EntityController;
 
@@ -30,6 +30,8 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
     {
         if (!PlayerInControl)
             throw new Exception("A player is required to be controled.");
+        SkillController = PlayerInControl.GetComponent<SkillController>();
+        EntityController = PlayerInControl.GetComponent<EntityController>();
         if(!SkillController)
         {
             SkillController = PlayerInControl.GetComponent<SkillController>();

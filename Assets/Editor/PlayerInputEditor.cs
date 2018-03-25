@@ -36,7 +36,7 @@ namespace Assets.Editor
                     Event.current.Use();
                 }
             }
-            playerInput.PlayerInControl = EditorGUILayout.ObjectField("Player in Control", playerInput.PlayerInControl, typeof(Player), true) as Player;
+            playerInput.PlayerInControl = EditorGUILayout.ObjectField("Player in Control", playerInput.PlayerInControl, typeof(Entity), true) as Entity;
             playerInput.MovementInput = EditorGUILayout.ObjectField("Movement Input", playerInput.MovementInput, typeof(MovementInput), true) as MovementInput;
             var count = EditorGUILayout.IntField("Keys", playerInput.SkillKeys.Count);
             if (count > playerInput.SkillKeys.Count)
