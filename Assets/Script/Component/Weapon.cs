@@ -17,6 +17,8 @@ public class Weapon : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
+        if (!enabled)
+            return;
         var entity = other.GetComponent<Entity>();
 
         if (!entity)
@@ -24,7 +26,8 @@ public class Weapon : MonoBehaviour {
 
         if (DamageOnce && damagedEntities.Contains(entity))
             return;
-
+        damagedEntities.Add(entity);
         var damageMsg = new DamageMessage(Owner, PhysicalDamage, MagicalDamage);
+        damageMsg.Dispatch(entity);
     }
 }

@@ -1163,6 +1163,43 @@ AnimationClip:
     path: IKs/IK-Leg-R
     classID: 114
     script: {fileID: 11500000, guid: 6c3822434aecdf14483748956d9f8347, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.5
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.75
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Bip/Spine/Spine-2/Arm-R/Elbow-R/Hand-R/Sword
+    classID: 114
+    script: {fileID: 11500000, guid: db9eb3c1eee87f44498896c227b76f27, type: 3}
   m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
@@ -1289,6 +1326,13 @@ AnimationClip:
       script: {fileID: 11500000, guid: 6c3822434aecdf14483748956d9f8347, type: 3}
       typeID: 114
       customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1892027339
+      attribute: 3305885265
+      script: {fileID: 11500000, guid: db9eb3c1eee87f44498896c227b76f27, type: 3}
+      typeID: 114
+      customType: 24
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 0
@@ -4916,6 +4960,43 @@ AnimationClip:
     path: IKs/IK-Leg-R
     classID: 4
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.5
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.75
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Bip/Spine/Spine-2/Arm-R/Elbow-R/Hand-R/Sword
+    classID: 114
+    script: {fileID: 11500000, guid: db9eb3c1eee87f44498896c227b76f27, type: 3}
   m_EulerEditorCurves:
   - curve:
       serializedVersion: 2

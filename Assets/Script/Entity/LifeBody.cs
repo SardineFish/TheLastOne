@@ -14,7 +14,8 @@ public class LifeBody : Entity
         if (msg is DamageMessage)
         {
             var damageMsg = msg as DamageMessage;
-
+            HP -= damageMsg.PhysicalDamage + damageMsg.MagicalDamage;
+            Debug.Log("Damaged");
         }
         else
             base.OnMessage(msg);

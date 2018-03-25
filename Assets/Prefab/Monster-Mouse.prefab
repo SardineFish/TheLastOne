@@ -68,6 +68,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4576059144287064}
   - component: {fileID: 95267377442525010}
+  - component: {fileID: 54201194333098144}
+  - component: {fileID: 136695279156557470}
+  - component: {fileID: 114742313281357566}
   m_Layer: 0
   m_Name: Monster-Mouse
   m_TagString: Untagged
@@ -430,6 +433,21 @@ Transform:
   m_Father: {fileID: 4576059144287064}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &54201194333098144
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1379698923699000}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!95 &95267377442525010
 Animator:
   serializedVersion: 3
@@ -728,6 +746,19 @@ MonoBehaviour:
   AngularLimitZ:
     low: -180
     high: 180
+--- !u!114 &114742313281357566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1379698923699000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d105034e0fb73354898c7c4b1d4d0498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 100
+  Defence: 0
 --- !u!114 &114763784248388570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -803,6 +834,19 @@ MonoBehaviour:
   AngularLimitZ:
     low: -180
     high: 180
+--- !u!136 &136695279156557470
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1379698923699000}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.99003124
+  m_Height: 2.3797858
+  m_Direction: 1
+  m_Center: {x: 0.033076763, y: 0.6898929, z: 0.19173527}
 --- !u!137 &137975584463007108
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
