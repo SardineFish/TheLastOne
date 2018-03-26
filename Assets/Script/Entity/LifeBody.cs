@@ -16,6 +16,7 @@ public class LifeBody : Entity
             var damageMsg = msg as DamageMessage;
             HP -= damageMsg.PhysicalDamage + damageMsg.MagicalDamage;
             Debug.Log("Damaged");
+            GetComponent<SkillController>().MovementSkill.KnockBack(transform.position - damageMsg.Sender.transform.position);
         }
         else
             base.OnMessage(msg);

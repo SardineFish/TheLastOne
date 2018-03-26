@@ -7,6 +7,8 @@ public class MovementSkill : AnimationSkill
     public const string AnimMoveX = "moveX";
     public const string AnimMoveY = "moveY";
     public const string AnimSpeed = "speed";
+    public const string AnimKnockBack = "knock_back";
+    public const string AnimJump = "jump";
 
     public float MaxSpeed = 1;
     public float TurnSpeed = 360;
@@ -14,6 +16,30 @@ public class MovementSkill : AnimationSkill
     private void OnEnable()
     {
         animator = Entity.GetComponent<Animator>();
+    }
+
+    public virtual void Jump()
+    {
+        if (Activate())
+            animator.SetTrigger(AnimJump);
+    }
+    public virtual void KnockBack(Vector3 direction)
+    {
+        if (Activate())
+        {
+            animator.SetTrigger(AnimKnockBack);
+            TurnImmediate(-direction);
+        }
+    }
+    public virtual void TurnImmediate(Vector3 direction)
+    {
+        var ang = MathUtility.MapAngle(MathUtility.ToAng(direction.ToVector2XZ()) - MathUtility.ToAng(Entity.GetComponent<EntityController>().CurrentFacing));
+        Entity.transform.Rotate(0, -ang, 0, Space.Self);
+
+    }
+    public override bool Activate()
+    {
+        return Activate(Vector3.zero);
     }
     public override bool Activate(Vector3 direction)
     {
