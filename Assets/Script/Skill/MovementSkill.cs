@@ -9,6 +9,7 @@ public class MovementSkill : AnimationSkill
     public const string AnimSpeed = "speed";
     public const string AnimKnockBack = "knock_back";
     public const string AnimJump = "jump";
+    public const string AnimNameKnockBack = "KnockBack";
 
     public float MaxSpeed = 1;
     public float TurnSpeed = 360;
@@ -28,7 +29,8 @@ public class MovementSkill : AnimationSkill
         Entity.GetComponent<CustomRigidBody>().AddForce(direction, ForceMode.Impulse);
         if (Activate())
         {
-            animator.SetTrigger(AnimKnockBack);
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName(AnimNameKnockBack))
+                animator.SetTrigger(AnimKnockBack);
             TurnImmediate(-direction);
         }
     }

@@ -29,8 +29,15 @@ public class CustomRigidBody:MonoBehaviour
 
     public void FixedUpdate()
     {
-        transform.Translate(momentum / mass * Time.fixedDeltaTime, Space.World);
+        var drag = this.drag * mass;
+        drag = Mathf.Clamp(drag, 0, momentum.magnitude / mass);
+        Debug.Log(drag);
+        this.AddForce(-velocity.normalized * drag, ForceMode.VelocityChange);
+
         lastPos = transform.position;
+        transform.Translate(momentum / mass * Time.fixedDeltaTime, Space.World);
+
+
     }
 
     public void AddForce(Vector3 f,ForceMode forceMode)
