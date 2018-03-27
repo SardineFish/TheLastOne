@@ -27,6 +27,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1031728661310928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4511356228615112}
+  m_Layer: 0
+  m_Name: Carry
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1095218959883196
 GameObject:
   m_ObjectHideFlags: 1
@@ -573,6 +588,7 @@ GameObject:
   - component: {fileID: 114002129841622916}
   - component: {fileID: 114704330667200468}
   - component: {fileID: 114545909021798334}
+  - component: {fileID: 114088104649726812}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -722,7 +738,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4292017596313290}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
 --- !u!4 &4240623267490438
 Transform:
@@ -761,7 +777,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4292017596313290}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4260056430370314
 Transform:
@@ -790,7 +806,7 @@ Transform:
   - {fileID: 4581464449485422}
   - {fileID: 4671153008553220}
   m_Father: {fileID: 4292017596313290}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4292017596313290
 Transform:
@@ -803,10 +819,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4635955231989858}
+  - {fileID: 4511356228615112}
   - {fileID: 4346884349441044}
+  - {fileID: 4291674565619674}
   - {fileID: 4222036102315482}
   - {fileID: 4257041479740294}
-  - {fileID: 4291674565619674}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.28500003}
@@ -838,7 +855,7 @@ Transform:
   - {fileID: 4170985188146680}
   - {fileID: 4688962210866682}
   m_Father: {fileID: 4292017596313290}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -88.902}
 --- !u!4 &4347378840662094
 Transform:
@@ -873,13 +890,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1649067604570336}
-  m_LocalRotation: {x: -0.0129091125, y: -0.049537644, z: -0.99849635, w: -0.019605584}
-  m_LocalPosition: {x: -0.117, y: 0.114, z: 0.152}
-  m_LocalScale: {x: 0.33953774, y: 0.6102965, z: 0.6102961}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4724272067120006}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -5.6480002, y: 1.5960001, z: -182.32799}
+  m_Father: {fileID: 4511356228615112}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4408663212206768
 Transform:
   m_ObjectHideFlags: 1
@@ -921,6 +938,20 @@ Transform:
   - {fileID: 4724272067120006}
   m_Father: {fileID: 4352568904759380}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4511356228615112
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1031728661310928}
+  m_LocalRotation: {x: 0.055494875, y: 0.00876769, z: -0.3793532, w: 0.9235445}
+  m_LocalPosition: {x: 1.5249172, y: 2.1396503, z: 0.16972828}
+  m_LocalScale: {x: 0.33953804, y: 0.6102971, z: 0.6102963}
+  m_Children:
+  - {fileID: 4391506558880946}
+  m_Father: {fileID: 4292017596313290}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4581464449485422
 Transform:
@@ -1089,7 +1120,6 @@ Transform:
   m_Children:
   - {fileID: 4591092624162016}
   - {fileID: 4313224357403976}
-  - {fileID: 4391506558880946}
   m_Father: {fileID: 4487292210316310}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1284,7 +1314,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -1299,8 +1329,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.1987603, y: 1.0788949, z: 5.0742345}
-  m_Center: {x: 0.035919122, y: -0.03665589, z: 1.5467166}
+  m_Size: {x: 2.1987603, y: 5.9459095, z: 5.0742354}
+  m_Center: {x: 0.035920642, y: 0.72283196, z: 1.5467222}
 --- !u!95 &95453131442541290
 Animator:
   serializedVersion: 3
@@ -1363,6 +1393,21 @@ MonoBehaviour:
   AngularLimitZ:
     low: -180
     high: 180
+--- !u!114 &114088104649726812
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1877187832100344}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8fff3b8697ed2e4e8540e3d82b9f334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mass: 1
+  UseGravity: 0
+  momentum: {x: 0, y: 0, z: 0}
+  drag: 0
 --- !u!114 &114103904974880732
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1517,7 +1562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8524d00ff3009514bb2b16fd415b882a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CoolDown: 1
+  CoolDown: 0.5
   AnimatorController: {fileID: 9100000, guid: 29ae2675198c5ff4faa299316df0a78c, type: 2}
 --- !u!114 &114252438948982434
 MonoBehaviour:
@@ -1792,8 +1837,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhysicalDamage: 0
   MagicalDamage: 0
+  KnockBack: 0
   DamageOnce: 1
-  Owner: {fileID: 0}
 --- !u!114 &114423777243061048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1877,15 +1922,15 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1649067604570336}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db9eb3c1eee87f44498896c227b76f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PhysicalDamage: 10
   MagicalDamage: 0
+  KnockBack: 10
   DamageOnce: 1
-  Owner: {fileID: 0}
 --- !u!114 &114545909021798334
 MonoBehaviour:
   m_ObjectHideFlags: 1
