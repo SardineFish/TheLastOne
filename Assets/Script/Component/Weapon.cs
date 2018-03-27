@@ -5,6 +5,7 @@ using UnityEngine;
 public class Weapon : OwnedObject {
     public float PhysicalDamage;
     public float MagicalDamage;
+    public float KnockBack;
     public bool DamageOnce = true;
 
     protected List<Entity> damagedEntities = new List<Entity>();
@@ -27,7 +28,7 @@ public class Weapon : OwnedObject {
         if (DamageOnce && damagedEntities.Contains(entity))
             return;
         damagedEntities.Add(entity);
-        var damageMsg = new DamageMessage(Owner, PhysicalDamage, MagicalDamage);
+        var damageMsg = new DamageMessage(Owner, PhysicalDamage, MagicalDamage, KnockBack);
         damageMsg.Dispatch(entity);
     }
 }

@@ -1,0 +1,56 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using UnityEngine;
+
+public class CustomRigidBody:MonoBehaviour
+{
+    public float mass = 1;
+    public bool UseGravity = false;
+    public Vector3 acceleration { get; set; }
+    public Vector3 velocity
+    {
+        get
+        {
+            return (transform.position - lastPos) / Time.fixedDeltaTime;
+        }
+        set
+        {
+            momentum = value * mass;
+        }
+    }
+    public Vector3 momentum = Vector3.zero;
+    public float drag = 0;
+
+    private ConstantForce constantForce;
+    private Vector3 lastPos = Vector3.zero;
+
+    public void FixedUpdate()
+    {
+        transform.Translate(momentum / mass * Time.fixedDeltaTime, Space.World);
+        lastPos = transform.position;
+    }
+
+    public void AddForce(Vector3 f,ForceMode forceMode)
+    {
+        switch (forceMode)
+        {
+            case ForceMode.Acceleration:
+                acceleration += f;
+                break;
+            case ForceMode.Force:
+                acceleration += f / mass;
+                break;
+            case ForceMode.Impulse:
+                momentum += f;
+                break;
+            case ForceMode.VelocityChange:
+                momentum += f * mass;
+                break;
+        }
+    }
+
+
+}

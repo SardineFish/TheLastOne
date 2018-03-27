@@ -10,7 +10,7 @@ public class SkillController : EntityBehavior<Entity> {
     public MovementSkill MovementSkill;
 	// Use this for initialization
 	void Start () {
-		
+        MovementSkill.Activate();
 	}
 	
     [ExecuteInEditMode]

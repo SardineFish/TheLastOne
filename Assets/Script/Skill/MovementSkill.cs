@@ -25,6 +25,7 @@ public class MovementSkill : AnimationSkill
     }
     public virtual void KnockBack(Vector3 direction)
     {
+        Entity.GetComponent<CustomRigidBody>().AddForce(direction, ForceMode.Impulse);
         if (Activate())
         {
             animator.SetTrigger(AnimKnockBack);
