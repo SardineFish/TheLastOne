@@ -1267,6 +1267,11 @@ Prefab:
       propertyPath: m_UseGravity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114248344858943542, guid: 1fa2db5167848ca42a5a7c3da19b054f,
+        type: 2}
+      propertyPath: CoolDown
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1fa2db5167848ca42a5a7c3da19b054f, type: 2}
   m_IsPrefabParent: 0
@@ -1344,24 +1349,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1414033525}
   m_Mesh: {fileID: 4300004, guid: 1e978975abd7776439b5978ac089e965, type: 3}
---- !u!114 &1421705137 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114459740616320830, guid: 3af07ced554c3154fbcb61b22c4487c9,
-    type: 2}
-  m_PrefabInternal: {fileID: 1263777624}
-  m_Script: {fileID: 11500000, guid: 3b0920e7f565dc049b30425f54ef4f58, type: 3}
---- !u!114 &1421705138 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114699991253156372, guid: 3af07ced554c3154fbcb61b22c4487c9,
-    type: 2}
-  m_PrefabInternal: {fileID: 1263777624}
-  m_Script: {fileID: 11500000, guid: c3a37d15ad527c748bed6a52de30e24f, type: 3}
---- !u!114 &1421705139 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114758794316281428, guid: 3af07ced554c3154fbcb61b22c4487c9,
-    type: 2}
-  m_PrefabInternal: {fileID: 1263777624}
-  m_Script: {fileID: 11500000, guid: d105034e0fb73354898c7c4b1d4d0498, type: 3}
 --- !u!1 &1457529813
 GameObject:
   m_ObjectHideFlags: 0
@@ -1501,6 +1488,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1597355088 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114704330667200468, guid: 1fa2db5167848ca42a5a7c3da19b054f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1412086611}
+  m_Script: {fileID: 11500000, guid: 3b0920e7f565dc049b30425f54ef4f58, type: 3}
+--- !u!114 &1597355089 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114002129841622916, guid: 1fa2db5167848ca42a5a7c3da19b054f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1412086611}
+  m_Script: {fileID: 11500000, guid: be2d0fbaefa386645b5051f784d4483e, type: 3}
+--- !u!114 &1597355090 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114103904974880732, guid: 1fa2db5167848ca42a5a7c3da19b054f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1412086611}
+  m_Script: {fileID: 11500000, guid: c3a37d15ad527c748bed6a52de30e24f, type: 3}
 --- !u!1 &1863863798
 GameObject:
   m_ObjectHideFlags: 0
@@ -1604,9 +1609,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c239511fe77d84044a028fcf51db644b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerInControl: {fileID: 1421705139}
-  EntityController: {fileID: 1421705138}
-  SkillController: {fileID: 1421705137}
+  PlayerInControl: {fileID: 1597355089}
+  EntityController: {fileID: 1597355090}
+  SkillController: {fileID: 1597355088}
   SkillKeys: 6a000000690000006b0000006c00000000000000
   MovementInput: {fileID: 1921125667}
 --- !u!4 &1921125665

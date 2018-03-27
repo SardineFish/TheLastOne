@@ -39,6 +39,7 @@ public class MovementSkill : AnimationSkill
     }
     public override bool Activate()
     {
+        Entity.GetComponent<ActionManager>().ChangeAction(AnimatorController);
         return Activate(Vector3.zero);
     }
     public override bool Activate(Vector3 direction)

@@ -44,11 +44,10 @@ public class AnimationSkill:Skill
 
     public virtual void Update()
     {
-        return;
         if (Entity.GetComponent<SkillController>().ActiveSkill != this)
             return;
         if(animator)
-        {
+        { 
             var state = animator.GetCurrentAnimatorStateInfo(0);
             if (state.IsTag(ActionManager.AnimTagEnd) && Entity.GetComponent<ActionManager>())
             {

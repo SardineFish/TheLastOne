@@ -78,12 +78,16 @@ public class KeyboardMovement : MovementInput
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
+     /*   var x = Input.GetAxisRaw("Horizontal");
+        var y = Input.GetAxisRaw("Vertical");
+
+        Debug.Log(x.ToString() + "," + y.ToString() + " " + new Vector2(x, y).magnitude);*/
         if (InputKeys == null)
             InputKeys = new KeyCode[4];
         if (InputKeys.Length != 4)
             System.Array.Resize(ref InputKeys, 4);
-
 
         for (var i = 0; i < Directions.Length; i++)
         {

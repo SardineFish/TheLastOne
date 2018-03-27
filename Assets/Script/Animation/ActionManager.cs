@@ -22,6 +22,10 @@ public class ActionManager : EntityBehavior<LifeBody>
         animator = Entity.GetComponent<Animator>();
 	}
 
+    private void OnEnable()
+    {
+    }
+
     public bool ChangeAction(RuntimeAnimatorController controller)
     {
         if (!animator)
@@ -39,6 +43,6 @@ public class ActionManager : EntityBehavior<LifeBody>
 
     public bool EnableMovement()
     {
-        return ChangeAction(DefaultMovement);
+        return Entity.GetComponent<SkillController>().MovementSkill.Activate();
     }
 }
