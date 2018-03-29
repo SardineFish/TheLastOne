@@ -20,8 +20,9 @@ namespace Assets.Editor
             {
                 if(bindObj.BindTo)
                 {
-                    bindObj.relativePosition = bindObj.transform.position - bindObj.BindTo.transform.position;
+                    bindObj.relativePosition = bindObj.BindTo.transform.worldToLocalMatrix * (bindObj.transform.position - bindObj.BindTo.transform.position);
                     bindObj.relativeRotation = bindObj.transform.rotation * Quaternion.Inverse(bindObj.BindTo.transform.rotation);
+                    bindObj.targetOriginRotation = bindObj.BindTo.transform.rotation;
                 }
             }
         }

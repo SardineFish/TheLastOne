@@ -24,6 +24,18 @@ public class SkillController : EntityBehavior<Entity> {
 
     }
 
+    public void OnWeaponDamageStart()
+    {
+        if(ActiveSkill)
+            ActiveSkill.OnWeaponDamageStart();
+    }
+
+    public void OnWeaponDamageEnd()
+    {
+        if(ActiveSkill)
+            ActiveSkill.OnWeaponDamageEnd();
+    }
+
     public bool ActivateSkill(int idx)
     {
         if (Skills.Length > idx)

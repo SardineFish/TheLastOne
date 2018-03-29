@@ -8,6 +8,7 @@ public class BindObject : MonoBehaviour
     public bool BindPosition = true;
     public bool BindRotation = true;
     //public bool BindScale = true;
+    public Quaternion targetOriginRotation = Quaternion.identity;
     public Quaternion relativeRotation = Quaternion.identity;
     public Vector3 relativePosition = Vector3.zero;
     //public Vector3 relativeScale;
@@ -18,15 +19,17 @@ public class BindObject : MonoBehaviour
 
     }
 
-    [ExecuteInEditMode]
+    //[ExecuteInEditMode]
     void Update()
     {
         if (BindTo)
         {
             if (BindPosition)
-                transform.position = BindTo.transform.position + relativePosition;
+                transform.position = BindTo.transform.position + (BindTo.transform.rotation * relativePosition);
             if (BindRotation)
+            {
                 transform.rotation = BindTo.transform.rotation * relativeRotation;
+            }
         }
     }
 
@@ -37,7 +40,7 @@ public class BindObject : MonoBehaviour
             if (BindPosition)
                 transform.position = BindTo.transform.position + relativePosition;
             if (BindRotation)
-                transform.rotation = BindTo.transform.rotation * relativeRotation;
+                transform.rotation = relativeRotation * BindTo.transform.rotation;
         }
         
     }

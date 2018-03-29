@@ -32,4 +32,13 @@ public abstract class Skill : EntityBehavior<Entity>
             return false;
         return true;
     }
+
+    public virtual void OnWeaponDamageStart()
+    {
+
+    }
+    public virtual void OnWeaponDamageEnd() 
+    {
+
+    }
 }
