@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: b1d42b3967f47d54e9d4d3e5b682a9bd
-timeCreated: 1520510348
-licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -71,8 +69,10 @@ ModelImporter:
     400062: VRayLight001
     2300000: Plane001
     2300002: Sword
+    2300004: Player
     3300000: Plane001
     3300002: Sword
+    3300004: Player
     4300000: Player
     4300002: Plane001
     4300004: Sword
@@ -83,27 +83,27 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Body
-    second: {fileID: 2100000, guid: 612eec29f2eb39d4e85c5528a8539f0f, type: 2}
+    second: {fileID: 2100000, guid: 128788f45c83c63499e8667b9a5dceca, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: 'Material #242'
-    second: {fileID: 2100000, guid: a092c7fe6afc6534ab95f663ec1dfc62, type: 2}
+    second: {fileID: 2100000, guid: 62fbb7b68b4e8ba439a72de78e02d581, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Sword
-    second: {fileID: 2100000, guid: 8a4f6766d298f8f43abf801d63de2cd3, type: 2}
+    second: {fileID: 2100000, guid: 3ab52537618aee241b994e20b7e925d2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Sword-Gold
-    second: {fileID: 2100000, guid: 846fa80a573977e438c3d1af3bfbdf7d, type: 2}
+    second: {fileID: 2100000, guid: 1f659a59d8fbdb045bf9ab272e07b67e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Sword-Handle
-    second: {fileID: 2100000, guid: 375ff6ea137ed6c488d8d2a9b0a6cd86, type: 2}
+    second: {fileID: 2100000, guid: 1e2c6efeaa51d4e4884f214455e4f948, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -122,7 +122,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 1
+    importConstraints: 0
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -146,6 +147,8 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -172,7 +175,7 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
