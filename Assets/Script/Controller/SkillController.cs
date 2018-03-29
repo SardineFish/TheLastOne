@@ -65,7 +65,12 @@ public class SkillController : EntityBehavior<Entity> {
 
     public bool ActivateMovementSkill(Vector2 movement)
     {
-        return MovementSkill.Activate(movement.ToVector3XZ());
+        if( MovementSkill.Activate(movement.ToVector3XZ()))
+        {
+            ActiveSkill = MovementSkill;
+            return true;
+        }
+        return false;
     }
 
 }

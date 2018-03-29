@@ -49,7 +49,7 @@ public class MovementSkill : AnimationSkill
     {
         if(direction.magnitude<=0.01f)
         {
-            if(animator.runtimeAnimatorController == AnimatorController)
+            if(Entity.GetComponent<SkillController>().ActiveSkill == this)
             {
                 animator.SetFloat(AnimSpeed, 0);
                 animator.SetFloat(AnimMoveX, 0);

@@ -25,7 +25,8 @@ public class AnimationSkill:Skill
             if(Entity.GetComponent<ActionManager>().ChangeAction(AnimatorController))
             {
                 lastActiveTime = Time.time;
-                animator.SetTrigger(AnimActiveTrigger);
+                Entity.GetComponent<ActionManager>().CurrentAnimatorController.SetTrigger(AnimActiveTrigger);
+                //animator.SetTrigger(AnimActiveTrigger);
                 return true;
             }
         }

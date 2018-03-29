@@ -31,7 +31,7 @@ public class CustomRigidBody:MonoBehaviour
     {
         var drag = this.drag * mass;
         drag = Mathf.Clamp(drag, 0, momentum.magnitude / mass);
-        Debug.Log(drag);
+        //Debug.Log(drag);
         this.AddForce(-velocity.normalized * drag, ForceMode.VelocityChange);
 
         lastPos = transform.position;

@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public abstract class Skill : EntityBehavior<Entity> {
+public abstract class Skill : EntityBehavior<Entity>
+{
     public float CoolDown = 1;
 
     protected float lastActiveTime = 0;

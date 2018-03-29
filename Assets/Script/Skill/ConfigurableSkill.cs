@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Animations;
 
 public enum SkillActivate
 {
@@ -48,6 +50,7 @@ public class ConfigurableSkill : AnimationSkill
 
     public override bool Activate(Entity target)
     {
+        
         return base.Activate(target);
     }
 
