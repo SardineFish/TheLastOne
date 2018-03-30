@@ -22,15 +22,15 @@ public class MovementSkill : AnimationSkill
     public virtual void Jump()
     {
         if (Activate())
-            animator.SetTrigger(AnimJump);
+            Entity.GetComponent<ActionManager>().CurrentAnimatorController.SetTrigger(AnimJump);
     }
     public virtual void KnockBack(Vector3 direction)
     {
         Entity.GetComponent<CustomRigidBody>().AddForce(direction, ForceMode.Impulse);
         if (Activate())
         {
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName(AnimNameKnockBack))
-                animator.SetTrigger(AnimKnockBack);
+            if (!Entity.GetComponent<ActionManager>().CurrentAnimatorController.GetCurrentAnimatorStateInfo(0).IsName(AnimNameKnockBack))
+                Entity.GetComponent<ActionManager>().CurrentAnimatorController.SetTrigger(AnimKnockBack);
             TurnImmediate(-direction);
         }
     }
@@ -42,8 +42,9 @@ public class MovementSkill : AnimationSkill
     }
     public override bool Activate()
     {
-        Entity.GetComponent<ActionManager>().ChangeAction(AnimatorController);
-        return Activate(Vector3.zero);
+        if(Entity.GetComponent<ActionManager>().ChangeAction(AnimatorController))
+            return Activate(Vector3.zero);
+        return false;
     }
     public override bool Activate(Vector3 direction)
     {

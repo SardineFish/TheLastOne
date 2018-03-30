@@ -79,7 +79,7 @@ public class ActionManager : EntityBehavior<LifeBody>
     public bool ChangeAction(RuntimeAnimatorController controller)
     {
         if (!animator)
-            return false;
+            animator = Entity.GetComponent<Animator>();
         if (currentAnimatorController == controller)
             return true;
         var state = CurrentAnimatorController.GetCurrentAnimatorStateInfo(0);
