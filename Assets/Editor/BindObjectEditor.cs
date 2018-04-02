@@ -25,6 +25,20 @@ namespace Assets.Editor
                     bindObj.targetOriginRotation = bindObj.BindTo.transform.rotation;
                 }
             }
+            /*if(GUILayout.Button("Add All Children"))
+            {
+                AddChildren(bindObj.transform);
+            }*/
+        }
+
+
+        void AddChildren(Transform trans)
+        {
+            for (var i = 0; i < trans.childCount; i++)
+            {
+                trans.GetChild(i).gameObject.AddComponent<BindObject>();
+                AddChildren(trans.GetChild(i));
+            }
         }
     }
 }
