@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -54,6 +55,13 @@ public class Bone : MonoBehaviour
         //Debug.DrawLine(transform.position, transform.position + DirectionVector * 10);
         if (SubBones != null && SubBones.Length > 0 && Edit)
         {
+            if(!SubBones[0])
+            {
+                var list = SubBones.ToList();
+                list.RemoveAt(0);
+                SubBones = list.ToArray();
+                return;
+            }
             InitialVector = SubBones[0].transform.localPosition;
             //this.InitialVector = Quaternion.Inverse(transform.rotation) * (SubBones[0].transform.position - transform.position);
             this.Length = InitialVector.magnitude;
