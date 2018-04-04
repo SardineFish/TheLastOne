@@ -25,6 +25,13 @@ public class LifeBody : Entity
             var dir = Vector3.Scale(transform.position - damageMsg.Sender.transform.position,new Vector3(1,0,1));
             GetComponent<SkillController>().MovementSkill.KnockBack(dir.normalized*damageMsg.KnockBack);
         }
+        else if(msg is SkillImpactMessage)
+        {
+            foreach (var effect in (msg as SkillImpactMessage).SkillEffects)
+            {
+                effect.ApplyEffect(msg.Sender, this);
+            }
+        }
         else
             base.OnMessage(msg);
     }
