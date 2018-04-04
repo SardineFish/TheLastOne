@@ -526,22 +526,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1327813938036442
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4225949572886450}
-  - component: {fileID: 114925452515375142}
-  m_Layer: 0
-  m_Name: mixamorig:LeftHandThumb4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1333450158023904
 GameObject:
   m_ObjectHideFlags: 1
@@ -1811,19 +1795,6 @@ Transform:
   m_Father: {fileID: 4037552316530960}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 32.374844, y: 19.72463, z: -32.08277}
---- !u!4 &4225949572886450
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1327813938036442}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.06162629, y: -0.035579722, z: 0.03557916}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4832153453403026}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4227375136597384
 Transform:
   m_ObjectHideFlags: 1
@@ -2702,8 +2673,7 @@ Transform:
   m_LocalRotation: {x: -0.0000051025772, y: 0.000009561153, z: 0.00000076763865, w: 1}
   m_LocalPosition: {x: -0.078070246, y: -0.04507411, z: 0.04507523}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4225949572886450}
+  m_Children: []
   m_Father: {fileID: 4876029171950772}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -7.335868, y: 0.4257984, z: -13.201736}
@@ -3498,8 +3468,7 @@ MonoBehaviour:
   Width: 0.1
   MaxRotationSpeed: 180
   Edit: 1
-  SubBones:
-  - {fileID: 0}
+  SubBones: []
   _showAsActive: 0
   InitialRotation: {x: 0, y: 0, z: 0, w: 0}
   AngularLimit: 0
@@ -3590,8 +3559,7 @@ MonoBehaviour:
   Width: 0.1
   MaxRotationSpeed: 180
   Edit: 1
-  SubBones:
-  - {fileID: 114925452515375142}
+  SubBones: []
   _showAsActive: 0
   InitialRotation: {x: 0, y: 0, z: 0, w: 0}
   AngularLimit: 0
@@ -4183,8 +4151,7 @@ MonoBehaviour:
   Width: 0.1
   MaxRotationSpeed: 180
   Edit: 1
-  SubBones:
-  - {fileID: 0}
+  SubBones: []
   _showAsActive: 0
   InitialRotation: {x: 0, y: 0, z: 0, w: 0}
   AngularLimit: 0
@@ -4361,8 +4328,7 @@ MonoBehaviour:
   Width: 0.1
   MaxRotationSpeed: 180
   Edit: 1
-  SubBones:
-  - {fileID: 0}
+  SubBones: []
   _showAsActive: 0
   InitialRotation: {x: 0, y: 0, z: 0, w: 0}
   AngularLimit: 0
@@ -4653,10 +4619,7 @@ MonoBehaviour:
   Width: 0.1
   MaxRotationSpeed: 180
   Edit: 1
-  SubBones:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  SubBones: []
   _showAsActive: 0
   InitialRotation: {x: 0, y: 0, z: 0, w: 0}
   AngularLimit: 0
@@ -4701,8 +4664,7 @@ MonoBehaviour:
   Width: 0.1
   MaxRotationSpeed: 180
   Edit: 1
-  SubBones:
-  - {fileID: 0}
+  SubBones: []
   _showAsActive: 0
   InitialRotation: {x: 0, y: 0, z: 0, w: 0}
   AngularLimit: 0
@@ -4903,8 +4865,7 @@ MonoBehaviour:
   Width: 0.1
   MaxRotationSpeed: 180
   Edit: 1
-  SubBones:
-  - {fileID: 0}
+  SubBones: []
   _showAsActive: 0
   InitialRotation: {x: 0, y: 0, z: 0, w: 0}
   AngularLimit: 0
@@ -5105,8 +5066,7 @@ MonoBehaviour:
   Width: 0.1
   MaxRotationSpeed: 180
   Edit: 1
-  SubBones:
-  - {fileID: 0}
+  SubBones: []
   _showAsActive: 0
   InitialRotation: {x: 0, y: 0, z: 0, w: 0}
   AngularLimit: 0
@@ -5263,8 +5223,7 @@ MonoBehaviour:
   Width: 0.1
   MaxRotationSpeed: 180
   Edit: 1
-  SubBones:
-  - {fileID: 0}
+  SubBones: []
   _showAsActive: 0
   InitialRotation: {x: 0, y: 0, z: 0, w: 0}
   AngularLimit: 0
@@ -5540,8 +5499,7 @@ MonoBehaviour:
   Width: 0.1
   MaxRotationSpeed: 180
   Edit: 1
-  SubBones:
-  - {fileID: 0}
+  SubBones: []
   _showAsActive: 0
   InitialRotation: {x: 0, y: 0, z: 0, w: 0}
   AngularLimit: 0
@@ -5571,8 +5529,7 @@ MonoBehaviour:
   Width: 0.1
   MaxRotationSpeed: 180
   Edit: 1
-  SubBones:
-  - {fileID: 0}
+  SubBones: []
   _showAsActive: 0
   InitialRotation: {x: 0, y: 0, z: 0, w: 0}
   AngularLimit: 0
@@ -5629,36 +5586,6 @@ MonoBehaviour:
   Edit: 1
   SubBones:
   - {fileID: 114897824738901744}
-  _showAsActive: 0
-  InitialRotation: {x: 0, y: 0, z: 0, w: 0}
-  AngularLimit: 0
-  SpeedLimit: 0
-  AngularLimitX:
-    low: -180
-    high: 180
-  AngularLimitY:
-    low: -180
-    high: 180
-  AngularLimitZ:
-    low: -180
-    high: 180
---- !u!114 &114925452515375142
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1327813938036442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43fa0062debfa24468c14f145571e0f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InitialVector: {x: 1, y: 0, z: 0}
-  Length: 1
-  Width: 0.1
-  MaxRotationSpeed: 180
-  Edit: 1
-  SubBones: []
   _showAsActive: 0
   InitialRotation: {x: 0, y: 0, z: 0, w: 0}
   AngularLimit: 0
@@ -5812,8 +5739,7 @@ MonoBehaviour:
   Width: 0.1
   MaxRotationSpeed: 180
   Edit: 1
-  SubBones:
-  - {fileID: 0}
+  SubBones: []
   _showAsActive: 0
   InitialRotation: {x: 0, y: 0, z: 0, w: 0}
   AngularLimit: 0
