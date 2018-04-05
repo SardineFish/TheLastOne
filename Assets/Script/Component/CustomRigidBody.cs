@@ -22,20 +22,40 @@ public class CustomRigidBody:MonoBehaviour
         }
     }
     public Vector3 momentum = Vector3.zero;
-    public float drag = 0;
-    
+    public float GroundDrag = 0;
+    public float AirDrag = 0;
+    public bool OnGround = false;
+    int ground = 0;
+
     private Vector3 lastPos = Vector3.zero;
 
     private void Start()
     {
         lastPos = transform.position;
     }
+    
 
     public void FixedUpdate()
     {
-        momentum += Physics.gravity * mass * Time.fixedDeltaTime;
+        if(OnGround)
+        {
+            momentum.y = 0;
+        }
+        else if (UseGravity)
+            momentum += Physics.gravity * mass * Time.fixedDeltaTime;
+
         momentum += acceleration * Time.fixedDeltaTime * mass;
-        var drag = this.drag * mass;
+
+        var drag = 0f;
+        if(OnGround)
+        {
+            drag = GroundDrag * mass;
+
+        }
+        else
+        {
+            drag = AirDrag * mass;
+        }
         drag = Mathf.Clamp(drag, 0, momentum.magnitude / mass);
         //Debug.Log(drag);
         this.AddForce(-velocity.normalized * drag, ForceMode.VelocityChange);
@@ -43,7 +63,6 @@ public class CustomRigidBody:MonoBehaviour
         lastPos = transform.position;
         //transform.Translate(momentum / mass * Time.fixedDeltaTime, Space.World);
         GetComponent<Rigidbody>().MovePosition(transform.position + momentum / mass * Time.fixedDeltaTime);
-        
     }
 
     public void AddForce(Vector3 f,ForceMode forceMode)
@@ -65,5 +84,15 @@ public class CustomRigidBody:MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        ground += 1;
+        OnGround = ground > 0;
+    }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        ground -= 1;
+        OnGround = ground > 0;
+    }
 }
