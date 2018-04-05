@@ -20,7 +20,7 @@ public class PhysicalDamageEffect : SkillEffect
         Name = "Physical Damage";
     }
 
-    public override void ApplyEffect(Entity effectFrom, Entity target)
+    public override void ApplyEffect(SkillImpact impact, Entity target)
     {
         if(target is LifeBody)
         {

@@ -29,7 +29,7 @@ public class LifeBody : Entity
         {
             foreach (var effect in (msg as SkillImpactMessage).SkillEffects)
             {
-                effect.ApplyEffect(msg.Sender, this);
+                effect.ApplyEffect((msg as SkillImpactMessage).Impact, this);
             }
         }
         else

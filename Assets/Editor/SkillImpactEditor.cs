@@ -41,6 +41,8 @@ namespace Assets.Editor
                 EditorGUILayout.ObjectField("Target: ", impact.ImpactTarget, typeof(Entity), false);
             }
             EditorGUILayout.Space();
+            impact.DamageOnce = EditorGUILayout.Toggle("Damage Once: ", impact.DamageOnce);
+            impact.SingleDamage = EditorGUILayout.Toggle("Single Damage: ", impact.SingleDamage);
             EditorGUILayout.ObjectField("Creator: ", impact.Creator, typeof(Entity), false);
             EditorGUILayout.Vector3Field("Start Position: ", impact.ImpactStartPosition);
             EditorGUILayout.Vector3Field("Direction: ", impact.ImpactDirection);

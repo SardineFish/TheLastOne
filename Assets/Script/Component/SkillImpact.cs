@@ -31,14 +31,13 @@ public class SkillImpact : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        transform.LookAt(ImpactDirection);
 
     }
     
     private void Impact(Entity target)
     {
         // Send an impact message to the entity being impacted containing the effects of the skill
-        new SkillImpactMessage(Creator, SkillEffects).Dispatch(target);
+        new SkillImpactMessage(this, SkillEffects).Dispatch(target);
     }
 
     public void Distruct()
@@ -48,11 +47,11 @@ public class SkillImpact : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        /*if(ImpactTime>0 && Time.fixedTime -  ImpactStartTime>ImpactTime)
+        if (ImpactTime > 0 && Time.fixedTime - ImpactStartTime > ImpactTime)
         {
             Distruct();
             return;
-        }*/
+        }
         if (SingleDamage && hitEntities.Count > 0)
             return;
 
@@ -113,7 +112,8 @@ public class SkillImpact : MonoBehaviour {
                 return;
 
             var entity = other.GetComponent<LifeBody>();
-
+            if (entity == Creator)
+                return;
             if (!entity)
                 return;
 
@@ -123,6 +123,9 @@ public class SkillImpact : MonoBehaviour {
             hitEntities.Add(entity);
 
             Impact(entity);
+
+            if (SingleDamage)
+                Distruct();
         }
     }
 
@@ -135,7 +138,7 @@ public class SkillImpact : MonoBehaviour {
             return;
         }
         transform.position = ImpactStartPosition;
-        transform.LookAt(ImpactDirection);
+        transform.rotation *= Quaternion.FromToRotation(transform.forward, ImpactDirection);
         hitEntities = new List<Entity>();
         ImpactStartTime = Time.fixedTime;
     }

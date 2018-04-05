@@ -38,8 +38,9 @@ public class ConfigurableSkill : AnimationSkill
     public ActivateMethod ActivateMethod;
     public float ImpactRadius = 1;
     public float ImpactAngle = 360;
+    public Vector3 ActivatePosition;
 
-    private Vector3 activatePosition;
+    private Vector3 activatePos;
     private Vector3 activateDirection;
     private Entity targetedEntity;
 
@@ -79,7 +80,7 @@ public class ConfigurableSkill : AnimationSkill
             case ActivateMethod.Position:
                 return Activate();
         }
-        activatePosition = Entity.transform.position;
+        activatePos = Entity.transform.position;
         activateDirection = target.transform.position - Entity.transform.position;
         targetedEntity = target;
         return base.Activate(target);
@@ -91,17 +92,17 @@ public class ConfigurableSkill : AnimationSkill
             return false;
         else if (ActivateMethod == ActivateMethod.Local)
         {
-            activatePosition = Entity.transform.position;
+            activatePos = Entity.transform.localToWorldMatrix.MultiplyPoint(ActivatePosition);
             activateDirection = target;
         }
         else if (ActivateMethod == ActivateMethod.Position)
         {
-            activatePosition = target;
+            activatePos = target;
             activateDirection = target - Entity.transform.position;
         }
         else if (ActivateMethod == ActivateMethod.Direction)
         {
-            activatePosition = Entity.transform.position;
+            activatePos = Entity.transform.localToWorldMatrix.MultiplyPoint(ActivatePosition);
             activateDirection = target;
         }
         return base.Activate(target);
@@ -113,7 +114,7 @@ public class ConfigurableSkill : AnimationSkill
         var impact = SkillImpactInstance.GetComponent<SkillImpact>();
         impact.Creator = Entity;
         impact.SkillEffects = SkillEffects;
-        impact.Activate(activatePosition, activateDirection);
+        impact.Activate(activatePos, activateDirection);
         impact.ImpactTarget = targetedEntity;
         impact.ImpactRadius = ImpactRadius;
         impact.ImpactAngle = ImpactAngle;

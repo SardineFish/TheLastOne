@@ -10,5 +10,5 @@ public abstract class SkillEffect:ScriptableObject
 {
     [SerializeField]
     public string Name;
-    public abstract void ApplyEffect(Entity effectFrom, Entity target);
+    public abstract void ApplyEffect(SkillImpact impact, Entity target);
 }

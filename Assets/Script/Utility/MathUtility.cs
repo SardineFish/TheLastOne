@@ -19,6 +19,10 @@ public static class MathUtility
     {
         return new Vector3(v.x, 0, v.y);
     }
+    public static Vector3 ClipY(this Vector3 v)
+    {
+        return Vector3.Scale(v, new Vector3(1, 0, 1));
+    }
 
     public static Vector2 ToVector2(this Vector3 v)
     {
