@@ -8,6 +8,8 @@ public class LifeBody : Entity
 {
     public float HP;
     public float Defence;
+    public Carrier PrimaryHand;
+    public Carrier SecondaryHand;
     Rigidbody rigidbody;
 
     private void OnEnable()

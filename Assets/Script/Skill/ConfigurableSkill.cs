@@ -80,16 +80,25 @@ public class ConfigurableSkill : AnimationSkill
             case ActivateMethod.Position:
                 return Activate();
         }
+
+        if(!base.Activate(target))
+            return false;
+
         activatePos = Entity.transform.position;
         activateDirection = target.transform.position - Entity.transform.position;
         targetedEntity = target;
-        return base.Activate(target);
+
+        AttachWeapon();
+        return true;
     }
 
     public override bool Activate(Vector3 target)
     {
         if (ActivateMethod == ActivateMethod.TargetedEntity)
             return false;
+        if (!base.Activate(target))
+            return false;
+
         else if (ActivateMethod == ActivateMethod.Local)
         {
             activatePos = Entity.transform.localToWorldMatrix.MultiplyPoint(ActivatePosition);
@@ -105,7 +114,22 @@ public class ConfigurableSkill : AnimationSkill
             activatePos = Entity.transform.localToWorldMatrix.MultiplyPoint(ActivatePosition);
             activateDirection = target;
         }
-        return base.Activate(target);
+
+        AttachWeapon();
+        return true;
+    }
+
+    private void AttachWeapon()
+    {
+        var carrier = (Entity as LifeBody).PrimaryHand;
+
+        if (Entity.GetComponent<SkillController>().PreviousSkill == this && carrier.Carrying)
+            return;
+        (Entity as LifeBody).PrimaryHand?.Release();
+        if (WeaponPrefab)
+        {
+            Instantiate(WeaponPrefab).GetComponent<CarriableObject>().AttachTo((Entity as LifeBody).PrimaryHand);
+        }
     }
 
     public override void OnWeaponDamageStart()

@@ -8,5 +8,6 @@ public class Player:LifeBody
     public override void OnMessage(Message msg)
     {
         base.OnMessage(msg);
+        
     }
 }
