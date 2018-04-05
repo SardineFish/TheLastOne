@@ -123,7 +123,7 @@ public class ConfigurableSkill : AnimationSkill
     {
         var carrier = (Entity as LifeBody).PrimaryHand;
 
-        if (Entity.GetComponent<SkillController>().PreviousSkill == this && carrier.Carrying)
+        if (Entity.GetComponent<SkillController>().ActiveSkill == this && carrier.Carrying)
             return;
         (Entity as LifeBody).PrimaryHand?.Release();
         if (WeaponPrefab)

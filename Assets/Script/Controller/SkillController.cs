@@ -7,19 +7,7 @@ using UnityEngine;
 public class SkillController : EntityBehavior<Entity> {
     public Skill[] Skills;
     Skill activeSkill;
-    public Skill ActiveSkill
-    {
-        get
-        {
-            return activeSkill;
-        }
-        set
-        {
-            PreviousSkill = activeSkill;
-            activeSkill = value;
-        }
-    }
-    public Skill PreviousSkill { get; private set; }
+    public Skill ActiveSkill;
     public MovementSkill MovementSkill;
 	// Use this for initialization
 	void Start () {

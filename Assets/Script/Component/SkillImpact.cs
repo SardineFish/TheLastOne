@@ -36,6 +36,8 @@ public class SkillImpact : MonoBehaviour {
     
     private void Impact(Entity target)
     {
+        if (target == Creator)
+            return;
         // Send an impact message to the entity being impacted containing the effects of the skill
         new SkillImpactMessage(this, SkillEffects).Dispatch(target);
     }

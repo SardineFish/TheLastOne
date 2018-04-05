@@ -42,6 +42,14 @@ public class MovementSkill : AnimationSkill
         Entity.transform.Rotate(0, -ang, 0, Space.Self);
 
     }
+
+    void RelaseCarry()
+    {
+        (Entity as LifeBody).PrimaryHand?.Release();
+        (Entity as LifeBody).SecondaryHand?.Release();
+
+    }
+
     public override bool Activate()
     {
         return Activate(Vector3.zero);
@@ -62,6 +70,7 @@ public class MovementSkill : AnimationSkill
                 actionManager.CurrentAnimatorController.SetFloat(AnimSpeed, 0);
                 actionManager.CurrentAnimatorController.SetFloat(AnimMoveX, 0);
                 actionManager.CurrentAnimatorController.SetFloat(AnimMoveY, 0);
+                RelaseCarry();
                 return true;
             }
         }
@@ -78,6 +87,7 @@ public class MovementSkill : AnimationSkill
 
             Entity.transform.Rotate(0, -ang, 0, Space.Self);
             Entity.GetComponent<EntityController>().CurrentFacing = new Vector2(transform.forward.x, transform.forward.z);
+            RelaseCarry();
             return true;
         }
         return false;
