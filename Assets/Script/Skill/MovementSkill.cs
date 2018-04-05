@@ -50,9 +50,11 @@ public class MovementSkill : AnimationSkill
     {
         if (!Application.isPlaying)
             return false;
-        if (!Entity.GetComponent<ActionManager>().ChangeAction(AnimatorController))
+        if(direction.magnitude>0)
+            if (!actionManager.ChangeAction(AnimatorController))
+                return false;
+        if (direction.magnitude == 0 && Entity.GetComponent<SkillController>().ActiveSkill != this)
             return false;
-
         if (direction.magnitude <= 0.01f)
         {
             if (Entity.GetComponent<SkillController>().ActiveSkill == this)
