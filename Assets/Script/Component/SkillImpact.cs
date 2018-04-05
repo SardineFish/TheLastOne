@@ -58,14 +58,13 @@ public class SkillImpact : MonoBehaviour {
 
         if (ImpactType == ImpactType.Areal)
         {
-            var hits = Physics.CapsuleCastAll(ImpactStartPosition, ImpactStartPosition + new Vector3(0, ImpactHeight, 0), ImpactRadius, transform.forward);
-            foreach(var hit in hits)
+            var colliders = Physics.OverlapCapsule(transform.position, transform.position + transform.up * ImpactHeight, ImpactRadius);
+            foreach(var collider in colliders)
             {
-
-                var entity = hit.transform.GetComponent<Entity>();
+                var entity = collider.GetComponent<Entity>();
                 if (!entity)
                     continue;
-                Debug.DrawLine(transform.position, hit.point, Color.green);
+                Debug.DrawLine(transform.position, collider.transform.position, Color.green);
 
                 // Check hit point in impact range
 
@@ -152,5 +151,10 @@ public class SkillImpact : MonoBehaviour {
         ImpactStartPosition = position;
         ImpactDirection = direction;
         Activate();
+    }
+
+    private void OnDrawGizmos()
+    {
+        
     }
 }

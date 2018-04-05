@@ -62,6 +62,8 @@ public class CustomRigidBody:MonoBehaviour
 
         lastPos = transform.position;
         //transform.Translate(momentum / mass * Time.fixedDeltaTime, Space.World);
+        if (momentum.magnitude < 0.001f)
+            momentum = Vector3.zero;
         GetComponent<Rigidbody>().MovePosition(transform.position + momentum / mass * Time.fixedDeltaTime);
     }
 
