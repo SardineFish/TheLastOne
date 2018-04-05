@@ -48,11 +48,11 @@ public class SkillImpact : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if(ImpactTime>0 && Time.fixedTime -  ImpactStartTime>ImpactTime)
+        /*if(ImpactTime>0 && Time.fixedTime -  ImpactStartTime>ImpactTime)
         {
             Distruct();
             return;
-        }
+        }*/
         if (SingleDamage && hitEntities.Count > 0)
             return;
 
@@ -61,12 +61,15 @@ public class SkillImpact : MonoBehaviour {
             var hits = Physics.CapsuleCastAll(ImpactStartPosition, ImpactStartPosition + new Vector3(0, ImpactHeight, 0), ImpactRadius, transform.forward);
             foreach(var hit in hits)
             {
+
                 var entity = hit.transform.GetComponent<Entity>();
                 if (!entity)
                     continue;
+                Debug.DrawLine(transform.position, hit.point, Color.green);
 
                 // Check hit point in impact range
-                if (Vector3.Dot(hit.point - transform.position, ImpactDirection) < Mathf.Cos(ImpactAngle * Mathf.Deg2Rad))
+
+                if (Vector2.Dot(entity.transform.position.ToVector2XZ() - transform.position.ToVector2XZ(), ImpactDirection.ToVector2XZ()) < Mathf.Cos(ImpactAngle * Mathf.Deg2Rad))
                     continue;
 
                 // Make sure to damage it once
@@ -133,6 +136,7 @@ public class SkillImpact : MonoBehaviour {
             return;
         }
         transform.position = ImpactStartPosition;
+        transform.LookAt(ImpactDirection);
         hitEntities = new List<Entity>();
         ImpactStartTime = Time.fixedTime;
     }

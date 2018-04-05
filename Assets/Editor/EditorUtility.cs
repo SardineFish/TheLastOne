@@ -51,5 +51,12 @@ namespace Assets.Editor
             }
             return show;
         }
+
+        public static Color HTMLColor(string color)
+        {
+            Color c;
+            ColorUtility.TryParseHtmlString(color, out c);
+            return c;
+        }
     }
 }

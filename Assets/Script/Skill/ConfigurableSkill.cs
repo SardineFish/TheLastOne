@@ -55,7 +55,7 @@ public class ConfigurableSkill : AnimationSkill
         }
         else if (ActivateMethod == ActivateMethod.Local)
         {
-            return Activate(Entity.transform.position);
+            return Activate(Entity.transform.forward);
         }
         else if (ActivateMethod == ActivateMethod.TargetedEntity)
         {
@@ -89,9 +89,21 @@ public class ConfigurableSkill : AnimationSkill
     {
         if (ActivateMethod == ActivateMethod.TargetedEntity)
             return false;
-
-        activatePosition = Entity.transform.position;
-        activateDirection = target;
+        else if (ActivateMethod == ActivateMethod.Local)
+        {
+            activatePosition = Entity.transform.position;
+            activateDirection = target;
+        }
+        else if (ActivateMethod == ActivateMethod.Position)
+        {
+            activatePosition = target;
+            activateDirection = target - Entity.transform.position;
+        }
+        else if (ActivateMethod == ActivateMethod.Direction)
+        {
+            activatePosition = Entity.transform.position;
+            activateDirection = target;
+        }
         return base.Activate(target);
     }
 
@@ -99,11 +111,13 @@ public class ConfigurableSkill : AnimationSkill
     {
         SkillImpactInstance = Instantiate(SkillImpactPrefab);
         var impact = SkillImpactInstance.GetComponent<SkillImpact>();
+        impact.Creator = Entity;
         impact.SkillEffects = SkillEffects;
         impact.Activate(activatePosition, activateDirection);
         impact.ImpactTarget = targetedEntity;
         impact.ImpactRadius = ImpactRadius;
         impact.ImpactAngle = ImpactAngle;
+
     }
 
     public override void OnWeaponDamageEnd()

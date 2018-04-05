@@ -16,11 +16,14 @@ public class ActionManager : EntityBehavior<LifeBody>
 
     PlayableGraph playableGraph;
     PlayableOutput playableOutput;
+    AnimatorControllerPlayable NULLAnimatorControllerPlayable;
     AnimatorControllerPlayable previousAnimator;
     AnimatorControllerPlayable currentAnimator;
     AnimationMixerPlayable mixPlayable;
     Animator animator;
     RuntimeAnimatorController currentAnimatorController;
+    bool init = false;
+    bool hasFirstAnimator = false;
     float transTime = 0;
     float transTotalTime = 0;
     float weight = 1;
@@ -42,6 +45,9 @@ public class ActionManager : EntityBehavior<LifeBody>
         playableGraph.Play();
         GraphVisualizerClient.Show(playableGraph, "PlayerGraph");
         currentAnimatorController = DefaultMovement;
+
+        init = true;
+        hasFirstAnimator = false;
     }
 	
 	// Update is called once per frame
@@ -58,6 +64,10 @@ public class ActionManager : EntityBehavior<LifeBody>
 
     private void ChangeAnimation(RuntimeAnimatorController animatorController,float time)
     {
+        if(!init)
+        {
+            Start();
+        }
         currentConnected = (currentConnected + 1) % 2;
         previousAnimator = currentAnimator;
         currentAnimator = AnimatorControllerPlayable.Create(playableGraph, animatorController);
@@ -82,6 +92,12 @@ public class ActionManager : EntityBehavior<LifeBody>
             animator = Entity.GetComponent<Animator>();
         if (currentAnimatorController == controller)
             return true;
+        if(!hasFirstAnimator)
+        {
+            ChangeAnimation(controller, 0.2f);
+            hasFirstAnimator = true;
+            return true;
+        }
         var state = CurrentAnimatorController.GetCurrentAnimatorStateInfo(0);
         if(/*state.IsTag(AnimTagBegin) || */state.IsTag(AnimTagEnd) || state.IsTag(AnimTagGap))
         {

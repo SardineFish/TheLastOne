@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Animations;
 
 [ExecuteInEditMode]
 public class AnimationSkill:Skill
 {
     public const string AnimActiveTrigger = "active";
     public RuntimeAnimatorController AnimatorController;
-    protected Animator animator;
+    ActionManager actionManager;
 
     [ExecuteInEditMode]
     private void OnEnable()
     {
-        animator = Entity.GetComponent<Animator>();
-        
+        actionManager = Entity.GetComponent<ActionManager>();
     }
 
     public override bool Activate()
     {
-        if (base.Activate() && animator)
+        if (base.Activate() && actionManager)
         {
             if(Entity.GetComponent<ActionManager>().ChangeAction(AnimatorController))
             {
@@ -35,21 +35,41 @@ public class AnimationSkill:Skill
 
     public override bool Activate(Vector3 target)
     {
-        return Activate();
+        if(base.Activate(target) && actionManager)
+        {
+            if (Entity.GetComponent<ActionManager>().ChangeAction(AnimatorController))
+            {
+                lastActiveTime = Time.time;
+                Entity.GetComponent<ActionManager>().CurrentAnimatorController.SetTrigger(AnimActiveTrigger);
+                //animator.SetTrigger(AnimActiveTrigger);
+                return true;
+            }
+        }
+        return true;
     }
 
     public override bool Activate(Entity target)
     {
-        return Activate();
+        if (base.Activate(target) && actionManager)
+        {
+            if (Entity.GetComponent<ActionManager>().ChangeAction(AnimatorController))
+            {
+                lastActiveTime = Time.time;
+                Entity.GetComponent<ActionManager>().CurrentAnimatorController.SetTrigger(AnimActiveTrigger);
+                //animator.SetTrigger(AnimActiveTrigger);
+                return true;
+            }
+        }
+        return true;
     }
 
     public virtual void Update()
     {
         if (Entity.GetComponent<SkillController>().ActiveSkill != this)
             return;
-        if(animator)
+        if(actionManager)
         { 
-            var state = animator.GetCurrentAnimatorStateInfo(0);
+            var state = actionManager.CurrentAnimatorController.GetCurrentAnimatorStateInfo(0);
             if (state.IsTag(ActionManager.AnimTagEnd) && Entity.GetComponent<ActionManager>())
             {
                 Entity.GetComponent<ActionManager>().EnableMovement();

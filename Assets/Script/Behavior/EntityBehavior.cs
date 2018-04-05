@@ -10,6 +10,8 @@ public class EntityBehavior<TEntity> : MonoBehaviour where TEntity: Entity
         {
             var trans = transform;
             Next:
+            if (!trans)
+                return null;
             if (trans.GetComponent<TEntity>())
                 return trans.GetComponent<TEntity>();
             trans = trans.parent;

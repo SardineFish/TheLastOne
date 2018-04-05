@@ -23,21 +23,27 @@ public class CustomRigidBody:MonoBehaviour
     }
     public Vector3 momentum = Vector3.zero;
     public float drag = 0;
-
-    private ConstantForce constantForce;
+    
     private Vector3 lastPos = Vector3.zero;
+
+    private void Start()
+    {
+        lastPos = transform.position;
+    }
 
     public void FixedUpdate()
     {
+        momentum += Physics.gravity * mass * Time.fixedDeltaTime;
+        momentum += acceleration * Time.fixedDeltaTime * mass;
         var drag = this.drag * mass;
         drag = Mathf.Clamp(drag, 0, momentum.magnitude / mass);
         //Debug.Log(drag);
         this.AddForce(-velocity.normalized * drag, ForceMode.VelocityChange);
 
         lastPos = transform.position;
-        transform.Translate(momentum / mass * Time.fixedDeltaTime, Space.World);
-
-
+        //transform.Translate(momentum / mass * Time.fixedDeltaTime, Space.World);
+        GetComponent<Rigidbody>().MovePosition(transform.position + momentum / mass * Time.fixedDeltaTime);
+        
     }
 
     public void AddForce(Vector3 f,ForceMode forceMode)

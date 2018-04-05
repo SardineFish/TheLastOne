@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public abstract class SkillEffect
+[Serializable]
+public abstract class SkillEffect:ScriptableObject
 {
+    [SerializeField]
     public string Name;
     public abstract void ApplyEffect(Entity effectFrom, Entity target);
 }

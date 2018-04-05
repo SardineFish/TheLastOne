@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class SkillController : EntityBehavior<Entity> {
     public Skill[] Skills;
     public Skill ActiveSkill;
     public MovementSkill MovementSkill;
 	// Use this for initialization
 	void Start () {
-        ActiveSkill = MovementSkill;
-        MovementSkill.Activate();
-	}
+        if (!Application.isEditor)
+        {
+            ActiveSkill = MovementSkill;
+            MovementSkill.Activate();
+        }
+    }
 	
-    [ExecuteInEditMode]
+    //[ExecuteInEditMode]
 	// Update is called once per frame
 	void Update () {
         Skills = GetComponentsInChildren<Skill>().Where(skill => !(skill is MovementSkill)).ToArray();
