@@ -1039,22 +1039,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1675219013601594
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4966969307464086}
-  - component: {fileID: 114137338289691454}
-  m_Layer: 0
-  m_Name: ArealImpact
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1686826213850004
 GameObject:
   m_ObjectHideFlags: 1
@@ -1974,7 +1958,6 @@ Transform:
   - {fileID: 4700136618484740}
   - {fileID: 4981834715861846}
   - {fileID: 4455379368265900}
-  - {fileID: 4966969307464086}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.28500003}
@@ -2955,19 +2938,6 @@ Transform:
   m_Father: {fileID: 4205359882040098}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -2.566433, y: 9.62334, z: 3.1714253}
---- !u!4 &4966969307464086
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1675219013601594}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4292017596313290}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4969664007157094
 Transform:
   m_ObjectHideFlags: 1
@@ -3407,31 +3377,6 @@ MonoBehaviour:
   AngularLimitZ:
     low: -3
     high: 3
---- !u!114 &114137338289691454
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1675219013601594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09915f41d29731d44b0be573ca6f36b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ImpactType: 2
-  Creator: {fileID: 0}
-  ImpactTarget: {fileID: 0}
-  Collider: {fileID: 0}
-  SkillEffects: []
-  ImpactRadius: 5.67
-  ImpactAngle: 80
-  ImpactHeight: 4
-  PenetrateDistance: 9.58
-  ImpactTime: 1
-  SingleDamage: 0
-  DamageOnce: 1
-  ImpactStartPosition: {x: 0, y: 0, z: 0}
-  ImpactDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &114144867786245750
 MonoBehaviour:
   m_ObjectHideFlags: 1

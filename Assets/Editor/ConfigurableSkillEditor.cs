@@ -27,8 +27,7 @@ namespace Assets.Editor
                         skill.Entity.transform.up)));
 
             Handles.color = EditorUtility.HTMLColor("#AB47BC55");
-            Handles.DrawSolidDisc(skill.Entity.transform.localToWorldMatrix.MultiplyPoint(skill.ActivatePosition), skill.Entity.transform.forward, radius);
-
+            Handles.DrawSolidDisc(skill.Entity.transform.localToWorldMatrix.MultiplyPoint(skill.ActivatePosition), skill.Entity.transform.forward, radius);Handles.DrawSolidRectangleWithOutline(new Vector3[] { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1, 0, 0), new Vector3(0, 0, 1) }, Color.black, Color.white);
             Handles.color = Color.red;
             Handles.DrawLine(
                 skill.Entity.transform.localToWorldMatrix.MultiplyPoint(skill.ActivatePosition)

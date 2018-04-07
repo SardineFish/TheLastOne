@@ -19,6 +19,7 @@ public class Carrier : MonoBehaviour
 
     public void Release()
     {
-        Carrying?.Detach();
+        if (Carrying)
+            Carrying.Detach();
     }
 }
