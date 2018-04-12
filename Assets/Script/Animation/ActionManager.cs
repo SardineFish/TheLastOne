@@ -43,7 +43,6 @@ public class ActionManager : EntityBehavior<LifeBody>
 
         playableOutput.SetSourcePlayable(mixPlayable);
         playableGraph.Play();
-        GraphVisualizerClient.Show(playableGraph, "PlayerGraph");
         currentAnimatorController = DefaultMovement;
 
         init = true;
