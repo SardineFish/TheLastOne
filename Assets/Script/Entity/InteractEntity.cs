@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class NaturalEntity:Entity
+public class InteractiveObject : NaturalEntity
 {
-    public float Size;
+    
 }
