@@ -39,7 +39,7 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
         }
         for(var i=0;i<SkillKeys.Count;i++)
         {
-            if(InputManager.Current.GetKeyDown(SkillKeys[i]))
+            if(InputManager.Instance.GetKeyDown(SkillKeys[i]))
             {
                 SkillController.ActivateSkill(i);
             }

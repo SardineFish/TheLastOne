@@ -93,16 +93,16 @@ public class KeyboardMovement : MovementInput
         {
             if(i/2==0)
             {
-                if (InputManager.Current.GetKeyDown(InputKeys[i]))
+                if (InputManager.Instance.GetKeyDown(InputKeys[i]))
                     VerticalInputs.Add(Directions[i]);
-                else if (InputManager.Current.GetKeyUp(InputKeys[i]))
+                else if (InputManager.Instance.GetKeyUp(InputKeys[i]))
                     VerticalInputs.Remove(Directions[i]);
             }
             else
             {
-                if (InputManager.Current.GetKeyDown(InputKeys[i]))
+                if (InputManager.Instance.GetKeyDown(InputKeys[i]))
                     HorizontalInputs.Add(Directions[i]);
-                else if (InputManager.Current.GetKeyUp(InputKeys[i]))
+                else if (InputManager.Instance.GetKeyUp(InputKeys[i]))
                     HorizontalInputs.Remove(Directions[i]);
             }
         }

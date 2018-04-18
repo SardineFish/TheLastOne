@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 public class Singleton<T> : UnityEngine.MonoBehaviour where T:Singleton<T>
 {
-    public static T Current;
-    public Singleton()
+    public static T Instance;
+    public Singleton() : base()
     {
-        Current = this as T;
+        Instance = this as T;
     }
 }

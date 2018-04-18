@@ -48,11 +48,11 @@ public class ConfigurableSkill : AnimationSkill
     {
         if(ActivateMethod == ActivateMethod.Position)
         {
-            return Activate(InputManager.Current.MouseOnGround());
+            return Activate(InputManager.Instance.MouseOnGround());
         }
         else if (ActivateMethod == ActivateMethod.Direction)
         {
-            return Activate(InputManager.Current.MouseOnGround() - Entity.transform.position);
+            return Activate(InputManager.Instance.MouseOnGround() - Entity.transform.position);
         }
         else if (ActivateMethod == ActivateMethod.Local)
         {
@@ -60,7 +60,7 @@ public class ConfigurableSkill : AnimationSkill
         }
         else if (ActivateMethod == ActivateMethod.TargetedEntity)
         {
-            var obj = InputManager.Current.MouseOverObject();
+            var obj = InputManager.Instance.MouseOverObject();
             if (!obj)
                 return false;
             var target = obj.GetComponent<Entity>();
