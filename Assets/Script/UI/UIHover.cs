@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class UIHover : MonoBehaviour
 {
-    public static GameObject UIPrefab;
+    public GameObject UIPrefab;
     public List<GameUI> UIList = new List<GameUI>();
     public GameObject UIObject;
     // Use this for initialization

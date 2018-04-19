@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class TextUI : GameUI
 {
-    public static GameObject UIPrefab;
+    public GameObject UIPrefab;
     public string Text = "Text";
     public GameObject UIObject;
 

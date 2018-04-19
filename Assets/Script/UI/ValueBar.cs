@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ValueBar : GameUI
 {
-    public static GameObject UIPrefab;
+    public GameObject UIPrefab;
     public Range Range;
     public float Value;
     public float marginRight = 0;
