@@ -4,13 +4,21 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+[RequireComponent(typeof(UIHover))]
 public class LifeBody : Entity
 {
     public float HP;
     public float Defence;
     public Carrier PrimaryHand;
     public Carrier SecondaryHand;
+    public ValueBar HPBar;
     Rigidbody rigidbody;
+
+    private void Start()
+    {
+        HPBar = ScriptableObject.CreateInstance<ValueBar>();
+        GetComponent<UIHover>().AddUI(HPBar);
+    }
 
     private void OnEnable()
     {

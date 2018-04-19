@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class ValueBar : GameUI
 {
-    public GameObject UIPrefab;
+    public static GameObject UIPrefab;
     public Range Range;
     public float Value;
     public float marginRight = 0;
+    public GameObject UIObject;
     public float Min 
     {
         get
@@ -40,7 +41,7 @@ public class ValueBar : GameUI
         bar.offsetMax = new Vector2(borderWidth - width + marginRight, bar.offsetMax.y);
         //bar.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Right, borderWidth - width + marginRight,);
 
-        return obj;
+        return UIObject = obj;
         
     }
 }
