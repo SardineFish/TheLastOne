@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TextUI : GameUI
+public class TextUI : HoverUIComponent
 {
     public GameObject UIPrefab;
     public string Text = "Text";

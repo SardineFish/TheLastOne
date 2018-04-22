@@ -10,16 +10,17 @@ public class Billboard : MonoBehaviour
 {
     public Camera MainCamera;
     public GameObject BindTarget;
+    public Vector3 RelativePosition;
     public void Start()
     {
-        GameObject.FindWithTag("MainCamera");
+        MainCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
     }
     [ExecuteInEditMode]
     public void Update()
     {
         if (!MainCamera || !BindTarget)
             return;
-        transform.position = MainCamera.WorldToScreenPoint(BindTarget.transform.position); 
+        transform.position = MainCamera.WorldToScreenPoint(BindTarget.transform.position + RelativePosition); 
         //GetComponent<Camera>().screen
         //Quaternion.LookRotation()
     }

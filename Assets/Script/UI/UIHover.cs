@@ -2,17 +2,23 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class UIHover : MonoBehaviour
+[ExecuteInEditMode]
+public class UIHover : EntityBehavior<Entity>
 {
     public GameObject UIPrefab;
-    public List<GameUI> UIList = new List<GameUI>();
-    public GameObject UIObject;
+    public List<HoverUIComponent> UIList = new List<HoverUIComponent>();
+    public GameObject UIObject = null;
+    public Transform UIPosition;
+    
     // Use this for initialization
     void Start()
     {
         if (!UIObject)
+        {
             UIObject = Instantiate(UIPrefab);
-        UIHoverManager.Instance.Register(this);
+            UIHoverManager.Instance.Register(this);
+            UIObject.GetComponent<Billboard>().BindTarget = Entity.gameObject;
+        }
     }
 
     // Update is called once per frame
@@ -21,8 +27,14 @@ public class UIHover : MonoBehaviour
 
     }
 
-    public void AddUI(GameUI ui)
+    public void AddUI(HoverUIComponent ui)
     {
+        if (!UIObject)
+        {
+            UIObject = Instantiate(UIPrefab);
+            UIHoverManager.Instance.Register(this);
+            UIObject.GetComponent<Billboard>().BindTarget = Entity.gameObject;
+        }
         UIList.Add(ui);
         ui.RenderUI().transform.SetParent(UIObject.transform);
     }

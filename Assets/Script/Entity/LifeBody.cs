@@ -4,20 +4,24 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-[RequireComponent(typeof(UIHover))]
+[RequireComponent(typeof(UIHover),typeof(ValueBar))]
 public class LifeBody : Entity
 {
     public float HP;
     public float Defence;
     public Carrier PrimaryHand;
     public Carrier SecondaryHand;
-    public ValueBar HPBar;
+    ValueBar HPBar;
     Rigidbody rigidbody;
 
     private void Start()
     {
-        HPBar = ScriptableObject.CreateInstance<ValueBar>();
+        
+        HPBar = GetComponent<ValueBar>();
+        //HPBar = ScriptableObject.CreateInstance<ValueBar>();
         GetComponent<UIHover>().AddUI(HPBar);
+        HPBar.Range = new Range(0, HP);
+        HPBar.Value = HP;
     }
 
     private void OnEnable()
@@ -44,5 +48,10 @@ public class LifeBody : Entity
         }
         else
             base.OnMessage(msg);
+    }
+
+    public virtual void Update()
+    {
+        HPBar.Value = HP;
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class GameUI:ScriptableObject
+public abstract class HoverUIComponent:MonoBehaviour
 {
     public abstract GameObject RenderUI();
     public virtual void Update() { }

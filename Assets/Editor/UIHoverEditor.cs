@@ -17,16 +17,28 @@ namespace Assets.Editor
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
-            editPos = GUILayout.Toggle(editPos, "Edit UI Position", "Button");
+            var editPosInput = GUILayout.Toggle(editPos, "Edit UI Position", "Button");
+            if (editPos != editPosInput)
+            {
+                if(editPosInput)
+                {
+                    currentTool = Tools.current;
+                    Tools.current = Tool.None;
+                }
+                else
+                {
+                    Tools.current = currentTool;
+                }
+                editPos = editPosInput;
+            }
             SceneView.RepaintAll();
         }
         private void OnSceneGUI()
         {
+            var ui = target as UIHover;
             if(editPos)
             {
-                currentTool = Tools.current;
-                Tools.current = Tool.None;
-                
+                ui.UIObject.GetComponent<Billboard>().RelativePosition = Handles.PositionHandle(ui.UIObject.GetComponent<Billboard>().RelativePosition + ui.transform.position,Quaternion.identity) - ui.transform.position;
             }
         }
 
