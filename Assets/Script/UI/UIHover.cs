@@ -27,6 +27,11 @@ public class UIHover : EntityBehavior<Entity>
     // Update is called once per frame
     void Update()
     {
+        for (var i = 0; i < UIList.Count;i++)
+        {
+            if(!UIList[i])
+                UIList.RemoveAt(i--);
+        }
         UIObject.GetComponent<Billboard>().RelativePosition = UIPosition;
     }
 
@@ -45,7 +50,8 @@ public class UIHover : EntityBehavior<Entity>
             UIHoverManager.Instance.Register(this);
             UIObject.GetComponent<Billboard>().BindTarget = Entity.gameObject;
         }
-        UIList.Add(ui);
+        if(!UIList.Contains(ui))
+            UIList.Add(ui);
         ui.RenderUI().transform.SetParent(UIObject.transform);
     }
 

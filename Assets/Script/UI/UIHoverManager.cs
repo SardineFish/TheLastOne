@@ -22,5 +22,7 @@ public class UIHoverManager: Singleton<UIHoverManager>
         if (!UIHoverList.Contains(ui))
             UIHoverList.Add(ui);
         ui.UIObject.transform.SetParent(transform);
+        ui.UIObject.transform.SetSiblingIndex(0);
+        //transform.childCount
     }
 }

@@ -92,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 0}
   BindTarget: {fileID: 0}
+  RelativePosition: {x: 0, y: 0, z: 0}
 --- !u!222 &222388872282220124
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -114,5 +115,5 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 1192.0028, y: -560.4159}
-  m_SizeDelta: {x: 256.2, y: 211}
+  m_SizeDelta: {x: 160, y: 211}
   m_Pivot: {x: 0.5, y: 0}
