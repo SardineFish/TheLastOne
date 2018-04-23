@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
+[RequireComponent(typeof(TextHover))]
 public class InteractiveObject : NaturalEntity
 {
     

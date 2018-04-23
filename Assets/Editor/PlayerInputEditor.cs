@@ -14,13 +14,21 @@ namespace Assets.Editor
     {
         bool showKeys = true;
         int keySetIdx = -1;
+
+        KeySetting interactKey = new KeySetting();
+        List<KeySetting> skillKeys = new List<KeySetting>();
         public override void OnInspectorGUI()
         {
             var playerInput = target as PlayerInputManager;
-            if(Event.current.type == EventType.KeyDown)
+            if(skillKeys.Count !=playerInput.SkillKeys.Count)
             {
-                var x = 0;
+                skillKeys = new List<KeySetting>();
+                foreach(var key in playerInput.SkillKeys)
+                {
+                    skillKeys.Add(new KeySetting());
+                }
             }
+
             if (keySetIdx >= 0)
             {
                 if(Event.current.type == EventType.KeyDown)
@@ -38,6 +46,8 @@ namespace Assets.Editor
             }
             playerInput.PlayerInControl = EditorGUILayout.ObjectField("Player in Control", playerInput.PlayerInControl, typeof(Entity), true) as Entity;
             playerInput.MovementInput = EditorGUILayout.ObjectField("Movement Input", playerInput.MovementInput, typeof(MovementInput), true) as MovementInput;
+            EditorGUILayout.Space();
+            playerInput.InteractKey = interactKey.Edit("Interact: ", playerInput.InteractKey);
             var count = EditorGUILayout.IntField("Keys", playerInput.SkillKeys.Count);
             if (count > playerInput.SkillKeys.Count)
                 while (playerInput.SkillKeys.Count < count)
@@ -46,14 +56,16 @@ namespace Assets.Editor
                 playerInput.SkillKeys.RemoveRange(count, playerInput.SkillKeys.Count - count);
             showKeys = EditorUtility.DrawFoldList("Keys", showKeys, playerInput.SkillKeys.Count, (i) =>
             {
+                playerInput.SkillKeys[i] = skillKeys[i].Edit(i.ToString() + ":", playerInput.SkillKeys[i]);
+                /*
                 /*if (Event.current.type == EventType.KeyDown)
-                    playerInput.SkillKeys[i] = Event.current.keyCode;*/
+                    playerInput.SkillKeys[i] = Event.current.keyCode;
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField(i.ToString() + ": ",GUILayout.Width(30));
                 playerInput.SkillKeys[i] = (KeyCode)EditorGUILayout.EnumPopup(playerInput.SkillKeys[i]);
                 if (GUILayout.Button("Set"))
                     keySetIdx = i;
-                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.EndHorizontal();*/
                 //var keyName = EditorGUILayout.
                 //playerInput.SkillKeys[i] = InputManager.Current.KeyCodeList.Where(key=>key.ToString().ToLower() == editorgui)
             });

@@ -13,6 +13,8 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
 
     public SkillController SkillController;
 
+    public KeyCode InteractKey;
+
     public List<KeyCode> SkillKeys = new List<KeyCode>();
 
     public MovementInput MovementInput;
