@@ -18,7 +18,7 @@ public class UIHover : EntityBehavior<Entity>
             UIObject = Instantiate(UIPrefab);
             UIHoverManager.Instance.Register(this);
             UIObject.GetComponent<Billboard>().BindTarget = Entity.gameObject;
-        }
+        } 
     }
 
     // Update is called once per frame

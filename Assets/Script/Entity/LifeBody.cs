@@ -12,7 +12,6 @@ public class LifeBody : Entity
     public Carrier PrimaryHand;
     public Carrier SecondaryHand;
     ValueBar HPBar;
-    Rigidbody rigidbody;
 
     private void Start()
     {
@@ -26,7 +25,6 @@ public class LifeBody : Entity
 
     private void OnEnable()
     {
-        rigidbody = GetComponent<Rigidbody>();
     }
 
     public override void OnMessage(Message msg)
