@@ -38,7 +38,9 @@ namespace Assets.Editor
             var ui = target as UIHover;
             if(editPos)
             {
-                ui.UIObject.GetComponent<Billboard>().RelativePosition = Handles.PositionHandle(ui.UIObject.GetComponent<Billboard>().RelativePosition + ui.transform.position,Quaternion.identity) - ui.transform.position;
+                //ui.UIObject.GetComponent<Billboard>().RelativePosition = Handles.PositionHandle(ui.UIObject.GetComponent<Billboard>().RelativePosition + ui.transform.position,Quaternion.identity) - ui.transform.position;
+                ui.UIPosition = Handles.PositionHandle(ui.UIPosition + ui.transform.position,Quaternion.identity) - ui.transform.position;
+                SceneView.RepaintAll();
             }
         }
 

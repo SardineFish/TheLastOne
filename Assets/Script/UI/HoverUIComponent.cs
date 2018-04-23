@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class HoverUIComponent:MonoBehaviour
+public abstract class HoverUIComponent: EntityBehavior<Entity>
 {
     public abstract GameObject RenderUI();
 

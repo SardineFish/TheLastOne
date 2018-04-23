@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -7,8 +8,9 @@ public class UIHover : EntityBehavior<Entity>
 {
     public GameObject UIPrefab;
     public List<HoverUIComponent> UIList = new List<HoverUIComponent>();
+    //[NonSerialized]
     public GameObject UIObject = null;
-    public Transform UIPosition;
+    public Vector3 UIPosition;
     
     // Use this for initialization
     void Start()
@@ -18,14 +20,22 @@ public class UIHover : EntityBehavior<Entity>
             UIObject = Instantiate(UIPrefab);
             UIHoverManager.Instance.Register(this);
             UIObject.GetComponent<Billboard>().BindTarget = Entity.gameObject;
+            UIObject.GetComponent<Billboard>().RelativePosition = UIPosition;
         } 
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        UIObject.GetComponent<Billboard>().RelativePosition = UIPosition;
     }
+
+    private void OnDestroy()
+    {
+        GameObject.Destroy(UIObject);
+    }
+
+
 
     public void AddUI(HoverUIComponent ui)
     {
