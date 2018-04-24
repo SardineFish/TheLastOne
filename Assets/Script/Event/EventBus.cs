@@ -5,18 +5,18 @@ using System.Collections.Generic;
 
 public class EventBus : MonoBehaviour
 {
-    protected Dictionary<string, List<Delegate>> Listeners = new Dictionary<string, List<Delegate>>();
-    public void AddEventListener(string eventName,Delegate eventListener)
+    protected Dictionary<string, List<EventListener>> Listeners = new Dictionary<string, List<EventListener>>();
+    public void AddEventListener(string eventName,EventListener listener)
     {
         if (Listeners[eventName] == null)
-            Listeners[eventName] = new List<Delegate>();
-        Listeners[eventName].Add(eventListener);
+            Listeners[eventName] = new List<EventListener>();
+        Listeners[eventName].Add(listener);
 
     }
-    public void RemoveEventListener(string eventName,Delegate eventListener)
+    public void RemoveEventListener(string eventName, EventListener listener)
     {
         if (Listeners.ContainsKey(eventName))
-            Listeners[eventName].Remove(eventListener);
+            Listeners[eventName].Remove(listener);
     }
     public void Dispatch(string eventName,params object[] args)
     {
@@ -24,7 +24,7 @@ public class EventBus : MonoBehaviour
         {
             try
             {
-                Listeners[eventName].ForEach(listener => listener.DynamicInvoke(args));
+                Listeners[eventName].ForEach(listener => listener.Method.Invoke(listener.Object, args));
             }
             catch (Exception ex)
             {

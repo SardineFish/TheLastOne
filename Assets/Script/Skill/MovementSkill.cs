@@ -83,7 +83,7 @@ public class MovementSkill : AnimationSkill
                 ang = Mathf.Sign(ang) * TurnSpeed * Time.deltaTime;
 
             Entity.transform.Rotate(0, -ang, 0, Space.Self);
-            Entity.GetComponent<EntityController>().CurrentFacing = new Vector2(transform.forward.x, transform.forward.z);
+            //Entity.GetComponent<EntityController>().CurrentFacing = new Vector2(transform.forward.x, transform.forward.z);
             RelaseCarry();
             return true;
         }

@@ -36,7 +36,7 @@ public class HPHover : HoverUIComponent
     }
 
     [ExecuteInEditMode]
-    public void Start()
+    void Start()
     {
         Min = 0;
         Max = (Entity as LifeBody).MaxHP;
