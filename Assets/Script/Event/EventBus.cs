@@ -8,7 +8,7 @@ public class EventBus : MonoBehaviour
     protected Dictionary<string, List<EventListener>> Listeners = new Dictionary<string, List<EventListener>>();
     public void AddEventListener(string eventName,EventListener listener)
     {
-        if (Listeners[eventName] == null)
+        if (!Listeners.ContainsKey(eventName))
             Listeners[eventName] = new List<EventListener>();
         Listeners[eventName].Add(listener);
 
@@ -24,7 +24,7 @@ public class EventBus : MonoBehaviour
         {
             try
             {
-                Listeners[eventName].ForEach(listener => listener.Method.Invoke(listener.Object, args));
+                Listeners[eventName].ForEach(listener => listener.Method.Invoke(listener.Object, args));    
             }
             catch (Exception ex)
             {
