@@ -15,6 +15,7 @@ public class LifeBody : Entity
 
     private void Start()
     {
+        
     }
 
     private void OnEnable()
