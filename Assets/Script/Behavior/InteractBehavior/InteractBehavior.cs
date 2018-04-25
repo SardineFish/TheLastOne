@@ -1,8 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class InteractBehavior : ScriptableObject
+[RequireComponent(typeof(InteractiveObject))]
+public abstract class InteractBehavior : MonoBehaviour,IEventBehaviour
 {
-    public abstract void Interact(Entity trigger);
+    public EventListener[] EventListeners { get; set; }
+
+    public EventBus EventTarget { get; set; }
+
+    private void Start()
+    {
+        if (GetComponent<InteractiveObject>())
+            this.Bind(GetComponent<InteractiveObject>());
+    }
+
+    [EventListener(InteractiveObject.EVENT_ON_INTERACT)]
+    public abstract void OnInteract(Entity trigger);
 
 }
