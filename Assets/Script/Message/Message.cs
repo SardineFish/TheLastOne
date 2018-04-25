@@ -13,7 +13,7 @@ public abstract class Message
 
     public Entity Sender { get; protected set; }
 
-    public virtual void Dispatch(Entity receiver)
+    public virtual void Dispatch(IMessageReceiver receiver)
     {
         receiver.OnMessage(this);
     }
