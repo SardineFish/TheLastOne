@@ -42,7 +42,12 @@ public class InteractSkill : AnimationSkill
 
     public override bool Activate(Entity target)
     {
-        if (!target || !(target is InteractiveObject))
+        return target.GetComponent<InteractiveObject>();
+    }
+
+    public virtual bool Activate(InteractiveObject target)
+    {
+        if (!target)
             return false;
         new InteractMessage(Entity).Dispatch(target);
         return true;
