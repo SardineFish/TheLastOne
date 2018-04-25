@@ -9,7 +9,7 @@ public class InteractSkill : AnimationSkill
 
     void Start()
     {
-        UseEventListener();
+        this.UseEventListener();
     }
     public override void Update()
     {

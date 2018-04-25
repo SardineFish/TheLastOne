@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityBehavior<TEntity> : EventBehaviour where TEntity: Entity
+public class EntityBehavior<TEntity> : MonoBehaviour,IEventBehaviour where TEntity: Entity
 {
     public TEntity Entity
     {
@@ -19,9 +19,7 @@ public class EntityBehavior<TEntity> : EventBehaviour where TEntity: Entity
         }
     }
 
-    protected void UseEventListener()
-    {
-        if (Entity.GetComponent<EventBus>())
-            Bind(Entity.GetComponent<EventBus>());
-    }
+    public EventListener[] EventListeners { get; set; }
+
+    public EventBus EventTarget { get; set; }
 }
