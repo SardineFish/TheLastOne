@@ -3191,6 +3191,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 365971902}
   m_Script: {fileID: 11500000, guid: 4d5ffe7e29c75284aa9eb3c641ca6d7f, type: 3}
+--- !u!114 &953382122 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114040648407842128, guid: 1fa2db5167848ca42a5a7c3da19b054f,
+    type: 2}
+  m_PrefabInternal: {fileID: 365971902}
+  m_Script: {fileID: 11500000, guid: c3a37d15ad527c748bed6a52de30e24f, type: 3}
 --- !u!1 &1004744368
 GameObject:
   m_ObjectHideFlags: 0
@@ -3868,6 +3874,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114969885802276188, guid: 0d251102a37359f4f88316be7f625b48,
+        type: 2}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1462294690}
     - target: {fileID: 114601899606288410, guid: 0d251102a37359f4f88316be7f625b48,
         type: 2}
       propertyPath: PlayerInControl
@@ -3877,17 +3888,12 @@ Prefab:
         type: 2}
       propertyPath: EntityController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 953382122}
     - target: {fileID: 114601899606288410, guid: 0d251102a37359f4f88316be7f625b48,
         type: 2}
       propertyPath: SkillController
       value: 
       objectReference: {fileID: 1564286089}
-    - target: {fileID: 114969885802276188, guid: 0d251102a37359f4f88316be7f625b48,
-        type: 2}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d251102a37359f4f88316be7f625b48, type: 2}
   m_IsPrefabAsset: 0

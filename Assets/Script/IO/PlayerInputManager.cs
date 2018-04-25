@@ -46,6 +46,10 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
                 SkillController.ActivateSkill(i);
             }
         }
+        if(InputManager.Instance.GetKeyDown(InteractKey))
+        {
+            SkillController.ActivateSkill<InteractSkill>();
+        }
         SkillController.ActivateMovementSkill(MovementInput.GetMovement());
     }
 

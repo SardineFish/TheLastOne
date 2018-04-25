@@ -90,6 +90,10 @@ public class SkillController : EntityBehavior<Entity> {
         return false;
     }
 
+    public bool ActivateSkill<T>() where T : Skill
+    {
+        return GetComponentInChildren<T>() ? GetComponentInChildren<T>().Activate() : false;
+    }
     public bool ActivateSkill<T>(Vector2 direction) where T: Skill
     {
         return GetComponentInChildren<T>() ? GetComponentInChildren<T>().Activate(direction) : false;
