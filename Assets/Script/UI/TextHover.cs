@@ -26,4 +26,8 @@ public class TextHover : HoverUIComponent
         obj.GetComponent<Text>().text = Text;
         return UIObject =  obj;
     }
+    public void SetText(string text)
+    {
+        Text = text;
+    }
 }

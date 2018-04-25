@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-[RequireComponent(typeof(InteractiveObject))]
 public class Stela : InteractBehavior
 {
     public override void OnInteract(Entity trigger)
