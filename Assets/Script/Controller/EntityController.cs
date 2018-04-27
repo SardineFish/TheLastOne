@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class EntityController : EntityBehavior<Entity> {
+public class EntityController : EntityBehavior<Entity>
+{
     public float WalkSpeed;
     public float TurnSpeed;
     public float RunSpeed;
@@ -22,15 +23,16 @@ public class EntityController : EntityBehavior<Entity> {
 
 
     int PropSpeed, PropMoveX, PropMoveY;
-	// Use this for initialization
+    // Use this for initialization
 
     [ExecuteInEditMode]
-	void Start () {
+    void Start()
+    {
         Animator = GetComponent<Animator>();
         PropSpeed = Animator.StringToHash("speed");
         PropMoveX = Animator.StringToHash("moveX");
         PropMoveY = Animator.StringToHash("moveY");
-	}
+    }
 
     private void OnEnable()
     {
@@ -38,7 +40,8 @@ public class EntityController : EntityBehavior<Entity> {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         CurrentFacing = new Vector2(transform.forward.x, transform.forward.z);
-	}
+    }
 }
