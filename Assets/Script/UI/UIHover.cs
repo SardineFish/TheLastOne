@@ -27,6 +27,13 @@ public class UIHover : EntityBehavior<Entity>
     // Update is called once per frame
     void Update()
     {
+        if (!UIObject)
+        {
+            UIObject = Instantiate(UIPrefab);
+            UIHoverManager.Instance.Register(this);
+            UIObject.GetComponent<Billboard>().BindTarget = gameObject;
+            UIObject.GetComponent<Billboard>().RelativePosition = UIPosition;
+        }
         for (var i = 0; i < UIList.Count;i++)
         {
             if(!UIList[i])
@@ -37,7 +44,7 @@ public class UIHover : EntityBehavior<Entity>
 
     private void OnDestroy()
     {
-        GameObject.Destroy(UIObject);
+        GameObject.DestroyImmediate(UIObject);
     }
 
 
@@ -48,7 +55,8 @@ public class UIHover : EntityBehavior<Entity>
         {
             UIObject = Instantiate(UIPrefab);
             UIHoverManager.Instance.Register(this);
-            UIObject.GetComponent<Billboard>().BindTarget = Entity.gameObject;
+            UIObject.GetComponent<Billboard>().BindTarget = gameObject;
+            UIObject.GetComponent<Billboard>().RelativePosition = UIPosition;
         }
         if(!UIList.Contains(ui))
             UIList.Add(ui);

@@ -8,7 +8,7 @@ public abstract class InteractBehavior : MonoBehaviour,IEventBehaviour
 
     public EventBus EventTarget { get; set; }
 
-    private void Start()
+    public virtual void Start()
     {
         if (GetComponent<InteractiveObject>())
             this.Bind(GetComponent<InteractiveObject>());

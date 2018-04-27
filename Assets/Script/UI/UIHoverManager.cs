@@ -9,18 +9,39 @@ using UnityEngine.UI;
 [ExecuteInEditMode]
 public class UIHoverManager: Singleton<UIHoverManager>
 {
-    public List<UIHover> UIHoverList = new List<UIHover>();
+    //public List<UIHover> UIHoverList = new List<UIHover>();
+    public Dictionary<UIHover, GameObject> UIHoverList = new Dictionary<UIHover, GameObject>();
     public void Start()
     {
+        for(var i=0;i<transform.childCount;i++)
+        {
+            var obj = transform.GetChild(i).gameObject;
+            if (!UIHoverList.ContainsValue(obj))
+            {
+                if(Application.isPlaying)
+                {
+                    Destroy(obj);
+                }
+                else
+                {
+                    DestroyImmediate(obj);
+                    i--;
+                }
+            }
+        }
     }
     public void Update()
     {
-        
     }
     public void Register(UIHover ui)
     {
-        if (!UIHoverList.Contains(ui))
-            UIHoverList.Add(ui);
+        if (!UIHoverList.ContainsKey(ui))
+            UIHoverList[ui] = ui.UIObject;
+        else
+        {
+            Destroy(UIHoverList[ui]);
+            UIHoverList[ui] = ui.UIObject;
+        }
         ui.UIObject.transform.SetParent(transform);
         ui.UIObject.transform.SetSiblingIndex(0);
         //transform.childCount

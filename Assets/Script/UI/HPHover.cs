@@ -40,11 +40,15 @@ public class HPHover : HoverUIComponent
     {
         Min = 0;
         Max = (Entity as LifeBody).MaxHP;
-        Entity.GetComponent<UIHover>()?.AddUI(this);
+        GetComponent<UIHover>()?.AddUI(this);
     }
     [ExecuteInEditMode]
     public void Update()
     {
+        if(!UIObject)
+        {
+            GetComponent<UIHover>()?.AddUI(this);
+        }
         Value = (Entity as LifeBody).HP;
         Max = (Entity as LifeBody).MaxHP;
         UpdateValue();

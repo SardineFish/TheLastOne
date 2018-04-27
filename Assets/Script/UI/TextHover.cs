@@ -10,10 +10,12 @@ public class TextHover : HoverUIComponent
     public GameObject UIObject;
     private void Start()
     {
-        Entity.GetComponent<UIHover>()?.AddUI(this);
+        GetComponent<UIHover>()?.AddUI(this);
     }
     public void Update()
     {
+        if(!UIObject)
+            GetComponent<UIHover>()?.AddUI(this);
         UIObject.GetComponent<Text>().text = Text;
     }
     public override GameObject RenderUI()
