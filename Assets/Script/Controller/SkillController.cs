@@ -21,8 +21,8 @@ public class SkillController : EntityBehavior<Entity> {
     //[ExecuteInEditMode]
 	// Update is called once per frame
 	void Update () {
-        Skills = GetComponentsInChildren<Skill>().Where(skill => !(skill is MovementSkill)).ToArray();
-	}
+        Skills = transform.Find("Skills").GetComponentsInChildren<Skill>().ToArray();
+    }
 
     public void OnAnimationEvent()
     {
@@ -88,6 +88,15 @@ public class SkillController : EntityBehavior<Entity> {
             return true;
         }
         return false;
+    }
+
+    public bool ActivateSkill<T>() where T : Skill
+    {
+        return GetComponentInChildren<T>() ? GetComponentInChildren<T>().Activate() : false;
+    }
+    public bool ActivateSkill<T>(Vector2 direction) where T: Skill
+    {
+        return GetComponentInChildren<T>() ? GetComponentInChildren<T>().Activate(direction) : false;
     }
 
 }

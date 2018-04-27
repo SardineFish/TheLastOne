@@ -8,16 +8,34 @@ public class LifeBody : Entity
 {
     public float HP;
     public float Defence;
+    public float MaxHP = 100;
+    public float MaxDefence = 100;
     public Carrier PrimaryHand;
     public Carrier SecondaryHand;
-    Rigidbody rigidbody;
+
+    private void Start()
+    {
+        
+    }
 
     private void OnEnable()
     {
-        rigidbody = GetComponent<Rigidbody>();
     }
-
-    public override void OnMessage(Message msg)
+    public void OnMessage(DamageMessage damageMsg)
+    {
+        HP -= damageMsg.PhysicalDamage + damageMsg.MagicalDamage;
+        Debug.Log("Damaged");
+        var dir = Vector3.Scale(transform.position - damageMsg.Sender.transform.position, new Vector3(1, 0, 1));
+        GetComponent<SkillController>().MovementSkill.KnockBack(dir.normalized * damageMsg.KnockBack);
+    }
+    public void OnMessage(SkillImpactMessage msg)
+    {
+        foreach (var effect in msg.SkillEffects)
+        {
+            effect.ApplyEffect(msg.Impact, this);
+        }
+    }
+    /*public void OnMessage(Message msg)
     {
         if (msg is DamageMessage)
         {
@@ -36,5 +54,5 @@ public class LifeBody : Entity
         }
         else
             base.OnMessage(msg);
-    }
+    }*/
 }

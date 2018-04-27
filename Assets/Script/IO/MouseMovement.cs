@@ -21,9 +21,9 @@ public class MouseMovement : MovementInput
     {
         if (!PlayerInControl)
             throw new System.Exception("Require a player to control.");
-        if(InputManager.Current.GetKeyDown(InputKeys[0]))
+        if(InputManager.Instance.GetKeyDown(InputKeys[0]))
         {
-            Target = InputManager.Current.MouseOnGround();
+            Target = InputManager.Instance.MouseOnGround();
             moveDirection = Target - PlayerInControl.transform.position;
 
         }

@@ -13,12 +13,9 @@ public class MovementSkill : AnimationSkill
 
     public float MaxSpeed = 1;
     public float TurnSpeed = 360;
-
-    ActionManager actionManager;
-
+        
     private void OnEnable()
     {
-        actionManager = Entity.GetComponent<ActionManager>();
     }
 
     public virtual void Jump()
@@ -59,7 +56,7 @@ public class MovementSkill : AnimationSkill
         if (!Application.isPlaying)
             return false;
         if(direction.magnitude>0)
-            if (!actionManager.ChangeAction(AnimatorController))
+            if (!Entity.GetComponent<ActionManager>().ChangeAction(AnimatorController))
                 return false;
         if (direction.magnitude == 0 && Entity.GetComponent<SkillController>().ActiveSkill != this)
             return false;
@@ -67,18 +64,18 @@ public class MovementSkill : AnimationSkill
         {
             if (Entity.GetComponent<SkillController>().ActiveSkill == this)
             {
-                actionManager.CurrentAnimatorController.SetFloat(AnimSpeed, 0);
-                actionManager.CurrentAnimatorController.SetFloat(AnimMoveX, 0);
-                actionManager.CurrentAnimatorController.SetFloat(AnimMoveY, 0);
+                Entity.GetComponent<ActionManager>().CurrentAnimatorController.SetFloat(AnimSpeed, 0);
+                Entity.GetComponent<ActionManager>().CurrentAnimatorController.SetFloat(AnimMoveX, 0);
+                Entity.GetComponent<ActionManager>().CurrentAnimatorController.SetFloat(AnimMoveY, 0);
                 RelaseCarry();
                 return true;
             }
         }
         else if (Entity.GetComponent<ActionManager>().ChangeAction(AnimatorController))
         {
-            actionManager.CurrentAnimatorController.SetFloat(AnimSpeed, Mathf.Clamp01(direction.magnitude) * MaxSpeed);
-            actionManager.CurrentAnimatorController.SetFloat(AnimMoveX, direction.x);
-            actionManager.CurrentAnimatorController.SetFloat(AnimMoveY, direction.z);
+            Entity.GetComponent<ActionManager>().CurrentAnimatorController.SetFloat(AnimSpeed, Mathf.Clamp01(direction.magnitude) * MaxSpeed);
+            Entity.GetComponent<ActionManager>().CurrentAnimatorController.SetFloat(AnimMoveX, direction.x);
+            Entity.GetComponent<ActionManager>().CurrentAnimatorController.SetFloat(AnimMoveY, direction.z);
 
             var ang = MathUtility.MapAngle(MathUtility.ToAng(direction.ToVector2XZ()) - MathUtility.ToAng(Entity.GetComponent<EntityController>().CurrentFacing));
 
@@ -86,7 +83,7 @@ public class MovementSkill : AnimationSkill
                 ang = Mathf.Sign(ang) * TurnSpeed * Time.deltaTime;
 
             Entity.transform.Rotate(0, -ang, 0, Space.Self);
-            Entity.GetComponent<EntityController>().CurrentFacing = new Vector2(transform.forward.x, transform.forward.z);
+            //Entity.GetComponent<EntityController>().CurrentFacing = new Vector2(transform.forward.x, transform.forward.z);
             RelaseCarry();
             return true;
         }

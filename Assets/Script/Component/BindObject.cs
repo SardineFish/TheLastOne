@@ -40,7 +40,7 @@ public class BindObject : MonoBehaviour
 
     private void FixedUpdate()
     {
-        return;
+        /*return;
         if (BindTo)
         {
             if (BindPosition)
@@ -49,7 +49,7 @@ public class BindObject : MonoBehaviour
             {
                 transform.rotation = BindTo.transform.rotation * relativeRotation;
             }
-        }
+        }*/
     }
     
 

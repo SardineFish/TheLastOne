@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityBehavior<TEntity> : MonoBehaviour where TEntity: Entity
+public class EntityBehavior<TEntity> : MonoBehaviour,IEventBehaviour where TEntity: Entity
 {
     public TEntity Entity
     {
@@ -18,4 +18,8 @@ public class EntityBehavior<TEntity> : MonoBehaviour where TEntity: Entity
             goto Next;
         }
     }
+
+    public EventListener[] EventListeners { get; set; }
+
+    public EventBus EventTarget { get; set; }
 }

@@ -11,7 +11,7 @@ public class InputManager : Singleton<InputManager> {
 
     [NonSerialized]
     public KeyCode[] KeyCodeList;
-    public Camera camera;
+    public new Camera camera;
     List<Action<KeyCode>> inputCallbackList = new List<Action<KeyCode>>();
 
     public Vector2 mousePosition { get { return Input.mousePosition; } }

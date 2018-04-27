@@ -6,4 +6,5 @@ using UnityEngine;
 
 public class NaturalEntity:Entity
 {
+    public float Size;
 }
