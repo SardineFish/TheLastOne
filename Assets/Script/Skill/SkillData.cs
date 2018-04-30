@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UnityEngine;
 
-public class GameSystem : Singleton<GameSystem>
+[Serializable]
+public class SkillData
 {
-    public Entity PlayerInControl;
+
 }

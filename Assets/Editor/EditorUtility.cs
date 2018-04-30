@@ -58,5 +58,29 @@ namespace Assets.Editor
             ColorUtility.TryParseHtmlString(color, out c);
             return c;
         }
+        
+
+        public static void EditSerializableDictionary<TKey, TValue>(string lable, SerializableDictionary<TKey, TValue> dict)
+        {
+            EditorGUILayout.LabelField(lable);
+            var style = new GUIStyle();
+            style.margin.left = 60;
+            //EditorGUILayout.BeginVertical(style);
+            DrawFoldList(lable, true, dict.Count, (i) =>
+             {
+                 if (typeof(TKey) == typeof(string))
+                 {
+                     dict.Keys[i] = (TKey)(object)EditorGUILayout.TextField((string)(object)dict.Keys[i]);
+                 }
+                 if (typeof(TValue).IsSubclassOf(typeof(UnityEngine.Object)))
+                 {
+                     dict.Values[i] = (TValue)(object)EditorGUILayout.ObjectField((UnityEngine.Object)(object)dict.Values[i], typeof(TValue), true);
+                 }
+             });
+            if(GUILayout.Button("Add"))
+            {
+                dict.Add(default(TKey), default(TValue));
+            }
+        }
     }
 }

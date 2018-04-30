@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UnityEngine;
 
-public class GameSystem : Singleton<GameSystem>
+public class WeaponSystem : AssetsLib<WeaponSystem, Weapon>
 {
-    public Entity PlayerInControl;
 }
