@@ -62,12 +62,12 @@ namespace Assets.Editor
 
         public static void EditSerializableDictionary<TKey, TValue>(string lable, SerializableDictionary<TKey, TValue> dict)
         {
-            EditorGUILayout.LabelField(lable);
             var style = new GUIStyle();
             style.margin.left = 60;
             //EditorGUILayout.BeginVertical(style);
             DrawFoldList(lable, true, dict.Count, (i) =>
              {
+                 EditorGUILayout.BeginHorizontal();
                  if (typeof(TKey) == typeof(string))
                  {
                      dict.Keys[i] = (TKey)(object)EditorGUILayout.TextField((string)(object)dict.Keys[i]);
@@ -76,11 +76,17 @@ namespace Assets.Editor
                  {
                      dict.Values[i] = (TValue)(object)EditorGUILayout.ObjectField((UnityEngine.Object)(object)dict.Values[i], typeof(TValue), true);
                  }
+                 EditorGUILayout.EndHorizontal();
              });
             if(GUILayout.Button("Add"))
             {
                 dict.Add(default(TKey), default(TValue));
             }
         }
+        /*
+        public static void EditAssetObject<TAssetsLib,TAsset>(TAssetsLib assetsLib,TAssetsLib)
+        {
+            
+        }*/
     }
 }

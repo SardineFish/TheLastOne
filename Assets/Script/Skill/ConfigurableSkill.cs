@@ -31,6 +31,7 @@ public class ConfigurableSkill : AnimationSkill
 {
     public GameObject WeaponPrefab;
     public GameObject SkillImpactPrefab;
+    public WeaponSystem.WeaponAsset WeaponData;
     
     [NonSerialized]
     public GameObject SkillImpactInstance;

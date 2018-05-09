@@ -3,7 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
+using UnityEditor;
 
-public class WeaponSystem : AssetsLib<WeaponSystem, Weapon>
+[Serializable]
+public class WeaponSystem : AssetsLib<WeaponSystem, GameObject>
 {
+    [Serializable]
+    public class AssetDictionary : AssetDictionaryBase { }
+    [Serializable]
+    public class WeaponAsset : AssetObjectBase { }
+    
+    [SerializeField]
+    [HideInInspector]
+    private AssetDictionary assetsLibrary = new AssetDictionary();
+    public override SerializableDictionary<string, GameObject> AssetsLibrary => assetsLibrary;
 }
