@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-//[ExecuteInEditMode]
+[ExecuteInEditMode]
 public class SkillController : EntityBehavior<Entity> {
     public Skill[] Skills;
     Skill activeSkill;
@@ -11,14 +11,14 @@ public class SkillController : EntityBehavior<Entity> {
     public MovementSkill MovementSkill;
 	// Use this for initialization
 	void Start () {
-        if (!Application.isEditor)
+        if (Application.isPlaying)
         {
             ActiveSkill = MovementSkill;
             MovementSkill.Activate();
         }
     }
 	
-    //[ExecuteInEditMode]
+    [ExecuteInEditMode]
 	// Update is called once per frame
 	void Update () {
         Skills = transform.Find("Skills").GetComponentsInChildren<Skill>().ToArray();

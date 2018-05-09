@@ -59,26 +59,38 @@ namespace Assets.Editor
             return c;
         }
         
+        public static T ObjectField<T>(string label,T obj) where T:UnityEngine.Object
+        {
+            return EditorGUILayout.ObjectField(label, obj, typeof(T), true) as T;
+        }
+        public static T ObjectField<T>(T obj) where T : UnityEngine.Object
+        {
+            return EditorGUILayout.ObjectField(obj, typeof(T), true) as T;
+        }
 
         public static void EditSerializableDictionary<TKey, TValue>(string lable, SerializableDictionary<TKey, TValue> dict)
+        {
+            EditSerializableDictionary(
+                lable,
+                dict,
+                (key) => (TKey)(object)EditorGUILayout.TextField((string)(object)key),
+                (value) => (TValue)(object)EditorGUILayout.ObjectField((UnityEngine.Object)(object)value, typeof(TValue), true)
+                );
+        }
+
+        public static void EditSerializableDictionary<TKey, TValue>(string lable, SerializableDictionary<TKey, TValue> dict,Func<TKey,TKey> keyEditCallback,Func<TValue,TValue> valueEditCallback)
         {
             var style = new GUIStyle();
             style.margin.left = 60;
             //EditorGUILayout.BeginVertical(style);
             DrawFoldList(lable, true, dict.Count, (i) =>
-             {
-                 EditorGUILayout.BeginHorizontal();
-                 if (typeof(TKey) == typeof(string))
-                 {
-                     dict.Keys[i] = (TKey)(object)EditorGUILayout.TextField((string)(object)dict.Keys[i]);
-                 }
-                 if (typeof(TValue).IsSubclassOf(typeof(UnityEngine.Object)))
-                 {
-                     dict.Values[i] = (TValue)(object)EditorGUILayout.ObjectField((UnityEngine.Object)(object)dict.Values[i], typeof(TValue), true);
-                 }
-                 EditorGUILayout.EndHorizontal();
-             });
-            if(GUILayout.Button("Add"))
+            {
+                EditorGUILayout.BeginHorizontal();
+                dict.Keys[i] = keyEditCallback(dict.Keys[i]);
+                dict.Values[i] = valueEditCallback(dict.Values[i]);
+                EditorGUILayout.EndHorizontal();
+            });
+            if (GUILayout.Button("Add"))
             {
                 dict.Add(default(TKey), default(TValue));
             }

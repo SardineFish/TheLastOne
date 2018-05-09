@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using System.Reflection;
 
 [Serializable]
 public abstract class AssetsLib<TAssetLib, TAsset> : Singleton<TAssetLib>
@@ -8,9 +9,7 @@ public abstract class AssetsLib<TAssetLib, TAsset> : Singleton<TAssetLib>
     where TAsset : UnityEngine.Object
 {
     [Serializable]
-    public class AssetObjectBase : AssetObject<TAssetLib, TAsset>
-    {
-    }
+    public class AssetObjectBase : AssetObject<TAssetLib, TAsset> { }
     [Serializable]
     public class AssetDictionaryBase : SerializableDictionary<string, TAsset> { }
 
@@ -33,7 +32,7 @@ public class AssetObject<TAssetLib,TAsset>
         get
         {
             if(assetLib == null)
-                assetLib = typeof(TAssetLib).GetProperty("Instance").GetValue(null) as TAssetLib;
+                assetLib = typeof(TAssetLib).GetField("Instance", BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public).GetValue(null) as TAssetLib;
             if (assetLib == null)
                 throw new Exception("Cannot get the instance of this asset lib.");
             return assetLib;
@@ -45,6 +44,10 @@ public class AssetObject<TAssetLib,TAsset>
 
     public TAsset Asset => AssetLib.GetAsset(name);
 
+    public AssetObject()
+    {
+        this.name = null;
+    }
     public AssetObject(string name)
     {
         this.name = name;

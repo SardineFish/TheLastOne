@@ -6,7 +6,7 @@ using System.Collections.Generic;
 [ExecuteInEditMode]
 public class UIHover : EntityBehavior<Entity>
 {
-    public GameObject UIPrefab;
+    public GameObject UIPrefab = null;
     public List<HoverUIComponent> UIList = new List<HoverUIComponent>();
     //[NonSerialized]
     public GameObject UIObject = null;

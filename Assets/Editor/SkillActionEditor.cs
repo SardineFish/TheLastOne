@@ -17,7 +17,10 @@ namespace Assets.Editor
             base.DrawDefaultInspector();
             var skillAction = target as SkillAction;
 
-            EditorUtility.EditSerializableDictionary("Actions", skillAction.ActionsPerWeapon);
+            EditorUtility.EditSerializableDictionary("Actions", skillAction.ActionsPerWeapon,
+                (key) => WeaponSystemEditor.AssetObjectField(key),
+                (value) => EditorUtility.ObjectField(value)
+                );
         }
     }
 }
