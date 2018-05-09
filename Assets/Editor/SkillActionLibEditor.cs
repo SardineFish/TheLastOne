@@ -9,8 +9,8 @@ using UnityEngine;
 namespace Assets.Editor
 {
     [CanEditMultipleObjects]
-    [CustomEditor(typeof(AnimatorLib))]
-    public class AnimatorLibEditor : AssetLibEditor<AnimatorLib, SkillAction>
+    [CustomEditor(typeof(SkillActionLib))]
+    public class SkillActionLibEditor : AssetLibEditor<SkillActionLib, SkillAction>
     {
     }
 }

@@ -31,7 +31,10 @@ namespace Assets.Editor
             TAssetLib assetLib = typeof(TAssetLib).GetField("Instance", BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public).GetValue(null) as TAssetLib;
             TAsset asset = obj?.Asset;
             var objGet = EditorGUILayout.ObjectField(label, asset, typeof(TAsset), true) as TAsset;
-            return new TAssetObject() { name = assetLib.AssetsLibrary.KeyOf(objGet) };
+            var newAsset = new TAssetObject() { name = assetLib.AssetsLibrary.KeyOf(objGet) };
+            if (!newAsset.Asset)
+                return obj;
+            return newAsset;
         }
 
         public static TAssetObject AssetObjectField<TAssetObject>(TAssetObject obj) where TAssetObject : AssetObject<TAssetLib, TAsset>, new()
@@ -40,7 +43,10 @@ namespace Assets.Editor
             TAssetLib assetLib = typeof(TAssetLib).GetField("Instance", BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public).GetValue(null) as TAssetLib;
             TAsset asset = obj?.Asset;
             var objGet = EditorGUILayout.ObjectField(asset, typeof(TAsset), true) as TAsset;
-            return new TAssetObject() { name = assetLib.AssetsLibrary.KeyOf(objGet) };
+            var newAsset = new TAssetObject() { name = assetLib.AssetsLibrary.KeyOf(objGet) };
+            if (!newAsset.Asset)
+                return obj;
+            return newAsset;
         }
     }
 }

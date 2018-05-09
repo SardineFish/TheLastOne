@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class AnimatorLib : AssetsLib<AnimatorLib, SkillAction>
+public class SkillActionLib : AssetsLib<SkillActionLib, SkillAction>
 {
     [Serializable]
     public class AssetDictionary : AssetDictionaryBase { }
