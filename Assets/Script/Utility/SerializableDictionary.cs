@@ -9,13 +9,22 @@ using UnityEngine;
 [Serializable]
 public class SerializableDictionary<TKey, TValue> : IEnumerable<SerializableDictionary<TKey, TValue>.KeyValuePair>
 {
-    public class IndexNotFoundException : Exception
+    public class KeyNotFoundException : Exception
     {
         public TKey Key { get; private set; }
 
-        public IndexNotFoundException(TKey key) : base("The key is not found.")
+        public KeyNotFoundException(TKey key) : base("The key is not found.")
         {
             Key = key;
+        }
+    }
+    public class ValueNotFoundException : Exception
+    {
+        public TValue Value { get; private set; }
+
+        public ValueNotFoundException(TValue value) : base("The value is not found.")
+        {
+            Value = value;
         }
     }
     public class KeyValuePair
@@ -49,7 +58,7 @@ public class SerializableDictionary<TKey, TValue> : IEnumerable<SerializableDict
                 if (typeof(TValue).IsClass)
                     return default(TValue);
                 else
-                    throw new IndexNotFoundException(index);
+                    throw new KeyNotFoundException(index);
             }
             return values[idx];
         }
@@ -77,6 +86,20 @@ public class SerializableDictionary<TKey, TValue> : IEnumerable<SerializableDict
         this[key] = value;
     }
 
+    public TKey KeyOf(TValue value)
+    {
+        var idx = values.IndexOf(value);
+        if (idx < 0)
+        {
+
+            if (typeof(TValue).IsClass)
+                return default(TKey);
+            else
+                throw new ValueNotFoundException(value);
+        }
+        return keys[idx];
+    }
+
     public IEnumerator<KeyValuePair> GetEnumerator()
     {
         var idx = 0;
@@ -94,4 +117,6 @@ public class SerializableDictionary<TKey, TValue> : IEnumerable<SerializableDict
             yield return new KeyValuePair(key, values[idx++]);
         }
     }
+
+
 }

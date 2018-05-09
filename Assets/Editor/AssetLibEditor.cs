@@ -24,6 +24,10 @@ namespace Assets.Editor
              });*/
         }
 
-        public TAsset AssetField(TAsset obj) => EditorGUILayout.ObjectField(obj, typeof(TAsset), true) as TAsset;
+        public TAssetObject AssetObjectField<TAssetObject>(string label,TAssetObject obj) where TAssetObject: AssetObject<TAssetLib, TAsset>
+        {
+            var objGet = EditorGUILayout.ObjectField(label, obj.Asset, typeof(TAsset), true) as TAsset;
+            return new TAssetObject(name);
+        }
     }
 }

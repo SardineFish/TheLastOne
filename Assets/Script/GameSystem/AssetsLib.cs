@@ -18,6 +18,7 @@ public abstract class AssetsLib<TAssetLib, TAsset> : Singleton<TAssetLib>
     public abstract SerializableDictionary<string, TAsset> AssetsLibrary { get; }
 
     public virtual TAsset GetAsset(string name) => AssetsLibrary[name];
+    public virtual string GetName(TAsset asset) => AssetsLibrary.KeyOf(asset);
 }
 
 [Serializable]
@@ -43,4 +44,9 @@ public class AssetObject<TAssetLib,TAsset>
     public string name;
 
     public TAsset Asset => AssetLib.GetAsset(name);
+
+    public AssetObject(string name)
+    {
+        this.name = name;
+    }
 }
