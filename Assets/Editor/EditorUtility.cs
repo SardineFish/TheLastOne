@@ -83,17 +83,31 @@ namespace Assets.Editor
             var style = new GUIStyle();
             style.margin.left = 60;
             //EditorGUILayout.BeginVertical(style);
+            var removeIdx = -1;
             DrawFoldList(lable, true, dict.Count, (i) =>
             {
                 EditorGUILayout.BeginHorizontal();
                 dict.Keys[i] = keyEditCallback(dict.Keys[i]);
                 dict.Values[i] = valueEditCallback(dict.Values[i]);
+                if (GUILayout.Button("-"))
+                    removeIdx = i;
                 EditorGUILayout.EndHorizontal();
             });
+            if (removeIdx >= 0)
+            {
+                dict.Keys.RemoveAt(removeIdx);
+                dict.Values.RemoveAt(removeIdx);
+            }
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
+            var valueDrag = valueEditCallback((TValue)(object)null);
+            if (valueDrag != null)
+                dict.Add(default(TKey), valueDrag);
             if (GUILayout.Button("Add"))
             {
                 dict.Add(default(TKey), default(TValue));
             }
+            EditorGUILayout.EndHorizontal();
         }
         /*
         public static void EditAssetObject<TAssetsLib,TAsset>(TAssetsLib assetsLib,TAssetsLib)

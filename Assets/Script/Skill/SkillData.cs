@@ -7,5 +7,7 @@ using System.Threading.Tasks;
 [Serializable]
 public class SkillData
 {
-
+    public SkillActionLib.SkillAction SkillAction;
+    public SkillEffectSystem.SkillEffect SkillEffect;
+    public SkillImpactSystem.SkillImpact SkillImpact;
 }

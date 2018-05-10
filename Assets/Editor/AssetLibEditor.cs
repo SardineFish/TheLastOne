@@ -18,6 +18,14 @@ namespace Assets.Editor
             base.OnInspectorGUI();
             var assetLib = target as AssetsLib<TAssetLib, TAsset>;
             EditorUtility.EditSerializableDictionary("Assets", assetLib.AssetsLibrary);
+
+            for (var i = 0; i < assetLib.AssetsLibrary.Count; i++)
+            {
+                if (assetLib.AssetsLibrary.Keys[i] == "" || assetLib.AssetsLibrary.Keys[i] == null && assetLib.AssetsLibrary.Values[i])
+                {
+                    assetLib.AssetsLibrary.Keys[i] = assetLib.AssetsLibrary.Values[i].name;
+                }
+            }
             /*
             EditorUtility.DrawFoldList("Assets:", true, assetLib.AssetsLibrary.Count, (i) =>
              {
