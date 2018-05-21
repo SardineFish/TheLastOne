@@ -26,6 +26,8 @@ public class SkillImpact : MonoBehaviour {
     public Vector3 ImpactStartPosition;
     public Vector3 ImpactDirection;
 
+    public Sprite Icon;
+
     float ImpactStartTime;
     List<Entity> hitEntities = new List<Entity>();
     // Use this for initialization

@@ -10,4 +10,5 @@ public class SkillAction : ScriptableObject
     public class SkillActionDict : SerializableDictionary<WeaponSystem.WeaponAsset, RuntimeAnimatorController> { }
     [HideInInspector]
     public SkillActionDict ActionsPerWeapon = new SkillActionDict();
+    public Sprite Icon;
 }

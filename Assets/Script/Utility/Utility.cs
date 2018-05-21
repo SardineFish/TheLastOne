@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Script.Utility
+public static class Utility
 {
-    public static class Utility
+    public static void ForEach<T>(this IEnumerable<T> ts, Action<T> callback)
     {
-        
+        foreach (var item in ts)
+            callback(item);
     }
 }
