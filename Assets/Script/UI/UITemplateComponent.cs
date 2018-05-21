@@ -34,7 +34,8 @@ public class UITemplateComponent : MonoBehaviour
         {
             if(bind.BindingMode == BindingMode.OneWay)
             {
-                UITemplateUtility.SetValueByPath(gameObject, bind.PathTemplate, UITemplateUtility.GetValueByPath(dataSource, bind.PathSource));
+                gameObject.SetValueByPath(bind.PathTemplate, UITemplateUtility.GetValueByPath(dataSource, bind.PathSource));
+                //UITemplateUtility.SetValueByPath(gameObject, bind.PathTemplate, UITemplateUtility.GetValueByPath(dataSource, bind.PathSource));
             }
         }
     }
@@ -43,7 +44,7 @@ public class UITemplateComponent : MonoBehaviour
     {
         foreach (var bind in Bindings)
         {
-            UITemplateUtility.SetValueByPath(gameObject, bind.PathTemplate, UITemplateUtility.GetValueByPath(dataSource, bind.PathSource));
+            gameObject.SetValueByPath(bind.PathTemplate, UITemplateUtility.GetValueByPath(dataSource, bind.PathSource));
         }
     }
 }

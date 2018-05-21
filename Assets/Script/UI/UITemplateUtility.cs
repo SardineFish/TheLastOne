@@ -14,13 +14,12 @@ public static class UITemplateUtility
         if (paths.Length <= 0)
             return null;
         var component = obj.GetComponent(paths[0]);
-        dynamic current = component;
-        for (var i = 1; i < 0; i++)
+        object value = component;
+        for (var i = 1; i < paths.Length; i++)
         {
-            var key = paths[i];
-            current = current[key];
+            value = value.GetType().GetField(paths[i]).GetValue(value);
         }
-        return current;
+        return value;
     }
 
     public static object SetValueByPath(this GameObject obj, string path, object value)
@@ -29,15 +28,14 @@ public static class UITemplateUtility
         if (paths.Length <= 0)
             return null;
         var component = obj.GetComponent(paths[0]);
-        dynamic current = component;
-        for (var i = 1; i < 0; i++)
+        object currentObj = component;
+        FieldInfo current = component.GetType().GetField(paths[1]);
+        for (var i = 2; i < paths.Length; i++)
         {
-            var key = paths[i];
-            if (i == paths.Length - 1)
-                current[key] = value;
-            else
-                current = current[key];
+            currentObj = current.GetValue(currentObj);
+            current = currentObj.GetType().GetField(paths[i]);
         }
+        current.SetValue(currentObj, value);
         return value;
     }
 
@@ -46,12 +44,12 @@ public static class UITemplateUtility
         var paths = path.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
         if (paths.Length <= 0)
             return null;
-        dynamic current = obj;
-        foreach(var key in paths)
+        object value = obj;
+        for(var i = 0; i < paths.Length; i++)
         {
-            current = current[key];
+            value = value.GetType().GetField(paths[i]).GetValue(value);
         }
-        return current;
+        return value;
     }
 
     public static object SetValueByPath(object obj,string path, object value)
@@ -59,16 +57,14 @@ public static class UITemplateUtility
         var paths = path.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
         if (paths.Length <= 0)
             return null;
-        dynamic current = obj;
-        for(var i =0;i<paths.Length;i++)
+        object currentObj = obj;
+        FieldInfo current = obj.GetType().GetField(paths[0]);
+        for(var i=1;i<paths.Length;i++)
         {
-            var key = paths[i];
-            if (i == paths.Length - 1)
-                current[key] = value;
-            else
-                current = current[key];
-            current = current[key];
+            currentObj = current.GetValue(currentObj);
+            current = currentObj.GetType().GetField(paths[i]);
         }
+        current.SetValue(currentObj, value);
         return value;
     }
 }

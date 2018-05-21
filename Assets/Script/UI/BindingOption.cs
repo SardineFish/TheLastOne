@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 [Serializable]
 public class BindingOption
 {
-    public string PathSource;
-    public string PathTemplate;
+    public string PathSource = "";
+    public string PathTemplate = "";
     public BindingMode BindingMode = BindingMode.TwoWay;
     public Func<object, object> DataConverter = obj => obj;
 }
