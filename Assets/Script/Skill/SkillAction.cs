@@ -11,4 +11,5 @@ public class SkillAction : ScriptableObject
     [HideInInspector]
     public SkillActionDict ActionsPerWeapon = new SkillActionDict();
     public Sprite Icon;
+    public string DisplayName = "";
 }

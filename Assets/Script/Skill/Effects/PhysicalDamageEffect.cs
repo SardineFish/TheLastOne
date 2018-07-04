@@ -17,7 +17,7 @@ public class PhysicalDamageEffect : SkillEffect
     }
     public PhysicalDamageEffect():base()
     {
-        Name = "Physical Damage";
+        DisplayName = "Physical Damage";
     }
 
     public override void ApplyEffect(SkillImpact impact, Entity target)

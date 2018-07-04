@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class StelaUIManager : MonoBehaviour
+public class StelaUIManager : Singleton<StelaUIManager>
 {
     public SkillAction[] SkillActions = new SkillAction[0];
     public SkillImpact[] SkillImpacts = new SkillImpact[0];

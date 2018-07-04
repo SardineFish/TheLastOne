@@ -9,6 +9,6 @@ using UnityEngine;
 public abstract class SkillEffect:ScriptableObject
 {
     [SerializeField]
-    public string Name;
+    public string DisplayName;
     public abstract void ApplyEffect(SkillImpact impact, Entity target);
 }

@@ -16,7 +16,7 @@ public class MagicalDamageEffect:SkillEffect
     }
     public MagicalDamageEffect():base()
     {
-        Name = "Magical Damage";
+        DisplayName = "Magical Damage";
     }
 
     public override void ApplyEffect(SkillImpact impact, Entity target)

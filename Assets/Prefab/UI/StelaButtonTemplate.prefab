@@ -211,7 +211,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9c6a6a61bc567e478a260784e3004d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bindings: []
+  Bindings:
+  - PathSource: DisplayName
+    PathTemplate: Text.Text
+    BindingMode: 2
 --- !u!222 &222346889013080662
 CanvasRenderer:
   m_ObjectHideFlags: 1
