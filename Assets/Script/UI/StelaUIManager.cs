@@ -10,9 +10,11 @@ public class StelaUIManager : Singleton<StelaUIManager>
     public SkillAction[] SkillActions = new SkillAction[0];
     public SkillImpact[] SkillImpacts = new SkillImpact[0];
     public SkillEffect[] SkillEffects = new SkillEffect[0];
+    public SkillData[] PlayerSkills = new SkillData[0];
     public UITemplateRenderer SkillActionPanel;
     public UITemplateRenderer SkillImpactPanel;
     public UITemplateRenderer SkillEffectPanel;
+    public UITemplateRenderer PlayerSkillsPanel;
 
     public void Display()
     {
@@ -27,13 +29,15 @@ public class StelaUIManager : Singleton<StelaUIManager>
         
     }
 
-    public void SetSkillComponents(SkillAction[] skillActions, SkillEffect[] skillEffects, SkillImpact[] skillImpacts)
+    public void SetSkillComponents(SkillAction[] skillActions, SkillEffect[] skillEffects, SkillImpact[] skillImpacts, SkillData[] playerSkills)
     {
         SkillActions = skillActions;
         SkillEffects = skillEffects;
         SkillImpacts = skillImpacts;
+        PlayerSkills = playerSkills;
         SkillActionPanel.DataSource = SkillActions;
         SkillImpactPanel.DataSource = SkillImpacts;
         SkillEffectPanel.DataSource = SkillImpacts;
+        PlayerSkillsPanel.DataSource = PlayerSkills;
     }
 }
