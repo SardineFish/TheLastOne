@@ -41,7 +41,7 @@ namespace Assets.Editor
             if (show)
             {
                 GUIStyle style = new GUIStyle();
-                style.margin.left = 40;
+                style.margin.left = 24;
                 EditorGUILayout.BeginVertical(style);
                 for (var i = 0; i < count; i++)
                 {

@@ -1,30 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
-[ExecuteInEditMode]
-public class UITemplate: MonoBehaviour
+public class UITemplate : MonoBehaviour
 {
-    public object DataSource;
-    private void Start()
+    object dataSource;
+    public object DataSource
     {
-        
+        get
+        {
+            return dataSource;
+        }
+        set
+        {
+            var old = dataSource;
+            dataSource = value;
+            if (old != value)
+                Reload();
+        }
+    }
+    public List<BindingOption> Bindings = new List<BindingOption>();
+    // Use this for initialization
+    void Start()
+    {
+        Reload();
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
-        if(!Application.isPlaying)
+        if (!Application.isPlaying)
         {
             GetComponentsInChildren<UIBehaviour>().ForEach((ui) =>
             {
-                if (!ui.GetComponent<UITemplateComponent>())
-                    ui.gameObject.AddComponent<UITemplateComponent>();
+                if (!ui.GetComponent<UITemplate>())
+                    ui.gameObject.AddComponent<UITemplate>();
             });
+        }
+        foreach (var bind in Bindings)
+        {
+            if(bind.BindingMode == BindingMode.OneWay)
+            {
+                gameObject.SetValueByPath(bind.PathTemplate, UITemplateUtility.GetValueByPath(dataSource, bind.PathSource));
+                //UITemplateUtility.SetValueByPath(gameObject, bind.PathTemplate, UITemplateUtility.GetValueByPath(dataSource, bind.PathSource));
+            }
+        }
+    }
+
+    void Reload()
+    {
+        foreach (var bind in Bindings)
+        {
+            gameObject.SetValueByPath(bind.PathTemplate, UITemplateUtility.GetValueByPath(dataSource, bind.PathSource));
         }
     }
 }

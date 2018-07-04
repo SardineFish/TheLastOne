@@ -10,6 +10,10 @@ public class StelaUIManager : MonoBehaviour
     public SkillAction[] SkillActions = new SkillAction[0];
     public SkillImpact[] SkillImpacts = new SkillImpact[0];
     public SkillEffect[] SkillEffects = new SkillEffect[0];
+    public UITemplateRenderer SkillActionPanel;
+    public UITemplateRenderer SkillImpactPanel;
+    public UITemplateRenderer SkillEffectPanel;
+
     public void Display()
     {
         enabled = true;
@@ -28,5 +32,8 @@ public class StelaUIManager : MonoBehaviour
         SkillActions = skillActions;
         SkillEffects = skillEffects;
         SkillImpacts = skillImpacts;
+        SkillActionPanel.DataSource = SkillActions;
+        SkillImpactPanel.DataSource = SkillImpacts;
+        SkillEffectPanel.DataSource = SkillImpacts;
     }
 }
