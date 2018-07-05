@@ -9,30 +9,30 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1327049716922594}
+  m_RootGameObject: {fileID: 1527633087857310}
   m_IsPrefabAsset: 1
---- !u!1 &1327049716922594
+--- !u!1 &1527633087857310
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4318871558828840}
-  - component: {fileID: 114874307205067124}
+  - component: {fileID: 4964453168505746}
+  - component: {fileID: 114374531766354528}
   m_Layer: 0
-  m_Name: SkillActionLib
+  m_Name: Collisional
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4318871558828840
+--- !u!4 &4964453168505746
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1327049716922594}
+  m_GameObject: {fileID: 1527633087857310}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,23 +40,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114874307205067124
+--- !u!114 &114374531766354528
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1327049716922594}
+  m_GameObject: {fileID: 1527633087857310}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5b1134823de4614797d69e9e6a5c695, type: 3}
+  m_Script: {fileID: 11500000, guid: 09915f41d29731d44b0be573ca6f36b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assetLib:
-    keys:
-    - Slash
-    - Spin
-    - TurnSlash
-    values:
-    - {fileID: 11400000, guid: 24bb60012d318724dbd6bb82be4eb4fa, type: 2}
-    - {fileID: 11400000, guid: 7ad2f99e38dd6634e9401f7ab815deea, type: 2}
-    - {fileID: 11400000, guid: b128041b3f5a5e04d8c1edf487a2bbe3, type: 2}
+  ImpactType: 1
+  Creator: {fileID: 0}
+  ImpactTarget: {fileID: 0}
+  Collider: {fileID: 0}
+  SkillEffects: []
+  ImpactRadius: 2.85
+  ImpactAngle: 80
+  ImpactHeight: 4
+  PenetrateDistance: 9.58
+  ImpactTime: 1
+  DisplayName: 
+  SingleDamage: 0
+  DamageOnce: 1
+  ImpactStartPosition: {x: 0, y: 0, z: 0}
+  ImpactDirection: {x: 0, y: 0, z: 0}
+  Icon: {fileID: 0}
+  weight: 1
