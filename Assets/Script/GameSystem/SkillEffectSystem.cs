@@ -7,6 +7,4 @@ using UnityEngine;
 
 public class SkillEffectSystem: ObjectAssetLib
 {
-    [Serializable]
-    public class SkillEffect : AssetObject { }
 }

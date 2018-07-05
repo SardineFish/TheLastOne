@@ -8,6 +8,6 @@ using System.Threading.Tasks;
 public class SkillData
 {
     public SkillActionLib.AssetObject SkillAction;
-    public SkillEffectSystem.SkillEffect SkillEffect;
+    public SkillEffectSystem.AssetObject[] SkillEffect;
     public SkillImpactSystem.AssetObject SkillImpact;
 }

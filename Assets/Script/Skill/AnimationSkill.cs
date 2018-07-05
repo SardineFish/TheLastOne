@@ -18,9 +18,9 @@ public class AnimationSkill:Skill
         actionManager = Entity.GetComponent<ActionManager>();
     }
 
-    public override bool Activate()
+    public override bool Activate(params object[] additionalData)
     {
-        if (base.Activate() && actionManager)
+        if (base.Activate(additionalData) && actionManager)
         {
             if(Entity.GetComponent<ActionManager>().ChangeAction(AnimatorController))
             {
@@ -33,9 +33,9 @@ public class AnimationSkill:Skill
         return true;
     }
 
-    public override bool Activate(Vector3 target)
+    public override bool Activate(Vector3 target, params object[] additionalData)
     {
-        if(base.Activate(target) && actionManager)
+        if(base.Activate(target,additionalData) && actionManager)
         {
             if (Entity.GetComponent<ActionManager>().ChangeAction(AnimatorController))
             {
@@ -48,9 +48,9 @@ public class AnimationSkill:Skill
         return true;
     }
 
-    public override bool Activate(Entity target)
+    public override bool Activate(Entity target, params object[] additionalData)
     {
-        if (base.Activate(target) && actionManager)
+        if (base.Activate(target,additionalData) && actionManager)
         {
             if (Entity.GetComponent<ActionManager>().ChangeAction(AnimatorController))
             {

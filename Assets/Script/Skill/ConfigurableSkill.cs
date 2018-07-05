@@ -41,11 +41,19 @@ public class ConfigurableSkill : AnimationSkill
     public float ImpactAngle = 360;
     public Vector3 ActivatePosition;
 
+    [HideInInspector]
+    SkillData skillData;
+    public SkillData SkillData
+    {
+        get { return SkillData; }
+        set { SetSkillData(value); }
+    }
+
     private Vector3 activatePos;
     private Vector3 activateDirection;
     private Entity targetedEntity;
 
-    public override bool Activate()
+    public override bool Activate(params object[] additionalData)
     {
         if(ActivateMethod == ActivateMethod.Position)
         {
@@ -67,22 +75,22 @@ public class ConfigurableSkill : AnimationSkill
             var target = obj.GetComponent<Entity>();
             if (!target)
                 return false;
-            return Activate(target);
+            return Activate(target,additionalData);
         }
         return false;
     }
 
-    public override bool Activate(Entity target)
+    public override bool Activate(Entity target, params object[] additionalData)
     {
         switch(ActivateMethod)
         {
             case ActivateMethod.Direction:
             case ActivateMethod.Local:
             case ActivateMethod.Position:
-                return Activate();
+                return Activate(additionalData);
         }
 
-        if(!base.Activate(target))
+        if(!base.Activate(target,additionalData))
             return false;
 
         activatePos = Entity.transform.position;
@@ -93,11 +101,11 @@ public class ConfigurableSkill : AnimationSkill
         return true;
     }
 
-    public override bool Activate(Vector3 target)
+    public override bool Activate(Vector3 target, params object[] additionalData)
     {
         if (ActivateMethod == ActivateMethod.TargetedEntity)
             return false;
-        if (!base.Activate(target))
+        if (!base.Activate(target,additionalData))
             return false;
 
         else if (ActivateMethod == ActivateMethod.Local)
@@ -151,4 +159,14 @@ public class ConfigurableSkill : AnimationSkill
         if (SkillImpactInstance)
             SkillImpactInstance.GetComponent<SkillImpact>().Distruct();
     }
+
+    public void SetSkillData(SkillData skillData)
+    {
+        this.skillData = skillData;
+        SkillImpactPrefab = skillData.SkillImpact.Asset as GameObject;
+        SkillEffects = skillData.SkillEffect
+            .Select(assetObj => assetObj.Asset as SkillEffect)
+            .ToArray();
+    }
+
 }

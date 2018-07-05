@@ -40,6 +40,8 @@ public class StelaUIManager : Singleton<StelaUIManager>
 
     public void UpdateUI()
     {
+        var player = GameSystem.Instance.PlayerInControl as Player;
+        var playerSkills = player.GetComponent<SkillController>().Skills.Where(skill => skill is ConfigurableSkill).ToArray();
 
     }
 }

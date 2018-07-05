@@ -47,11 +47,11 @@ public class MovementSkill : AnimationSkill
 
     }
 
-    public override bool Activate()
+    public override bool Activate(params object[] additionalData)
     {
-        return Activate(Vector3.zero);
+        return Activate(Vector3.zero,additionalData);
     }
-    public override bool Activate(Vector3 direction)
+    public override bool Activate(Vector3 direction, params object[] additionalData)
     {
         if (!Application.isPlaying)
             return false;

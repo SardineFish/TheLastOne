@@ -12,21 +12,21 @@ public abstract class Skill : EntityBehavior<Entity>
 
     }
 
-    public virtual bool Activate()
+    public virtual bool Activate(params object[] additionalData)
     {
         if (Time.time - lastActiveTime < CoolDown)
             return false;
         return true;
     }
 
-    public virtual bool Activate(Vector3 target)
+    public virtual bool Activate(Vector3 target, params object[] additionalData)
     {
         if (Time.time - lastActiveTime < CoolDown)
             return false;
         return true;
     }
 
-    public virtual bool Activate(Entity target)
+    public virtual bool Activate(Entity target, params object[] additionalData)
     {
         if (Time.time - lastActiveTime < CoolDown)
             return false;
