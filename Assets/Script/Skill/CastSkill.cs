@@ -10,17 +10,17 @@ public class CastSkill : AnimationSkill
     public GameObject ObjectPrefab;
     public Vector3 InstantiatePosition;
 
-    public override bool Activate()
+    public override bool Activate(params object[] additionalData)
     {
         return Activate(Entity.transform.position + Entity.transform.forward * Range);
     }
 
-    public override bool Activate(Entity target)
+    public override bool Activate(Entity target, params object[] additionalData)
     {
         return Activate(target.transform.position);
     }
 
-    public override bool Activate(Vector3 target)
+    public override bool Activate(Vector3 target, params object[] additionalData)
     {
         if (base.Activate())
         {

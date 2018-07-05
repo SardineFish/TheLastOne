@@ -15,6 +15,8 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
 
     public KeyCode InteractKey;
 
+    public KeyCode WeaponSwitchKey;
+
     public List<KeyCode> SkillKeys = new List<KeyCode>();
 
     public MovementInput MovementInput;
@@ -49,6 +51,10 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
         if(InputManager.Instance.GetKeyDown(InteractKey))
         {
             SkillController.ActivateSkill<InteractSkill>();
+        }
+        if(InputManager.Instance.GetKeyDown(WeaponSwitchKey))
+        {
+            PlayerInControl.GetComponent<Equipments>().Switch();
         }
         SkillController.ActivateMovementSkill(MovementInput.GetMovement());
     }

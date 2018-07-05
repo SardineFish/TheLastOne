@@ -31,7 +31,7 @@ public class ConfigurableSkill : AnimationSkill
 {
     public GameObject WeaponPrefab;
     public GameObject SkillImpactPrefab;
-    public WeaponSystem.WeaponAsset WeaponData;
+    public WeaponSystem.AssetObject WeaponData;
     
     [NonSerialized]
     public GameObject SkillImpactInstance;
@@ -41,11 +41,11 @@ public class ConfigurableSkill : AnimationSkill
     public float ImpactAngle = 360;
     public Vector3 ActivatePosition;
 
-    [HideInInspector]
+    [SerializeField]
     SkillData skillData;
     public SkillData SkillData
     {
-        get { return SkillData; }
+        get { return skillData; }
         set { SetSkillData(value); }
     }
 
@@ -55,6 +55,9 @@ public class ConfigurableSkill : AnimationSkill
 
     public override bool Activate(params object[] additionalData)
     {
+        var currentWeapon = WeaponSystem.Instance.GetAssetObject(Entity.GetComponent<Equipments>().Selected);
+        AnimatorController = SkillData.SkillAction.Asset.ActionsPerWeapon[currentWeapon];
+
         if(ActivateMethod == ActivateMethod.Position)
         {
             return Activate(InputManager.Instance.MouseOnGround());
@@ -82,7 +85,10 @@ public class ConfigurableSkill : AnimationSkill
 
     public override bool Activate(Entity target, params object[] additionalData)
     {
-        switch(ActivateMethod)
+        var currentWeapon = WeaponSystem.Instance.GetAssetObject(Entity.GetComponent<Equipments>().Selected);
+        AnimatorController = SkillData.SkillAction.Asset.ActionsPerWeapon[currentWeapon];
+
+        switch (ActivateMethod)
         {
             case ActivateMethod.Direction:
             case ActivateMethod.Local:
@@ -103,6 +109,9 @@ public class ConfigurableSkill : AnimationSkill
 
     public override bool Activate(Vector3 target, params object[] additionalData)
     {
+        var currentWeapon = WeaponSystem.Instance.GetAssetObject(Entity.GetComponent<Equipments>().Selected);
+        AnimatorController = SkillData.SkillAction.Asset.ActionsPerWeapon[currentWeapon];
+
         if (ActivateMethod == ActivateMethod.TargetedEntity)
             return false;
         if (!base.Activate(target,additionalData))
@@ -135,9 +144,10 @@ public class ConfigurableSkill : AnimationSkill
         if (Entity.GetComponent<SkillController>().ActiveSkill == this && carrier.Carrying)
             return;
         (Entity as LifeBody).PrimaryHand?.Release();
-        if (WeaponPrefab)
+        if (Entity.GetComponent<Equipments>().Selected)
         {
-            Instantiate(WeaponPrefab).GetComponent<CarriableObject>().AttachTo((Entity as LifeBody).PrimaryHand);
+            //Instantiate(WeaponPrefab).GetComponent<CarriableObject>().AttachTo((Entity as LifeBody).PrimaryHand);
+            Instantiate(Entity.GetComponent<Equipments>().Selected).GetComponent<CarriableObject>().AttachTo((Entity as LifeBody).PrimaryHand);
         }
     }
 

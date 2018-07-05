@@ -30,22 +30,22 @@ public class InteractSkill : AnimationSkill
             objInRange.Remove(other.GetComponent<InteractiveObject>());
     }
 
-    public override bool Activate()
+    public override bool Activate(params object[] additionalData)
     {
         return Activate(objInRange.OrderBy(obj => (obj.transform.position - Entity.transform.position).sqrMagnitude).FirstOrDefault());
     }
 
-    public override bool Activate(Vector3 target)
+    public override bool Activate(Vector3 target, params object[] additionalData)
     {
         return Activate();
     }
 
-    public override bool Activate(Entity target)
+    public override bool Activate(Entity target, params object[] additionalData)
     {
         return target.GetComponent<InteractiveObject>();
     }
 
-    public virtual bool Activate(InteractiveObject target)
+    public virtual bool Activate(InteractiveObject target, params object[] additionalData)
     {
         if (!target)
             return false;

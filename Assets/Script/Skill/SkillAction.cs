@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class SkillAction : ScriptableObject,IWeightedObject
 {
     [Serializable]
-    public class SkillActionDict : SerializableDictionary<WeaponSystem.WeaponAsset, RuntimeAnimatorController> { }
+    public class SkillActionDict : SerializableDictionary<WeaponSystem.AssetObject, RuntimeAnimatorController> { }
     [HideInInspector]
     public SkillActionDict ActionsPerWeapon = new SkillActionDict();
     public Sprite Icon;

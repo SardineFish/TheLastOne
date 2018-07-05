@@ -16,6 +16,7 @@ namespace Assets.Editor
         int keySetIdx = -1;
 
         KeySetting interactKey = new KeySetting();
+        KeySetting switchKey = new KeySetting();
         List<KeySetting> skillKeys = new List<KeySetting>();
         public override void OnInspectorGUI()
         {
@@ -48,6 +49,7 @@ namespace Assets.Editor
             playerInput.MovementInput = EditorGUILayout.ObjectField("Movement Input", playerInput.MovementInput, typeof(MovementInput), true) as MovementInput;
             EditorGUILayout.Space();
             playerInput.InteractKey = interactKey.Edit("Interact: ", playerInput.InteractKey);
+            playerInput.WeaponSwitchKey = switchKey.Edit("Switch Weapon:", playerInput.WeaponSwitchKey);
             var count = EditorGUILayout.IntField("Keys", playerInput.SkillKeys.Count);
             if (count > playerInput.SkillKeys.Count)
                 while (playerInput.SkillKeys.Count < count)
