@@ -9,8 +9,6 @@ public class SkillActionLib : AssetsLib<SkillActionLib, SkillAction>
 {
     [Serializable]
     public class AssetDictionary : AssetDictionaryBase { }
-    [Serializable]
-    public class SkillAction : AssetObjectBase { }
 
     [SerializeField]
     [HideInInspector]

@@ -5,7 +5,7 @@ using System;
 public class SkillSystem : AssetsLib<SkillSystem, SkillAction>
 {
     [Serializable]
-    public class SkillAsset : AssetObjectBase { }
+    public class SkillAsset : AssetObject { }
     [Serializable]
     public class AssetDictionary : AssetDictionaryBase { }
 

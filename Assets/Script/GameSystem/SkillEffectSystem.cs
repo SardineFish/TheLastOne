@@ -8,5 +8,5 @@ using UnityEngine;
 public class SkillEffectSystem: ObjectAssetLib
 {
     [Serializable]
-    public class SkillEffect : AssetObjectBase { }
+    public class SkillEffect : AssetObject { }
 }

@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 [Serializable]
-public abstract class SkillEffect:ScriptableObject
+public abstract class SkillEffect:ScriptableObject,IWeightedObject
 {
     [SerializeField]
     public string DisplayName;
     public abstract void ApplyEffect(SkillImpact impact, Entity target);
+    [SerializeField]
+    private int weight = 1;
+    public int Weight
+    {
+        get { return weight; }
+        set { weight = value; }
+    }
 }

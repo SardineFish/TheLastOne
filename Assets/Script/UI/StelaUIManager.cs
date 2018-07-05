@@ -7,14 +7,23 @@ using UnityEngine;
 
 public class StelaUIManager : Singleton<StelaUIManager>
 {
-    public SkillAction[] SkillActions = new SkillAction[0];
-    public SkillImpact[] SkillImpacts = new SkillImpact[0];
-    public SkillEffect[] SkillEffects = new SkillEffect[0];
     public SkillData[] PlayerSkills = new SkillData[0];
     public UITemplateRenderer SkillActionPanel;
     public UITemplateRenderer SkillImpactPanel;
     public UITemplateRenderer SkillEffectPanel;
     public UITemplateRenderer PlayerSkillsPanel;
+
+    StelaData stelaData;
+    public StelaData StelaData
+    {
+        get { return stelaData; }
+        set
+        {
+            stelaData = value;
+            SkillActionPanel.DataSource = stelaData.SkillActions.Select(action => action.Asset);
+            SkillImpactPanel.DataSource = stelaData.SkillImpacts.Select(impact => impact.Asset);
+        }
+    }
 
     public void Display()
     {
@@ -29,15 +38,8 @@ public class StelaUIManager : Singleton<StelaUIManager>
         
     }
 
-    public void SetSkillComponents(SkillAction[] skillActions, SkillEffect[] skillEffects, SkillImpact[] skillImpacts, SkillData[] playerSkills)
+    public void UpdateUI()
     {
-        SkillActions = skillActions;
-        SkillEffects = skillEffects;
-        SkillImpacts = skillImpacts;
-        PlayerSkills = playerSkills;
-        SkillActionPanel.DataSource = SkillActions;
-        SkillImpactPanel.DataSource = SkillImpacts;
-        SkillEffectPanel.DataSource = SkillImpacts;
-        PlayerSkillsPanel.DataSource = PlayerSkills;
+
     }
 }

@@ -12,7 +12,7 @@ public class WeaponSystem : AssetsLib<WeaponSystem, GameObject>
     [Serializable]
     public class AssetDictionary : AssetDictionaryBase { }
     [Serializable]
-    public class WeaponAsset : AssetObjectBase { }
+    public class WeaponAsset : AssetObject { }
     
     [SerializeField]
     [HideInInspector]

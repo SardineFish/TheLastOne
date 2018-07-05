@@ -33,7 +33,7 @@ namespace Assets.Editor
              });*/
         }
 
-        public static TAssetObject AssetObjectField<TAssetObject>(string label,TAssetObject obj) where TAssetObject: AssetObject<TAssetLib, TAsset>, new()
+        public static TAssetObject AssetObjectField<TAssetObject>(string label,TAssetObject obj) where TAssetObject: AssetObjectType<TAssetLib, TAsset>, new()
         {
             var t = typeof(TAssetLib);
             TAssetLib assetLib = typeof(TAssetLib).GetField("Instance", BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public).GetValue(null) as TAssetLib;
@@ -45,7 +45,7 @@ namespace Assets.Editor
             return newAsset;
         }
 
-        public static TAssetObject AssetObjectField<TAssetObject>(TAssetObject obj) where TAssetObject : AssetObject<TAssetLib, TAsset>, new()
+        public static TAssetObject AssetObjectField<TAssetObject>(TAssetObject obj) where TAssetObject : AssetObjectType<TAssetLib, TAsset>, new()
         {
             var t = typeof(TAssetLib);
             TAssetLib assetLib = typeof(TAssetLib).GetField("Instance", BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public).GetValue(null) as TAssetLib;

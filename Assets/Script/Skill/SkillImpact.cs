@@ -10,7 +10,7 @@ public enum ImpactType
     Areal,
     Penetrative,
 }
-public class SkillImpact : MonoBehaviour {
+public class SkillImpact : MonoBehaviour,IWeightedObject {
     public ImpactType ImpactType;
     public Entity Creator;
     public Entity ImpactTarget = null;
@@ -28,6 +28,13 @@ public class SkillImpact : MonoBehaviour {
     public Vector3 ImpactDirection;
 
     public Sprite Icon;
+    [SerializeField]
+    private int weight = 1;
+    public int Weight
+    {
+        get { return weight; }
+        set { weight = value; }
+    }
 
     float ImpactStartTime;
     List<Entity> hitEntities = new List<Entity>();

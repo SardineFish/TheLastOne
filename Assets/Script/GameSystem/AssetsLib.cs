@@ -9,7 +9,11 @@ public abstract class AssetsLib<TAssetLib, TAsset> : Singleton<TAssetLib>
     where TAsset : UnityEngine.Object
 {
     [Serializable]
-    public class AssetObjectBase : AssetObject<TAssetLib, TAsset> { }
+    public class AssetObject : AssetObjectType<TAssetLib, TAsset>
+    {
+        public AssetObject():base() { }
+        public AssetObject(string name) : base(name) { }
+    }
     [Serializable]
     public class AssetDictionaryBase : SerializableDictionary<string, TAsset> { }
 
@@ -18,10 +22,11 @@ public abstract class AssetsLib<TAssetLib, TAsset> : Singleton<TAssetLib>
 
     public virtual TAsset GetAsset(string name) => AssetsLibrary[name];
     public virtual string GetName(TAsset asset) => AssetsLibrary.KeyOf(asset);
+    public virtual AssetObject GetAssetObject(TAsset asset) => new AssetObject(GetName(asset));
 }
 
 [Serializable]
-public class AssetObject<TAssetLib,TAsset> 
+public class AssetObjectType<TAssetLib,TAsset> 
     where TAssetLib:AssetsLib<TAssetLib, TAsset>
     where TAsset : UnityEngine.Object
 {
@@ -44,11 +49,11 @@ public class AssetObject<TAssetLib,TAsset>
 
     public TAsset Asset => AssetLib.GetAsset(name);
 
-    public AssetObject()
+    public AssetObjectType()
     {
         this.name = null;
     }
-    public AssetObject(string name)
+    public AssetObjectType(string name)
     {
         this.name = name;
     }
