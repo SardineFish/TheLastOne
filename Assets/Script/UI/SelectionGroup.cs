@@ -24,6 +24,14 @@ public class SelectionGroup : EventBus
         }
     }
 
+    public void ClearSelection()
+    {
+        foreach (var select in SelectionButtons)
+            select.Deselect();
+        SelectedIndex = -1;
+        Selected = null;
+    }
+
     public void OnSelectedCallback(SelectionButton selectionButton)
     {
         SelectionButtons

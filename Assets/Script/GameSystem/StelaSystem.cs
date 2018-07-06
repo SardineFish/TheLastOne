@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StelaSystem : Singleton<StelaSystem>
 {
@@ -21,5 +22,9 @@ public class StelaSystem : Singleton<StelaSystem>
             .Select(impact=>SkillImpactSystem.Instance.GetAssetObject(impact.gameObject))
             .ToArray();
         return stelaData;
+    }
+    void Start()
+    {
+        SceneManager.LoadScene("SkillPreview", LoadSceneMode.Additive);
     }
 }
