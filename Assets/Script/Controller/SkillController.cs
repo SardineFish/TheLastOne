@@ -21,7 +21,7 @@ public class SkillController : EntityBehavior<Entity> {
     [ExecuteInEditMode]
 	// Update is called once per frame
 	void Update () {
-        Skills = transform.Find("Skills").GetComponentsInChildren<Skill>().ToArray();
+        UpdateSkills();
     }
 
     public void OnAnimationEvent()
@@ -97,6 +97,46 @@ public class SkillController : EntityBehavior<Entity> {
     public bool ActivateSkill<T>(Vector2 direction) where T: Skill
     {
         return GetComponentInChildren<T>() ? GetComponentInChildren<T>().Activate(direction) : false;
+    }
+
+    public void AddSkill(Skill skill, int idx = -1)
+    {
+        skill.gameObject.transform.parent = Entity.transform.Find("Skill");
+        if (idx >= 0)
+            skill.gameObject.transform.parent.SetSiblingIndex(idx);
+        UpdateSkills();
+    }
+
+    public void RemoveSkill(Skill skill)
+    {
+        Destroy(skill.gameObject);
+        UpdateSkills();
+    }
+
+    public void RemoveSkill(int idx)
+    {
+        RemoveSkill(Skills[idx]);
+    }
+
+    public void SetSkill(int idx, Skill skill)
+    {
+        if (skill.gameObject != Skills[idx].gameObject)
+        {
+            Destroy(Skills[idx].gameObject);
+            AddSkill(skill, idx);
+            UpdateSkills();
+        }
+    }
+
+    public void ClearSkills()
+    {
+        Skills.ForEach(skill => Destroy(skill.gameObject));
+        UpdateSkills();
+    }
+
+    public void UpdateSkills()
+    {
+        Skills = transform.Find("Skills").GetComponentsInChildren<Skill>().ToArray();
     }
 
 }

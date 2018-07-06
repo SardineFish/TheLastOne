@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StelaUIManager : Singleton<StelaUIManager>
 {
@@ -12,6 +13,7 @@ public class StelaUIManager : Singleton<StelaUIManager>
     public UITemplateRenderer SkillImpactPanel;
     public UITemplateRenderer SkillEffectPanel;
     public UITemplateRenderer PlayerSkillsPanel;
+    public Skill PreviewSkill;
 
     StelaData stelaData;
     public StelaData StelaData
@@ -25,6 +27,22 @@ public class StelaUIManager : Singleton<StelaUIManager>
         }
     }
 
+    void Start()
+    {
+        LoadPreviewScene();
+        SkillActionPanel.GetComponent<SelectionGroup>().AddEventListener<SelectionButton>(SelectionGroup.EVENT_ON_SELECT_CHANGE, (selection) =>
+        {
+            LoadSkillPreview();
+        });
+        SkillImpactPanel.GetComponent<SelectionGroup>().AddEventListener(SelectionGroup.EVENT_ON_SELECT_CHANGE, () =>
+         {
+             LoadSkillPreview();
+         });
+    }
+    void Update()
+    {
+        PreviewSkill?.Activate();   
+    }
     public void Display()
     {
         UpdateUI();
@@ -37,6 +55,33 @@ public class StelaUIManager : Singleton<StelaUIManager>
     public void Reload()
     {
         
+    }
+    public void LoadPreviewScene()
+    {
+        SceneManager.LoadScene("SkillPreview", LoadSceneMode.Additive);
+    }
+    public void LoadSkillPreview()
+    {
+        var previewPlayer = GameObject.FindGameObjectWithTag("PreviewPlayer");
+        if (!previewPlayer)
+        {
+            LoadPreviewScene();
+            previewPlayer = GameObject.FindGameObjectWithTag("PreviewPlayer");
+        }
+        var skillData = new SkillData();
+        var skillAction =  SkillActionPanel.GetComponent<SelectionGroup>().Selected?.GetComponent<UITemplate>().DataSource as SkillAction;
+        var skillImpact = SkillImpactPanel.GetComponent<SelectionGroup>().Selected?.GetComponent<UITemplate>().DataSource as SkillImpact;
+        if (!skillAction || !skillImpact)
+            return;
+        skillData.SkillAction = SkillActionLib.Instance.GetAssetObject(skillAction);
+        skillData.SkillImpact = SkillImpactSystem.Instance.GetAssetObject(skillImpact.gameObject);
+        var skillObj = new GameObject();
+        var skill = skillObj.AddComponent<ConfigurableSkill>();
+        skill.SetSkillData(skillData);
+        previewPlayer.GetComponent<SkillController>().ClearSkills();
+        previewPlayer.GetComponent<SkillController>().AddSkill(skill);
+        PreviewSkill = skill;
+        skill.CoolDown = 1;
     }
 
     public void UpdateUI()
