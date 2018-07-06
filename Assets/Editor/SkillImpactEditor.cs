@@ -16,6 +16,7 @@ namespace Assets.Editor
         {
             var impact = target as SkillImpact;
             impact.ImpactType = (ImpactType)EditorGUILayout.EnumPopup("Impact Type: ", impact.ImpactType);
+            impact.DisplayName = EditorGUILayout.TextField("Display Name: ", impact.DisplayName);
             EditorGUILayout.Space();
             if(impact.ImpactType == ImpactType.Areal)
             {

@@ -22,14 +22,14 @@ public class EventBus : MonoBehaviour
     {
         if(Listeners.ContainsKey(eventName))
         {
-            try
+            Listeners[eventName].ForEach(listener => listener.Method.Invoke(listener.Object, args));
+            /*try
             {
-                Listeners[eventName].ForEach(listener => listener.Method.Invoke(listener.Object, args));    
             }
             catch (Exception ex)
             {
                 Debug.LogError(ex.Message);
-            }
+            }*/
         }
     }
 }

@@ -20,18 +20,19 @@ public class StelaUIManager : Singleton<StelaUIManager>
         set
         {
             stelaData = value;
-            SkillActionPanel.DataSource = stelaData.SkillActions.Select(action => action.Asset);
-            SkillImpactPanel.DataSource = stelaData.SkillImpacts.Select(impact => impact.Asset);
+            SkillActionPanel.DataSource = stelaData.SkillActions.Select(action => action.Asset).ToArray();
+            SkillImpactPanel.DataSource = stelaData.SkillImpacts.Select(impact => (impact.Asset as GameObject).GetComponent<SkillImpact>()).ToArray();
         }
     }
 
     public void Display()
     {
-        enabled = true;
+        UpdateUI();
+        gameObject.SetActive(true);
     }
     public void Close()
     {
-        enabled = false;
+        gameObject.SetActive(false);
     }
     public void Reload()
     {

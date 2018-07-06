@@ -29,13 +29,22 @@ public static class UITemplateUtility
             return null;
         var component = obj.GetComponent(paths[0]);
         object currentObj = component;
-        FieldInfo current = component.GetType().GetField(paths[1]);
+        MemberInfo current = component.GetType().GetMember(paths[1]).FirstOrDefault();
+        
         for (var i = 2; i < paths.Length; i++)
         {
-            currentObj = current.GetValue(currentObj);
-            current = currentObj.GetType().GetField(paths[i]);
+            if (current.MemberType == MemberTypes.Field)
+                currentObj = (current as FieldInfo).GetValue(currentObj);
+            else if (current.MemberType == MemberTypes.Property)
+                currentObj = (current as PropertyInfo).GetValue(currentObj);
+            current = currentObj.GetType().GetMember(paths[i]).FirstOrDefault();
         }
-        current.SetValue(currentObj, value);
+
+        if (current.MemberType == MemberTypes.Field)
+            (current as FieldInfo).SetValue(currentObj, value);
+        else if (current.MemberType == MemberTypes.Property)
+            (current as PropertyInfo).SetValue(currentObj, value);
+
         return value;
     }
 

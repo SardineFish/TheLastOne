@@ -7,8 +7,16 @@ using UnityEngine;
 
 public class StelaInteract : InteractBehavior
 {
+    public StelaData StelaData = null;
+    public override void Start()
+    {
+        base.Start();
+        StelaData = StelaSystem.Instance.GenerateStelaData();
+    }
     public override void OnInteract(Entity trigger)
     {
-        Debug.Log(trigger.name + " interacted.");
+        StelaData = StelaSystem.Instance.GenerateStelaData();
+        StelaUIManager.Instance.StelaData = StelaData;
+        StelaUIManager.Instance.Display();
     }
 }

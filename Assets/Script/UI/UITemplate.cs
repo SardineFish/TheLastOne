@@ -18,7 +18,10 @@ public class UITemplate : MonoBehaviour
             var old = dataSource;
             dataSource = value;
             if (old != value)
+            {
                 Reload();
+                GetComponentsInChildren<UITemplate>().ForEach(template => template.DataSource = value);
+            }
         }
     }
     public List<BindingOption> Bindings = new List<BindingOption>();
@@ -51,6 +54,8 @@ public class UITemplate : MonoBehaviour
 
     void Reload()
     {
+        if (DataSource == null)
+            return;
         foreach (var bind in Bindings)
         {
             gameObject.SetValueByPath(bind.PathTemplate, UITemplateUtility.GetValueByPath(dataSource, bind.PathSource));

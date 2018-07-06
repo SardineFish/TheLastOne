@@ -16,15 +16,15 @@ public class UITemplateRenderer : MonoBehaviour
                 foreach(var item in dataList)
                 {
                     var obj = Instantiate(Template);
-                    obj.GetComponent<UITemplate>().DataSource = item;
                     obj.transform.SetParent(transform);
+                    obj.GetComponent<UITemplate>().DataSource = item;
                 }
             }
             else
             {
                 var obj = Instantiate(Template);
-                obj.GetComponent<UITemplate>().DataSource = DataSource;
                 obj.transform.SetParent(transform);
+                obj.GetComponent<UITemplate>().DataSource = DataSource;
             }
             
         }
