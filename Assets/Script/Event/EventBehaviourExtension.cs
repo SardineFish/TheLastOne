@@ -14,7 +14,7 @@ public static class EventBehaviourExtension
             eventBehaviour.EventListeners = eventBehaviour.GetType()
                 .GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                 .Where(method => method.GetCustomAttributes<EventListenerAttribute>().FirstOrDefault() != null)
-                .Select(method => new EventListener(method.GetCustomAttribute<EventListenerAttribute>().EventName, method, eventBehaviour))
+                .Select(method => new ReflectEventListener(method.GetCustomAttribute<EventListenerAttribute>().EventName, method, eventBehaviour))
                 .ToArray();
         }
 

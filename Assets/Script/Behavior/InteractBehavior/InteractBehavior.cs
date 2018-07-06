@@ -4,7 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(InteractiveObject))]
 public abstract class InteractBehavior : MonoBehaviour,IEventBehaviour
 {
-    public EventListener[] EventListeners { get; set; }
+    public ReflectEventListener[] EventListeners { get; set; }
 
     public EventBus EventTarget { get; set; }
 

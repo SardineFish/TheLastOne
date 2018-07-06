@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 public interface IEventBehaviour
 {
-    EventListener[] EventListeners { get; set; }
+    ReflectEventListener[] EventListeners { get; set; }
     EventBus EventTarget { get; set; }
 }

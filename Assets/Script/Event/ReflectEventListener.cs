@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 
-public class EventListener
+public class ReflectEventListener:EventListenerBase
 {
-    public EventListener(string eventName, MethodInfo method, object @object)
+    public ReflectEventListener(string eventName, MethodInfo method, object @object)
     {
         EventName = eventName;
         Method = method;
@@ -18,4 +18,8 @@ public class EventListener
     public object Object { get; set; }
     public MethodInfo Method { get; set; }
 
+    public override void Invoke(params object[] args)
+    {
+        Method.Invoke(Object, args);
+    }
 }

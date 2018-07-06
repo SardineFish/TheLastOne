@@ -5,15 +5,25 @@ using System.Collections.Generic;
 
 public class EventBus : MonoBehaviour
 {
-    protected Dictionary<string, List<EventListener>> Listeners = new Dictionary<string, List<EventListener>>();
-    public void AddEventListener(string eventName,EventListener listener)
+    protected Dictionary<string, List<EventListenerBase>> Listeners = new Dictionary<string, List<EventListenerBase>>();
+    public void AddEventListener(string eventName,ReflectEventListener listener)
     {
         if (!Listeners.ContainsKey(eventName))
-            Listeners[eventName] = new List<EventListener>();
+            Listeners[eventName] = new List<EventListenerBase>();
         Listeners[eventName].Add(listener);
 
     }
-    public void RemoveEventListener(string eventName, EventListener listener)
+    public void AddEventListener<T>(string eventName, Action<T> listener)
+    {
+        if (!Listeners.ContainsKey(eventName))
+            Listeners[eventName] = new List<EventListenerBase>();
+        Listeners[eventName].Add(new ActionEventListener<T>(listener));
+    }
+    public void AddEventListener(string eventName, Action listener)
+    {
+        AddEventListener<object>(eventName, (obj) => listener());
+    }
+    public void RemoveEventListener(string eventName, EventListenerBase listener)
     {
         if (Listeners.ContainsKey(eventName))
             Listeners[eventName].Remove(listener);
@@ -22,7 +32,8 @@ public class EventBus : MonoBehaviour
     {
         if(Listeners.ContainsKey(eventName))
         {
-            Listeners[eventName].ForEach(listener => listener.Method.Invoke(listener.Object, args));
+            Listeners[eventName].ForEach(listener => listener.Invoke(args));
+            //Listeners[eventName].ForEach(listener => listener.Method.Invoke(listener.Object, args));
             /*try
             {
             }

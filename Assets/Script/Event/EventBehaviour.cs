@@ -7,7 +7,7 @@ using System.Linq;
 public class EventBehaviour : MonoBehaviour
 {
     public EventBus EventTarget { get; set; }
-    protected EventListener[] EventListeners;
+    protected ReflectEventListener[] EventListeners;
 
     public EventBehaviour() : base()
     {
@@ -26,7 +26,7 @@ public class EventBehaviour : MonoBehaviour
             EventListeners = GetType()
                 .GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                 .Where(method => method.GetCustomAttributes<EventListenerAttribute>().FirstOrDefault() != null)
-                .Select(method => new EventListener(method.GetCustomAttribute<EventListenerAttribute>().EventName, method, this))
+                .Select(method => new ReflectEventListener(method.GetCustomAttribute<EventListenerAttribute>().EventName, method, this))
                 .ToArray();
         }
 

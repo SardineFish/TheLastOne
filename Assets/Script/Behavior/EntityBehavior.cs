@@ -19,7 +19,7 @@ public class EntityBehavior<TEntity> : MonoBehaviour,IEventBehaviour where TEnti
         }
     }
 
-    public EventListener[] EventListeners { get; set; }
+    public ReflectEventListener[] EventListeners { get; set; }
 
     public EventBus EventTarget { get; set; }
 }
