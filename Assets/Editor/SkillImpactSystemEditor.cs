@@ -9,9 +9,8 @@ using UnityEditor;
 namespace Assets.Editor
 {
     [CanEditMultipleObjects]
-    [CustomEditor(typeof(ObjectAssetLib),true)]
-    public class ObjectAssetsLibEditor : AssetLibEditor<ObjectAssetLib, UnityEngine.Object>
+    [CustomEditor(typeof(SkillImpactSystem))]
+    public class SkillImpactSystemEditor : AssetLibEditor<SkillImpactSystem, GameObject>
     {
-
     }
 }

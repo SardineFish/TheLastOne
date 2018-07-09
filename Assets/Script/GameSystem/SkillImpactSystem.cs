@@ -5,6 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class SkillImpactSystem : ObjectAssetLib
+public class SkillImpactSystem : AssetsLib<SkillImpactSystem, GameObject>
 {
+    [Serializable]
+    public class AssetDictionary : AssetDictionaryBase { };
+
+    [SerializeField]
+    [HideInInspector]
+    AssetDictionary assetLib = new AssetDictionary();
+    public override SerializableDictionary<string, GameObject> AssetsLibrary => assetLib;
 }

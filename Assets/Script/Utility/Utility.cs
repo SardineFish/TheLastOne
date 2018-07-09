@@ -23,7 +23,7 @@ public static class Utility
             var totalWeight = weightSum;
             for (var j = 0; j < source.Length - i; j++)
             {
-                if (UnityEngine.Random.value < source[idxMap[j]].Weight / totalWeight)
+                if (UnityEngine.Random.value < (float)source[idxMap[j]].Weight / (float)totalWeight)
                 {
                     yield return source[idxMap[j]];
 
@@ -38,5 +38,13 @@ public static class Utility
             }
         }
 
+    }
+
+    public static IEnumerable<GameObject> GetChildren(this GameObject gameObject)
+    {
+        for(var i = 0; i < gameObject.transform.childCount; i++)
+        {
+            yield return gameObject.transform.GetChild(i).gameObject;
+        }
     }
 }

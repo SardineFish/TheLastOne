@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class ObjectAssetLib : AssetsLib<ObjectAssetLib, UnityEngine.Object>
+public class ObjectAssetLib<TSingleton> : AssetsLib<TSingleton, UnityEngine.Object> where TSingleton:ObjectAssetLib<TSingleton>
 {
     [Serializable]
     public class AssetDictionary : AssetDictionaryBase { }
