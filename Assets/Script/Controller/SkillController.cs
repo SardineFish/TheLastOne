@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [ExecuteInEditMode]
 public class SkillController : EntityBehavior<Entity> {
@@ -99,9 +100,18 @@ public class SkillController : EntityBehavior<Entity> {
         return GetComponentInChildren<T>() ? GetComponentInChildren<T>().Activate(direction) : false;
     }
 
+    public T CreateSkill<T>(string name = "Skill") where T: Skill
+    {
+        var skillObj = new GameObject(name);
+        var skill = skillObj.AddComponent<T>();
+        SceneManager.MoveGameObjectToScene(skillObj, Entity.transform.Find("Skills").gameObject.scene);
+        AddSkill(skill);
+        return (T)skill;
+    }
+
     public void AddSkill(Skill skill, int idx = -1)
     {
-        skill.gameObject.transform.parent = Entity.transform.Find("Skill");
+        skill.gameObject.transform.parent = Entity.transform.Find("Skills");
         if (idx >= 0)
             skill.gameObject.transform.parent.SetSiblingIndex(idx);
         UpdateSkills();

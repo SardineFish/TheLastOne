@@ -15,6 +15,8 @@ public class AnimationSkill:Skill
     [ExecuteInEditMode]
     private void OnEnable()
     {
+        if (!Entity)
+            return;
         actionManager = Entity.GetComponent<ActionManager>();
     }
 
@@ -65,6 +67,8 @@ public class AnimationSkill:Skill
 
     public virtual void Update()
     {
+        if (!Entity)
+            return;
         if (Entity.GetComponent<SkillController>().ActiveSkill != this)
             return;
         if(actionManager)

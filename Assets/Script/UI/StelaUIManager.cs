@@ -75,11 +75,10 @@ public class StelaUIManager : Singleton<StelaUIManager>
             return;
         skillData.SkillAction = SkillActionLib.Instance.GetAssetObject(skillAction);
         skillData.SkillImpact = SkillImpactSystem.Instance.GetAssetObject(skillImpact.gameObject);
-        var skillObj = new GameObject();
-        var skill = skillObj.AddComponent<ConfigurableSkill>();
-        skill.SetSkillData(skillData);
+
         previewPlayer.GetComponent<SkillController>().ClearSkills();
-        previewPlayer.GetComponent<SkillController>().AddSkill(skill);
+        var skill = previewPlayer.GetComponent<SkillController>().CreateSkill<ConfigurableSkill>();
+        skill.SetSkillData(skillData);
         PreviewSkill = skill;
         skill.CoolDown = 1;
     }
