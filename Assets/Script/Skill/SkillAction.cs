@@ -14,8 +14,8 @@ public class SkillAction : ScriptableObject,IWeightedObject
     public string DisplayName = "";
 
     [SerializeField]
-    private int weight = 1;
-    public int Weight
+    private float weight = 1;
+    public float Weight
     {
         get { return weight; }
         set { weight = value; }

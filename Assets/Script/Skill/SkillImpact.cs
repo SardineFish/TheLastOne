@@ -29,8 +29,8 @@ public class SkillImpact : MonoBehaviour,IWeightedObject {
 
     public Sprite Icon;
     [SerializeField]
-    private int weight = 1;
-    public int Weight
+    private float weight = 1;
+    public float Weight
     {
         get { return weight; }
         set { weight = value; }

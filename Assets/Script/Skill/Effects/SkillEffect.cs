@@ -12,8 +12,8 @@ public abstract class SkillEffect:ScriptableObject,IWeightedObject
     public string DisplayName;
     public abstract void ApplyEffect(SkillImpact impact, Entity target);
     [SerializeField]
-    private int weight = 1;
-    public int Weight
+    private float weight = 1;
+    public float Weight
     {
         get { return weight; }
         set { weight = value; }
