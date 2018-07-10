@@ -21,6 +21,7 @@ public class SkillImpact : MonoBehaviour,IWeightedObject {
     public float ImpactHeight = 4;
     public float PenetrateDistance = 1;
     public float ImpactTime = 1;
+    [SerializeField]
     public string DisplayName;
     public bool SingleDamage = false;
     public bool DamageOnce = true;

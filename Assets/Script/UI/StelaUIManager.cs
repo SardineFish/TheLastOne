@@ -8,11 +8,14 @@ using UnityEngine.SceneManagement;
 
 public class StelaUIManager : Singleton<StelaUIManager>
 {
+    public GameObject StelaUI;
     public SkillData[] PlayerSkills = new SkillData[0];
+    public Weapon[] Weapons = new Weapon[2];
     public UITemplateRenderer SkillActionPanel;
     public UITemplateRenderer SkillImpactPanel;
     public UITemplateRenderer SkillEffectPanel;
     public UITemplateRenderer PlayerSkillsPanel;
+    public UITemplateRenderer WeaponsPanel;
     public Skill PreviewSkill;
 
     StelaData stelaData;
@@ -41,16 +44,20 @@ public class StelaUIManager : Singleton<StelaUIManager>
     }
     void Update()
     {
-        PreviewSkill?.Activate();   
+        if (PreviewSkill)
+        {
+            var previewPlayer = GameObject.FindGameObjectWithTag("PreviewPlayer");
+            previewPlayer.GetComponent<SkillController>().ActivateSkill(0);
+        }
     }
     public void Display()
     {
         UpdateUI();
-        gameObject.SetActive(true);
+        StelaUI.SetActive(true);
     }
     public void Close()
     {
-        gameObject.SetActive(false);
+        StelaUI.SetActive(false);
     }
     public void Reload()
     {
@@ -63,11 +70,11 @@ public class StelaUIManager : Singleton<StelaUIManager>
     public void LoadSkillPreview()
     {
         var previewPlayer = GameObject.FindGameObjectWithTag("PreviewPlayer");
-        if (!previewPlayer)
+        /*if (!previewPlayer)
         {
             LoadPreviewScene();
             previewPlayer = GameObject.FindGameObjectWithTag("PreviewPlayer");
-        }
+        }*/
         var skillData = new SkillData();
         var skillAction =  SkillActionPanel.GetComponent<SelectionGroup>().Selected?.GetComponent<UITemplate>().DataSource as SkillAction;
         var skillImpact = SkillImpactPanel.GetComponent<SelectionGroup>().Selected?.GetComponent<UITemplate>().DataSource as SkillImpact;
@@ -85,8 +92,33 @@ public class StelaUIManager : Singleton<StelaUIManager>
 
     public void UpdateUI()
     {
-        var player = GameSystem.Instance.PlayerInControl as Player;
-        var playerSkills = player.GetComponent<SkillController>().Skills.Where(skill => skill is ConfigurableSkill).ToArray();
+        if (!GameObject.FindGameObjectWithTag("PreviewPlayer"))
+        {
+            LoadPreviewScene();
+        }
 
+        var previewPlayer = GameObject.FindGameObjectWithTag("PreviewPlayer");
+        var player = GameSystem.Instance.PlayerInControl as Player;
+        PlayerSkills = new SkillData[4];
+        player.GetComponent<SkillController>().Skills
+            .Where(skill => skill is ConfigurableSkill)
+            .Select(skill => (skill as ConfigurableSkill).SkillData)
+            .ToArray()
+            .CopyTo(PlayerSkills, 0);
+        PlayerSkillsPanel.GetComponent<UITemplateRenderer>().DataSource = PlayerSkills;
+
+        Weapons = new Weapon[2];
+        player.GetComponent<Equipments>().Items
+            .Where(item => item.GetComponent<Weapon>())
+            .Select(item => item.GetComponent<Weapon>())
+            .ToArray()
+            .CopyTo(Weapons, 0);
+        WeaponsPanel.DataSource = Weapons;
+
+        previewPlayer.GetComponent<Equipments>().Items = Weapons
+            .Where(weapon => weapon)
+            .Select(weapon => weapon.gameObject)
+            .ToList();
+        previewPlayer.GetComponent<Equipments>().SelectedIndex = WeaponsPanel.GetComponent<SelectionGroup>().SelectedIndex;
     }
 }

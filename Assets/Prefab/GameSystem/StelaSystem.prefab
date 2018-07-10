@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4495670910054712}
   - component: {fileID: 114519342891102600}
+  - component: {fileID: 114114929325731392}
   m_Layer: 0
   m_Name: StelaSystem
   m_TagString: Untagged
@@ -40,6 +41,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114114929325731392
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1032807067473394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e99d1b821287a89429b39d2938215739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerSkills: []
+  Weapons:
+  - {fileID: 0}
+  - {fileID: 0}
+  SkillActionPanel: {fileID: 0}
+  SkillImpactPanel: {fileID: 0}
+  SkillEffectPanel: {fileID: 0}
+  PlayerSkillsPanel: {fileID: 0}
+  WeaponsPanel: {fileID: 0}
+  PreviewSkill: {fileID: 0}
 --- !u!114 &114519342891102600
 MonoBehaviour:
   m_ObjectHideFlags: 1

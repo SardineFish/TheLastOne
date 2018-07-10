@@ -11,7 +11,10 @@ public class WeaponSystem : AssetsLib<WeaponSystem, GameObject>
 {
     [Serializable]
     public class AssetDictionary : AssetDictionaryBase { }
-    
+
+    public class SuperAssetObject : AssetObject { }
+
+
     [SerializeField]
     [HideInInspector]
     private AssetDictionary assetsLibrary = new AssetDictionary();

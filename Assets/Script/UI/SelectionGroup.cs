@@ -36,7 +36,7 @@ public class SelectionGroup : EventBus
     {
         SelectionButtons
             .Where(selection => selection != selectionButton)
-            .ForEach(selection => selection.Selected = false);
+            .ForEach(selection => selection.Deselect());
         SelectedIndex = SelectionButtons.IndexOf(selectionButton);
         Selected = selectionButton;
         Dispatch(EVENT_ON_SELECT_CHANGE, selectionButton);
