@@ -42,6 +42,7 @@ public class StelaUIManager : Singleton<StelaUIManager>
          {
              LoadSkillPreview();
          });
+        WeaponsPanel.GetComponent<SelectionGroup>().AddEventListener(SelectionGroup.EVENT_ON_SELECT_CHANGE, () => LoadSkillPreview());
     }
     void Update()
     {
@@ -83,6 +84,8 @@ public class StelaUIManager : Singleton<StelaUIManager>
             return;
         skillData.SkillAction = SkillActionLib.Instance.GetAssetObject<SkillActionLib.AssetObject>(skillAction);
         skillData.SkillImpact = SkillImpactSystem.Instance.GetAssetObject<SkillImpactSystem.AssetObject>(skillImpact.gameObject);
+
+        previewPlayer.GetComponent<Equipments>().SelectedIndex = WeaponsPanel.GetComponent<SelectionGroup>().SelectedIndex;
 
         previewPlayer.GetComponent<SkillController>().ClearSkills();
         var skill = previewPlayer.GetComponent<SkillController>().CreateSkill<ConfigurableSkill>();

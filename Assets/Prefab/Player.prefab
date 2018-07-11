@@ -1736,7 +1736,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4635955231989858}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4112176223487258
 Transform:
@@ -1971,7 +1971,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4292017596313290}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4260056430370314
 Transform:
@@ -2018,10 +2018,10 @@ Transform:
   - {fileID: 4346884349441044}
   - {fileID: 4291674565619674}
   - {fileID: 4222036102315482}
-  - {fileID: 4257041479740294}
   - {fileID: 4700136618484740}
-  - {fileID: 4981834715861846}
+  - {fileID: 4257041479740294}
   - {fileID: 4455379368265900}
+  - {fileID: 4981834715861846}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.28500003}
@@ -2121,7 +2121,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4635955231989858}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4379129191831214
 Transform:
@@ -2178,7 +2178,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4635955231989858}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4392548232775734
 Transform:
@@ -2278,7 +2278,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4292017596313290}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4479320047939244
 Transform:
@@ -2508,12 +2508,12 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4807882796314858}
+  - {fileID: 4095032234869206}
   - {fileID: 4377571869284412}
   - {fileID: 4657864510859904}
   - {fileID: 4384680728253388}
   - {fileID: 4648261430142286}
-  - {fileID: 4095032234869206}
-  - {fileID: 4807882796314858}
   m_Father: {fileID: 4292017596313290}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2528,7 +2528,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4635955231989858}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4657864510859904
 Transform:
@@ -2541,7 +2541,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4635955231989858}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4659846790419034
 Transform:
@@ -2612,7 +2612,7 @@ Transform:
   - {fileID: 4444155728083678}
   - {fileID: 4783793730482256}
   m_Father: {fileID: 4292017596313290}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 6.760336, y: -41.854202, z: -2.6359248}
 --- !u!4 &4707770785041664
 Transform:
@@ -2771,7 +2771,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4635955231989858}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4811185383932414
 Transform:
@@ -3084,7 +3084,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4292017596313290}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23269220464952148
 MeshRenderer:
@@ -4437,10 +4437,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9eb3c1eee87f44498896c227b76f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PhysicalDamage: 0
-  MagicalDamage: 0
-  KnockBack: 0
-  DamageOnce: 1
+  SkillEffects: []
+  weight: 1
 --- !u!114 &114423777243061048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4907,10 +4905,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9eb3c1eee87f44498896c227b76f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PhysicalDamage: 10
-  MagicalDamage: 0
-  KnockBack: 10
-  DamageOnce: 1
+  SkillEffects: []
+  weight: 1
 --- !u!114 &114621553201935906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5104,12 +5100,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skills:
+  - {fileID: 114248344858943542}
+  - {fileID: 114183264123832532}
   - {fileID: 114621553201935906}
   - {fileID: 114144867786245750}
   - {fileID: 114548237866680522}
   - {fileID: 114286221612031886}
-  - {fileID: 114183264123832532}
-  - {fileID: 114248344858943542}
   ActiveSkill: {fileID: 114456048038552224}
   MovementSkill: {fileID: 114456048038552224}
 --- !u!114 &114706199521080650
@@ -5155,7 +5151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Selected: {fileID: 1869935813826854, guid: 4b323998e0f0d57478ed4b78b9287eea, type: 2}
   Items:
-  - {fileID: 1869935813826854, guid: 4b323998e0f0d57478ed4b78b9287eea, type: 2}
+  - {fileID: 1973818810314010, guid: 4fb141f7460388d469ec3ba06b51ebbf, type: 2}
   - {fileID: 1956231425985240, guid: 13a594947e1e8d84990ff4d41f04fc54, type: 2}
 --- !u!114 &114709943972603422
 MonoBehaviour:

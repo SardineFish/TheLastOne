@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33104021630810524}
   - component: {fileID: 23801955047339790}
   - component: {fileID: 114055431042999668}
+  - component: {fileID: 114778591202997064}
   m_Layer: 0
   m_Name: Sword-Slim
   m_TagString: Untagged
@@ -99,3 +100,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillEffects: []
   weight: 1
+--- !u!114 &114778591202997064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1973818810314010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba534e657269724991db02748efde47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CarryPostion: {x: 0, y: 0.000000036813724, z: -0.000000017676477}
+  CarryRotation: {x: 0, y: 0, z: 0, w: 0}

@@ -13,8 +13,6 @@ public class EventBus : MonoBehaviour
     }
     public void AddEventListener(string eventName,ReflectEventListener listener)
     {
-        Debug.Log(gameObject);
-        Debug.Log(Listeners);
         if (!Listeners.ContainsKey(eventName))
             Listeners[eventName] = new List<EventListenerBase>();
         Listeners[eventName].Add(listener);
@@ -22,14 +20,12 @@ public class EventBus : MonoBehaviour
     }
     public void AddEventListener<T>(string eventName, Action<T> listener)
     {
-        Debug.Log(gameObject);
         if (!Listeners.ContainsKey(eventName))
             Listeners[eventName] = new List<EventListenerBase>();
         Listeners[eventName].Add(new ActionEventListener<T>(listener));
     }
     public void AddEventListener(string eventName, Action listener)
     {
-        Debug.Log(gameObject);
         AddEventListener<object>(eventName, (obj) => listener());
     }
     public void RemoveEventListener(string eventName, EventListenerBase listener)
@@ -39,8 +35,6 @@ public class EventBus : MonoBehaviour
     }
     public void Dispatch(string eventName,params object[] args)
     {
-        Debug.Log(gameObject);
-        Debug.Log(Listeners);
         if(Listeners.ContainsKey(eventName))
         {
             Listeners[eventName].ForEach(listener => listener.Invoke(args));
