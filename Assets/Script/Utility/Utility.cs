@@ -47,4 +47,13 @@ public static class Utility
             yield return gameObject.transform.GetChild(i).gameObject;
         }
     }
+
+    public static IEnumerable<T> NotNull<T>(this IEnumerable<T> source)
+    {
+        foreach(var item in source)
+        {
+            if (item != null)
+                yield return item;
+        }
+    }
 }

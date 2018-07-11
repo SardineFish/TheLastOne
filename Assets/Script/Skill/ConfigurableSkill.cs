@@ -174,6 +174,7 @@ public class ConfigurableSkill : AnimationSkill
     public void SetSkillData(SkillData skillData)
     {
         this.skillData = skillData;
+        ActivateMethod = ActivateMethod.Position;
         SkillImpactPrefab = skillData.SkillImpact.Asset as GameObject;
         SkillEffects = skillData.SkillEffect
             .Select(assetObj => assetObj.Asset as SkillEffect)

@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class StelaUIManager : Singleton<StelaUIManager>
 {
+    public bool Visible = false;
     public GameObject StelaUI;
     public SkillData[] PlayerSkills = new SkillData[0];
     public Weapon[] Weapons = new Weapon[2];
@@ -26,8 +27,7 @@ public class StelaUIManager : Singleton<StelaUIManager>
         set
         {
             stelaData = value;
-            SkillActionPanel.DataSource = stelaData.SkillActions.Select(action => action.Asset).ToArray();
-            SkillImpactPanel.DataSource = stelaData.SkillImpacts.Select(impact => (impact.Asset as GameObject).GetComponent<SkillImpact>()).ToArray();
+            SetDataSource(value.SkillActions, value.SkillImpacts);
         }
     }
 
@@ -43,6 +43,7 @@ public class StelaUIManager : Singleton<StelaUIManager>
              LoadSkillPreview();
          });
         WeaponsPanel.GetComponent<SelectionGroup>().AddEventListener(SelectionGroup.EVENT_ON_SELECT_CHANGE, () => LoadSkillPreview());
+        PlayerSkillsPanel.GetComponent<SelectionGroup>().AddEventListener(SelectionGroup.EVENT_ON_SELECT_CHANGE, () => SkillSelectedChange());
     }
     void Update()
     {
@@ -51,15 +52,26 @@ public class StelaUIManager : Singleton<StelaUIManager>
             var previewPlayer = GameObject.FindGameObjectWithTag("PreviewPlayer");
             previewPlayer.GetComponent<SkillController>().ActivateSkill(0, previewPlayer.transform.position + previewPlayer.transform.forward * 2);
         }
+        if (Visible)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Close();
+            }
+        }
+        
     }
     public void Display()
     {
         UpdateUI();
         StelaUI.SetActive(true);
+        Visible = true;
     }
     public void Close()
     {
+        ApplySkill();
         StelaUI.SetActive(false);
+        Visible = false;
     }
     public void Reload()
     {
@@ -78,8 +90,14 @@ public class StelaUIManager : Singleton<StelaUIManager>
             previewPlayer = GameObject.FindGameObjectWithTag("PreviewPlayer");
         }*/
         var skillData = new SkillData();
-        var skillAction =  SkillActionPanel.GetComponent<SelectionGroup>().Selected?.GetComponent<UITemplate>().DataSource as SkillAction;
-        var skillImpact = SkillImpactPanel.GetComponent<SelectionGroup>().Selected?.GetComponent<UITemplate>().DataSource as SkillImpact;
+        var skillAction = SkillActionPanel.GetComponent<SelectionGroup>().Selected ? 
+            SkillActionPanel.GetComponent<SelectionGroup>().Selected.GetComponent<UITemplate>().DataSource as SkillAction 
+            : 
+            null;
+        var skillImpact = SkillImpactPanel.GetComponent<SelectionGroup>().Selected ? 
+            SkillImpactPanel.GetComponent<SelectionGroup>().Selected.GetComponent<UITemplate>().DataSource as SkillImpact 
+            : 
+            null;
         if (!skillAction || !skillImpact)
             return;
         skillData.SkillAction = SkillActionLib.Instance.GetAssetObject<SkillActionLib.AssetObject>(skillAction);
@@ -93,6 +111,8 @@ public class StelaUIManager : Singleton<StelaUIManager>
         skill.ActivateMethod = ActivateMethod.Position;
         PreviewSkill = skill;
         skill.CoolDown = 1;
+
+        PlayerSkills[PlayerSkillsPanel.GetComponent<SelectionGroup>().SelectedIndex] = skillData;
     }
 
     public void UpdateUI()
@@ -128,11 +148,65 @@ public class StelaUIManager : Singleton<StelaUIManager>
         StartCoroutine(WaitForLoad());
     }
 
+    public void SkillSelectedChange()
+    {
+
+        // Place current skill component to the first.
+        var skillData = PlayerSkills[PlayerSkillsPanel.GetComponent<SelectionGroup>().SelectedIndex];
+        var skillActionList = StelaData.SkillActions.ToList();
+        var skillImpactList = StelaData.SkillImpacts.ToList();
+        if (skillData != null)
+        {
+            var skillAction = skillData.SkillAction;
+            var skillImpact = skillData.SkillImpact;
+
+            if (skillActionList.Contains(skillAction))
+                skillActionList.Remove(skillAction);
+            if (skillImpactList.Contains(skillImpact))
+                skillImpactList.Remove(skillImpact);
+            skillActionList.Insert(0, skillAction);
+            skillImpactList.Insert(0, skillImpact);
+
+            StartCoroutine(WaitToNextFrame(() =>
+            {
+                SkillActionPanel.GetComponent<SelectionGroup>().SelectedIndex = 0;
+                SkillImpactPanel.GetComponent<SelectionGroup>().SelectedIndex = 0;
+                Debug.Log("selected");
+            }));
+        }
+        SetDataSource(skillActionList, skillImpactList);
+    }
+
+    public void SetDataSource(IList<SkillActionLib.AssetObject> skillActions,IList<SkillImpactSystem.AssetObject> skillImpacts)
+    {
+        SkillActionPanel.DataSource = skillActions.Select(action => action.Asset).ToArray();
+        SkillImpactPanel.DataSource = skillImpacts.Select(impact => (impact.Asset as GameObject).GetComponent<SkillImpact>()).ToArray();
+    }
+
+    public void ApplySkill()
+    {
+        PlayerSkills
+            .NotNull()
+            .ForEach((skill) =>
+            {
+                var confSkill = GameSystem.Instance.PlayerInControl.GetComponent<SkillController>().CreateSkill<ConfigurableSkill>();
+                confSkill.SetSkillData(skill);
+            });
+    }
+
     IEnumerator WaitForLoad()
     {
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
         WeaponsPanel.GetComponent<SelectionGroup>().SelectedIndex = 0;
+        PlayerSkillsPanel.GetComponent<SelectionGroup>().SelectedIndex = 0;
         //previewPlayer.GetComponent<Equipments>().SelectedIndex = WeaponsPanel.GetComponent<SelectionGroup>().SelectedIndex;
+    }
+
+    IEnumerator WaitToNextFrame(Action action)
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        action?.Invoke();
     }
 }
