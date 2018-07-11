@@ -9,7 +9,7 @@ using UnityEngine;
 [RequireComponent(typeof(TextHover))]
 public class InteractiveObject : EventBus, IMessageReceiver
 {
-    public string TextHover = "Press [" + PlayerInputManager.Instance.InteractKey.ToString() + "]";
+    public string TextHover;// = "Press [" + PlayerInputManager.Instance.InteractKey.ToString() + "]";
     public const string EVENT_ON_INTERACT = "OnInteract";
     public virtual void OnMessage(InteractMessage msg)
     {
@@ -20,4 +20,6 @@ public class InteractiveObject : EventBus, IMessageReceiver
     {
         GetComponent<TextHover>()?.SetText(TextHover);
     }
+
+    public InteractiveObject() : base() { }
 }
