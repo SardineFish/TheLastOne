@@ -9,14 +9,22 @@ using UnityEditor;
 [Serializable]
 public class WeaponSystem : AssetsLib<WeaponSystem, GameObject>
 {
+    [SerializeField]
+    public WeaponSystem.AssetObject obj;
     [Serializable]
     public class AssetDictionary : AssetDictionaryBase { }
-
-    public class SuperAssetObject : AssetObject { }
+    [Serializable]
+    public class AssetObject : AssetObjectBase { }
 
 
     [SerializeField]
     [HideInInspector]
     private AssetDictionary assetsLibrary = new AssetDictionary();
     public override SerializableDictionary<string, GameObject> AssetsLibrary => assetsLibrary;
+
+    private void Start()
+    {
+        obj = new AssetObject() { name = AssetsLibrary.Keys[0] };
+ 
+    }
 }

@@ -55,7 +55,7 @@ public class ConfigurableSkill : AnimationSkill
 
     public override bool Activate(params object[] additionalData)
     {
-        var currentWeapon = WeaponSystem.Instance.GetAssetObject(Entity.GetComponent<Equipments>().Selected);
+        var currentWeapon = WeaponSystem.Instance.GetAssetObject<WeaponSystem.AssetObject>(Entity.GetComponent<Equipments>().Selected);
         AnimatorController = SkillData.SkillAction.Asset.ActionsPerWeapon[currentWeapon];
 
         if(ActivateMethod == ActivateMethod.Position)
@@ -85,7 +85,7 @@ public class ConfigurableSkill : AnimationSkill
 
     public override bool Activate(Entity target, params object[] additionalData)
     {
-        var currentWeapon = WeaponSystem.Instance.GetAssetObject(Entity.GetComponent<Equipments>().Selected);
+        var currentWeapon = WeaponSystem.Instance.GetAssetObject<WeaponSystem.AssetObject>(Entity.GetComponent<Equipments>().Selected);
         AnimatorController = SkillData.SkillAction.Asset.ActionsPerWeapon[currentWeapon];
 
         switch (ActivateMethod)
@@ -109,7 +109,7 @@ public class ConfigurableSkill : AnimationSkill
 
     public override bool Activate(Vector3 target, params object[] additionalData)
     {
-        var currentWeapon = WeaponSystem.Instance.GetAssetObject(Entity.GetComponent<Equipments>().Selected);
+        var currentWeapon = WeaponSystem.Instance.GetAssetObject<WeaponSystem.AssetObject>(Entity.GetComponent<Equipments>().Selected);
         AnimatorController = SkillData.SkillAction.Asset.ActionsPerWeapon[currentWeapon];
 
         if (ActivateMethod == ActivateMethod.TargetedEntity)

@@ -13,13 +13,13 @@ public class StelaSystem : Singleton<StelaSystem>
         var stelaData = new StelaData();
         stelaData.SkillActions = SkillActionLib.Instance.AssetsLibrary.Values
             .RandomTake(3)
-            .Select(action => SkillActionLib.Instance.GetAssetObject(action))
+            .Select(action => SkillActionLib.Instance.GetAssetObject<SkillActionLib.AssetObject>(action))
             .ToArray();
         //var l = SkillImpactSystem.Instance.AssetsLibrary.Values.Select(x => (x as GameObject).GetComponent<SkillImpact>()).RandomTake(3).ToArray();
         stelaData.SkillImpacts = SkillImpactSystem.Instance.AssetsLibrary.Values
             .Select(obj => (obj as GameObject).GetComponent<SkillImpact>())
             .RandomTake(3)
-            .Select(impact=>SkillImpactSystem.Instance.GetAssetObject(impact.gameObject))
+            .Select(impact=>SkillImpactSystem.Instance.GetAssetObject<SkillImpactSystem.AssetObject>(impact.gameObject))
             .ToArray();
         return stelaData;
     }

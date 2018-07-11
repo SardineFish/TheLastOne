@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,7 +48,7 @@ public class StelaUIManager : Singleton<StelaUIManager>
         if (PreviewSkill)
         {
             var previewPlayer = GameObject.FindGameObjectWithTag("PreviewPlayer");
-            previewPlayer.GetComponent<SkillController>().ActivateSkill(0);
+            previewPlayer.GetComponent<SkillController>().ActivateSkill(0, previewPlayer.transform.position + previewPlayer.transform.forward * 2);
         }
     }
     public void Display()
@@ -80,12 +81,13 @@ public class StelaUIManager : Singleton<StelaUIManager>
         var skillImpact = SkillImpactPanel.GetComponent<SelectionGroup>().Selected?.GetComponent<UITemplate>().DataSource as SkillImpact;
         if (!skillAction || !skillImpact)
             return;
-        skillData.SkillAction = SkillActionLib.Instance.GetAssetObject(skillAction);
-        skillData.SkillImpact = SkillImpactSystem.Instance.GetAssetObject(skillImpact.gameObject);
+        skillData.SkillAction = SkillActionLib.Instance.GetAssetObject<SkillActionLib.AssetObject>(skillAction);
+        skillData.SkillImpact = SkillImpactSystem.Instance.GetAssetObject<SkillImpactSystem.AssetObject>(skillImpact.gameObject);
 
         previewPlayer.GetComponent<SkillController>().ClearSkills();
         var skill = previewPlayer.GetComponent<SkillController>().CreateSkill<ConfigurableSkill>();
         skill.SetSkillData(skillData);
+        skill.ActivateMethod = ActivateMethod.Position;
         PreviewSkill = skill;
         skill.CoolDown = 1;
     }
@@ -119,6 +121,15 @@ public class StelaUIManager : Singleton<StelaUIManager>
             .Where(weapon => weapon)
             .Select(weapon => weapon.gameObject)
             .ToList();
-        previewPlayer.GetComponent<Equipments>().SelectedIndex = WeaponsPanel.GetComponent<SelectionGroup>().SelectedIndex;
+
+        StartCoroutine(WaitForLoad());
+    }
+
+    IEnumerator WaitForLoad()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        WeaponsPanel.GetComponent<SelectionGroup>().SelectedIndex = 0;
+        //previewPlayer.GetComponent<Equipments>().SelectedIndex = WeaponsPanel.GetComponent<SelectionGroup>().SelectedIndex;
     }
 }

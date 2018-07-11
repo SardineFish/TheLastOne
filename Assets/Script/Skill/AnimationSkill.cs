@@ -10,14 +10,14 @@ public class AnimationSkill:Skill
 {
     public const string AnimActiveTrigger = "active";
     public RuntimeAnimatorController AnimatorController;
-    ActionManager actionManager;
+    ActionManager actionManager => Entity.GetComponent<ActionManager>();
 
     [ExecuteInEditMode]
     private void OnEnable()
     {
         if (!Entity)
             return;
-        actionManager = Entity.GetComponent<ActionManager>();
+        //actionManager = Entity.GetComponent<ActionManager>();
     }
 
     public override bool Activate(params object[] additionalData)

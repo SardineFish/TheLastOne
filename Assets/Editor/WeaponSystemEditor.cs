@@ -15,7 +15,10 @@ namespace Assets.Editor
     {
         public override void OnInspectorGUI()
         {
-            
+            var weaponSystem = target as WeaponSystem;
+            //weaponSystem.obj = null;
+            weaponSystem.obj = new WeaponSystem.AssetObject() { name = weaponSystem.AssetsLibrary.Keys[0] };
+            serializedObject.ApplyModifiedProperties();
             base.OnInspectorGUI();
         }
     }

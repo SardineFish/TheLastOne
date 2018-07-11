@@ -8,6 +8,8 @@ using UnityEngine;
 public class SkillEffectSystem: AssetsLib<SkillEffectSystem,SkillEffect>
 {
     public class AssetDictionary : AssetDictionaryBase { }
+
+    public class AssetObject : AssetObjectBase { }
     [SerializeField]
     AssetDictionary assetLib = new AssetDictionary();
 

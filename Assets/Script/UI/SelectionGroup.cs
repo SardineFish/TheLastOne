@@ -8,7 +8,15 @@ using UnityEngine.Events;
 
 public class SelectionGroup : EventBus
 {
-    public int SelectedIndex = -1;
+    public int SelectedIndex
+    {
+        get { return SelectionButtons.IndexOf(Selected); }
+        set
+        {
+            Selected = SelectionButtons[value];
+        }
+    }
+
     public SelectionButton Selected = null;
     public List<SelectionButton> SelectionButtons = new List<SelectionButton>();
     public const string EVENT_ON_SELECT_CHANGE = "OnSelectChange";

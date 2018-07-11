@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Name: Spin
   m_EditorClassIdentifier: 
   ActionsPerWeapon:
+    keys:
+    - name: Sword
+    - name: Sword-Heavy
+    - name: Sword-Slim
+    - name: Spear
     values:
     - {fileID: 9100000, guid: a0e2e55a9c77b9a45837acb13fe56617, type: 2}
     - {fileID: 9100000, guid: a0e2e55a9c77b9a45837acb13fe56617, type: 2}
     - {fileID: 9100000, guid: a0e2e55a9c77b9a45837acb13fe56617, type: 2}
     - {fileID: 9100000, guid: a0e2e55a9c77b9a45837acb13fe56617, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}

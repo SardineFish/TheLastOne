@@ -8,7 +8,9 @@ using UnityEngine;
 public class SkillImpactSystem : AssetsLib<SkillImpactSystem, GameObject>
 {
     [Serializable]
-    public class AssetDictionary : AssetDictionaryBase { };
+    public class AssetDictionary : AssetDictionaryBase { }
+
+    public class AssetObject : AssetObjectBase { }
 
     [SerializeField]
     [HideInInspector]

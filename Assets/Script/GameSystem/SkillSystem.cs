@@ -5,9 +5,10 @@ using System;
 public class SkillSystem : AssetsLib<SkillSystem, SkillAction>
 {
     [Serializable]
-    public class SkillAsset : AssetObject { }
+    public class AssetObject : AssetObjectBase { }
     [Serializable]
     public class AssetDictionary : AssetDictionaryBase { }
+
 
     [SerializeField]
     [HideInInspector]

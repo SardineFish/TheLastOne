@@ -10,6 +10,8 @@ public class SkillActionLib : AssetsLib<SkillActionLib, SkillAction>
     [Serializable]
     public class AssetDictionary : AssetDictionaryBase { }
 
+    public class AssetObject : AssetObjectBase { }
+
     [SerializeField]
     [HideInInspector]
     private AssetDictionary assetLib = new AssetDictionary();

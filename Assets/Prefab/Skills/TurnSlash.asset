@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Name: TurnSlash
   m_EditorClassIdentifier: 
   ActionsPerWeapon:
+    keys:
+    - name: Sword
+    - name: Sword-Heavy
+    - name: Spear
+    - name: Sword-Slim
     values:
     - {fileID: 9100000, guid: 30f3672f6eb3f6540818d97704075caa, type: 2}
     - {fileID: 9100000, guid: 30f3672f6eb3f6540818d97704075caa, type: 2}
     - {fileID: 9100000, guid: 30f3672f6eb3f6540818d97704075caa, type: 2}
     - {fileID: 9100000, guid: 30f3672f6eb3f6540818d97704075caa, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   Icon: {fileID: 21300000, guid: ef8d1e13c42984a44a088fd06ca3c8b1, type: 3}
   DisplayName: Turn Slash
   weight: 1
