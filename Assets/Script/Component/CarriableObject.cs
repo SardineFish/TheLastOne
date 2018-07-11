@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class CarriableObject : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class CarriableObject : MonoBehaviour
 
     public void AttachTo(Carrier carrier)
     {
+        SceneManager.MoveGameObjectToScene(gameObject, carrier.gameObject.scene);
+        gameObject.layer = carrier.gameObject.layer;
         carrier.Carrying?.Detach();
         transform.SetParent(carrier.transform);
     }

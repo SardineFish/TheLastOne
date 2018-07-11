@@ -13,7 +13,7 @@ public class SelectionGroup : EventBus
         get { return SelectionButtons.IndexOf(Selected); }
         set
         {
-            Selected = SelectionButtons[value];
+            SelectionButtons[value].Select();
         }
     }
 
@@ -45,7 +45,7 @@ public class SelectionGroup : EventBus
         SelectionButtons
             .Where(selection => selection != selectionButton)
             .ForEach(selection => selection.Deselect());
-        SelectedIndex = SelectionButtons.IndexOf(selectionButton);
+        //SelectedIndex = SelectionButtons.IndexOf(selectionButton);
         Selected = selectionButton;
         Dispatch(EVENT_ON_SELECT_CHANGE, selectionButton);
     }

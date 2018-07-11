@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Animations;
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class AnimationSkill:Skill
 {
     public const string AnimActiveTrigger = "active";

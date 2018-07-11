@@ -148,6 +148,7 @@ public class ConfigurableSkill : AnimationSkill
         {
             //Instantiate(WeaponPrefab).GetComponent<CarriableObject>().AttachTo((Entity as LifeBody).PrimaryHand);
             Instantiate(Entity.GetComponent<Equipments>().Selected).GetComponent<CarriableObject>().AttachTo((Entity as LifeBody).PrimaryHand);
+
         }
     }
 
