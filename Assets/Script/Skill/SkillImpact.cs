@@ -55,7 +55,7 @@ public class SkillImpact : MonoBehaviour,IWeightedObject {
 
     public void Distruct()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     private void FixedUpdate()

@@ -185,6 +185,7 @@ public class StelaUIManager : Singleton<StelaUIManager>
 
     public void ApplySkill()
     {
+        GameSystem.Instance.PlayerInControl.GetComponent<SkillController>().ClearSkills();
         PlayerSkills
             .NotNull()
             .ForEach((skill) =>
