@@ -15,15 +15,15 @@ public class MagicalDamageEffect:SkillEffect
         Damage = damage;
     }
     public MagicalDamageEffect():base()
-    {
+    {https://www.mcmod.cn/item/list/2-1.html
         DisplayName = "Magical Damage";
     }
 
-    public override void ApplyEffect(SkillImpact impact, Entity target)
+    public override void ApplyEffect(SkillImpact impact, Entity target, float multiple)
     {
         if (target is LifeBody)
         {
-            (target as LifeBody).HP -= Damage;
+            (target as LifeBody).HP -= Damage * multiple;
         }
     }
 }

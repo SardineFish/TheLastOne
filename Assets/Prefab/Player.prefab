@@ -623,6 +623,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1427657354658510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4548893859260598}
+  m_Layer: 9
+  m_Name: Package
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1431923078603790
 GameObject:
   m_ObjectHideFlags: 1
@@ -1765,7 +1780,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4292017596313290}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
 --- !u!4 &4223212622185876
 Transform:
@@ -1862,7 +1877,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4292017596313290}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4260056430370314
 Transform:
@@ -1891,7 +1906,7 @@ Transform:
   - {fileID: 4581464449485422}
   - {fileID: 4671153008553220}
   m_Father: {fileID: 4292017596313290}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4292017596313290
 Transform:
@@ -1903,6 +1918,7 @@ Transform:
   m_LocalPosition: {x: -7.53, y: 0, z: -6.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4548893859260598}
   - {fileID: 4495639868769792}
   - {fileID: 4635955231989858}
   - {fileID: 4511356228615112}
@@ -1958,7 +1974,7 @@ Transform:
   - {fileID: 4170985188146680}
   - {fileID: 4688962210866682}
   m_Father: {fileID: 4292017596313290}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -88.902}
 --- !u!4 &4347378840662094
 Transform:
@@ -2143,7 +2159,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4292017596313290}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4479320047939244
 Transform:
@@ -2186,7 +2202,7 @@ Transform:
   - {fileID: 4917803653865746}
   - {fileID: 4136535474857138}
   m_Father: {fileID: 4292017596313290}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4511356228615112
 Transform:
@@ -2201,7 +2217,7 @@ Transform:
   - {fileID: 4885849529902130}
   - {fileID: 4879498547466776}
   m_Father: {fileID: 4292017596313290}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 2.7210002, y: 9.665001, z: -4.421}
 --- !u!4 &4528789550825112
 Transform:
@@ -2232,6 +2248,19 @@ Transform:
   m_Father: {fileID: 4861872597111638}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 7.8099294, y: 1.2534995, z: 27.079578}
+--- !u!4 &4548893859260598
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1427657354658510}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4292017596313290}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4581464449485422
 Transform:
   m_ObjectHideFlags: 1
@@ -2374,7 +2403,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4292017596313290}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4659846790419034
 Transform:
@@ -2445,7 +2474,7 @@ Transform:
   - {fileID: 4444155728083678}
   - {fileID: 4783793730482256}
   m_Father: {fileID: 4292017596313290}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 6.760336, y: -41.854202, z: -2.6359248}
 --- !u!4 &4707770785041664
 Transform:
@@ -2904,7 +2933,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4292017596313290}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23269220464952148
 MeshRenderer:
@@ -4188,6 +4217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9eb3c1eee87f44498896c227b76f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DefaultEffects: []
   SkillEffects: []
   weight: 1
 --- !u!114 &114423777243061048
@@ -4629,6 +4659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9eb3c1eee87f44498896c227b76f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DefaultEffects: []
   SkillEffects: []
   weight: 1
 --- !u!114 &114624898408088542

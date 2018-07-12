@@ -2,17 +2,19 @@
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Weapon : OwnedObject,IWeightedObject {
     WeaponData data;
-    public SkillEffect[] SkillEffects;
+    public SkillEffectData[] DefaultEffects = new SkillEffectData[0];
+    public List<SkillEffectData> SkillEffects = new List<SkillEffectData>();
     public WeaponData WeaponData
     {
         get { return data; }
         set
         {
             data = value;
-            SkillEffects = data.SkillEffects.Select(assetObj => assetObj.Asset).ToArray();
+            SkillEffects = value.SkillEffects.ToList();
         }
     }
     [SerializeField]

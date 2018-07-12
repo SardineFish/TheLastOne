@@ -32,7 +32,7 @@ public class LifeBody : Entity
     {
         foreach (var effect in msg.SkillEffects)
         {
-            effect.ApplyEffect(msg.Impact, this);
+            effect.SkillEffect.Asset.ApplyEffect(msg.Impact, this, effect.Multiple);
         }
     }
     /*public void OnMessage(Message msg)

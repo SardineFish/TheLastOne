@@ -29,13 +29,11 @@ public enum ActivateMethod
 
 public class ConfigurableSkill : AnimationSkill
 {
-    public GameObject WeaponPrefab;
     public GameObject SkillImpactPrefab;
-    public WeaponSystem.AssetObject WeaponData;
     
     [NonSerialized]
     public GameObject SkillImpactInstance;
-    public SkillEffect[] SkillEffects;
+    public SkillEffectData[] SkillEffects;
     public ActivateMethod ActivateMethod;
     public float ImpactRadius = 1;
     public float ImpactAngle = 360;
@@ -148,7 +146,7 @@ public class ConfigurableSkill : AnimationSkill
         {
             //Instantiate(WeaponPrefab).GetComponent<CarriableObject>().AttachTo((Entity as LifeBody).PrimaryHand);
             Instantiate(Entity.GetComponent<Equipments>().Selected).GetComponent<CarriableObject>().AttachTo((Entity as LifeBody).PrimaryHand);
-
+            
         }
     }
 
@@ -157,13 +155,14 @@ public class ConfigurableSkill : AnimationSkill
         SkillImpactInstance = Instantiate(SkillImpactPrefab);
         var impact = SkillImpactInstance.GetComponent<SkillImpact>();
         impact.Creator = Entity;
-        impact.SkillEffects = SkillEffects;
+        impact.SkillEffects = CalculateSkillEffect();
         impact.Activate(activatePos, activateDirection);
         impact.ImpactTarget = targetedEntity;
         impact.ImpactRadius = ImpactRadius;
         impact.ImpactAngle = ImpactAngle;
 
     }
+
 
     public override void OnWeaponDamageEnd()
     {
@@ -176,9 +175,28 @@ public class ConfigurableSkill : AnimationSkill
         this.skillData = skillData;
         ActivateMethod = ActivateMethod.Position;
         SkillImpactPrefab = skillData.SkillImpact.Asset as GameObject;
-        SkillEffects = skillData.SkillEffect
-            .Select(assetObj => assetObj.Asset as SkillEffect)
+        SkillEffects = skillData.SkillEffect;
+    }
+
+    public SkillEffectData[] CalculateSkillEffect()
+    {
+        var weapon = Entity.GetComponent<Equipments>().Selected.GetComponent<Weapon>();
+        /*return  SkillEffects.Concat(weapon.SkillEffects.Concat(weapon.DefaultEffects))
+            .GroupBy(effect => effect.SkillEffect)
+            .Select(
+                group => group.Merge(
+                    new SkillEffectData(group.Key, 0),
+                    (effect, effectData) =>
+                    {
+                        effectData.Multiple += effect.Multiple;
+                        return effectData;
+                    }))
+            .ToArray();*/
+        return SkillEffects.Concat(weapon.SkillEffects.Concat(weapon.DefaultEffects))
+            .GroupBy(effect => effect.SkillEffect, effect => effect.Multiple)
+            .Select(group => new SkillEffectData(group.Key, group.Sum()))
             .ToArray();
+            
     }
 
 }

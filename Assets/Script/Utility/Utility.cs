@@ -56,4 +56,13 @@ public static class Utility
                 yield return item;
         }
     }
+    
+    public static TResult Merge<TResult,Tkey,TElement>(this IGrouping<Tkey,TElement> group, TResult mergeTarget, Func<TElement,TResult,TResult> mergeFunc)
+    {
+        foreach(var element in group)
+        {
+            mergeTarget = mergeFunc(element, mergeTarget);
+        }
+        return mergeTarget;
+    }
 }

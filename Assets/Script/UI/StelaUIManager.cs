@@ -190,6 +190,9 @@ public class StelaUIManager : Singleton<StelaUIManager>
             .NotNull()
             .ForEach((skill) =>
             {
+                if(skill.SkillEffect==null || skill.SkillEffect.Length == 0)
+                {
+                }
                 var confSkill = GameSystem.Instance.PlayerInControl.GetComponent<SkillController>().CreateSkill<ConfigurableSkill>();
                 confSkill.SetSkillData(skill);
             });

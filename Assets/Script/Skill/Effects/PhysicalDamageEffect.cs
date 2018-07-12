@@ -20,11 +20,11 @@ public class PhysicalDamageEffect : SkillEffect
         DisplayName = "Physical Damage";
     }
 
-    public override void ApplyEffect(SkillImpact impact, Entity target)
+    public override void ApplyEffect(SkillImpact impact, Entity target, float multiple)
     {
         if(target is LifeBody)
         {
-            (target as LifeBody).HP -= Damage;
+            (target as LifeBody).HP -= Damage * multiple;
             UnityEngine.Debug.Log(target.name + " Damaged");
         }
     }

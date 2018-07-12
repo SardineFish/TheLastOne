@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 public class SkillImpactMessage : Message
 {
-    public SkillEffect[] SkillEffects;
+    public SkillEffectData[] SkillEffects;
     public SkillImpact Impact;
-    public SkillImpactMessage(SkillImpact impact, params SkillEffect[] skillEffects) : base(impact.Creator)
+    public SkillImpactMessage(SkillImpact impact, params SkillEffectData[] skillEffects) : base(impact.Creator)
     {
         Impact = impact;
         SkillEffects = skillEffects;

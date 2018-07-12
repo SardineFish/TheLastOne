@@ -18,7 +18,7 @@ namespace Assets.Script.Package.Modle
         None,
     }
 
-    public class BaseItem : MonoBehaviour
+    public class BaseItem : MonoBehaviour, IDocumented
     {
         [HideInInspector]
         public string name;
@@ -38,6 +38,14 @@ namespace Assets.Script.Package.Modle
         public Vector2 Effect = Vector2.zero;
         //风火雷电等技能选择
         public SkillEffect SkillEffect;
+
+        public string Name => name;
+
+        public string DisplayName => ChineseName;
+
+        public string Description => Introduction;
+
+        public Sprite Icon => ItemImage;
 
         void initProp()
         {

@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 [Serializable]
 public class WeaponData
 {
-    public SkillEffectSystem.AssetObject[] SkillEffects = new SkillEffectSystem.AssetObject[0];
+    public SkillEffectData[] SkillEffects = new SkillEffectData[0];
 }

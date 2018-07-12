@@ -15,7 +15,7 @@ public class SkillImpact : MonoBehaviour,IWeightedObject {
     public Entity Creator;
     public Entity ImpactTarget = null;
     public Collider Collider;
-    public SkillEffect[] SkillEffects;
+    public SkillEffectData[] SkillEffects;
     public float ImpactRadius = 1;
     public float ImpactAngle = 360;
     public float ImpactHeight = 4;

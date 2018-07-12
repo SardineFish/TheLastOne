@@ -5,9 +5,9 @@ using UnityEditor;
 public class KnockBackEffect : SkillEffect
 {
     public float Impulse;
-    public override void ApplyEffect(SkillImpact impact, Entity target)
+    public override void ApplyEffect(SkillImpact impact, Entity target, float multiple)
     {
         //target.GetComponent<CustomRigidBody>().AddForce((target.transform.position - impact.transform.position).ClipY().normalized * Impulse, ForceMode.Impulse);
-        target.GetComponent<SkillController>().MovementSkill.KnockBack((target.transform.position - impact.transform.position).ClipY().normalized * Impulse);
+        target.GetComponent<SkillController>().MovementSkill.KnockBack((target.transform.position - impact.transform.position).ClipY().normalized * Impulse*multiple);
     }
 }
