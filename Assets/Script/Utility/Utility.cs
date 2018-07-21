@@ -95,8 +95,22 @@ public static class Utility
         return obj;
     }
 
-    public static void DestroyChildren(this GameObject self)
+    public static void ClearChildren(this GameObject self)
     {
-        self.GetChildren().ForEach(child => GameObject.Destroy(child));
+        self.GetChildren().ForEach((child)=>
+        {
+            child.ClearChildren();
+            GameObject.Destroy(child);
+        });
+    }
+
+    public static void ClearChildImmediate(this GameObject self)
+    {
+        while (self.transform.childCount > 0)
+        {
+            var obj = self.transform.GetChild(0).gameObject;
+            obj.ClearChildImmediate();
+            GameObject.DestroyImmediate(obj);
+        }
     }
 }

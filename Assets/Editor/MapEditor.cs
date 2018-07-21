@@ -34,8 +34,10 @@ namespace Assets.Editor
             }
             if (GUILayout.Button("Clear"))
             {
-                map.gameObject.GetChildren().ForEach(child => DestroyImmediate(child));
+                map.gameObject.ClearChildImmediate();
             }
         }
+
+
     }
 }
