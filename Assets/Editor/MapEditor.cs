@@ -16,5 +16,26 @@ namespace Assets.Editor
         {
 
         }
+
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+
+            var map = target as Map;
+            EditorUtility.EditWeightedList("Walls", true, map.Walls);
+            EditorUtility.EditWeightedList("Walls with Door", true, map.WallsWithDoor);
+            EditorUtility.EditWeightedList("Obstacles", true, map.Obstacles);
+            UnityEditor.EditorUtility.SetDirty(map);
+
+            EditorGUILayout.Space();
+            if (GUILayout.Button("Generate"))
+            {
+                map.Generate();
+            }
+            if (GUILayout.Button("Clear"))
+            {
+                map.gameObject.GetChildren().ForEach(child => DestroyImmediate(child));
+            }
+        }
     }
 }

@@ -37,7 +37,31 @@ namespace Assets.Editor
 
         public static bool DrawFoldList(string lable, bool show,int count, Action<int> itemRenderingCallback)
         {
+            EditorGUILayout.BeginHorizontal();
             show = EditorGUILayout.Foldout(show, lable);
+                
+            if (show)
+            {
+                GUIStyle style = new GUIStyle();
+                style.margin.left = 24;
+                EditorGUILayout.BeginVertical(style);
+                for (var i = 0; i < count; i++)
+                {
+                    itemRenderingCallback(i);
+                }
+                EditorGUILayout.EndVertical();
+            }
+            return show;
+        }
+
+        public static bool DrawFoldList(string lable, bool show, int count, Action<int> itemRenderingCallback,Action addCallback)
+        {
+            EditorGUILayout.BeginHorizontal();
+            show = EditorGUILayout.Foldout(show, lable);
+            if (show && GUILayout.Button("+"))
+                addCallback();
+            EditorGUILayout.EndHorizontal();
+
             if (show)
             {
                 GUIStyle style = new GUIStyle();
@@ -114,5 +138,20 @@ namespace Assets.Editor
         {
             
         }*/
+        public static void EditWeightedList(string label, bool show,WeightedList list)
+        {
+            DrawFoldList(label, show, list.Count, (i) =>
+               {
+                   EditorGUILayout.BeginHorizontal();
+                   list[i].Object = EditorGUILayout.ObjectField(list[i].Object, typeof(UnityEngine.Object), true);
+                   list[i].Weight = EditorGUILayout.FloatField(list[i].Weight);
+                   if (GUILayout.Button("-"))
+                       list.RemoveAt(i);
+                   EditorGUILayout.EndHorizontal();
+               }, () =>
+               {
+                   list.Add(new WeightedItem(null, 1));
+               });
+        }
     }
 }

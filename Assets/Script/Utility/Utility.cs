@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class Utility
 {
@@ -64,5 +65,38 @@ public static class Utility
             mergeTarget = mergeFunc(element, mergeTarget);
         }
         return mergeTarget;
+    }
+
+    public static GameObject Instantiate(this UnityEngine.Object self, GameObject original, Scene scene)
+    {
+        var obj = UnityEngine.Object.Instantiate(original);
+        SceneManager.MoveGameObjectToScene(obj, scene);
+        return obj;
+    }
+
+    public static GameObject Instantiate(GameObject original, Scene scene)
+    {
+        var obj = UnityEngine.Object.Instantiate(original);
+        SceneManager.MoveGameObjectToScene(obj, scene);
+        return obj;
+    }
+    public static GameObject Instantiate(GameObject original, GameObject parent)
+    {
+        var obj = Instantiate(original, parent.scene);
+        obj.transform.parent = parent.transform;
+        return obj;
+    }
+
+    public static GameObject Instantiate(GameObject original, GameObject parent, Vector3 relativePosition,Quaternion relativeRotation)
+    {
+        var obj = Instantiate(original, parent);
+        obj.transform.localPosition = relativePosition;
+        obj.transform.localRotation = relativeRotation;
+        return obj;
+    }
+
+    public static void DestroyChildren(this GameObject self)
+    {
+        self.GetChildren().ForEach(child => GameObject.Destroy(child));
     }
 }
