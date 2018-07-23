@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Map : MonoBehaviour {
     public float Width = 32;
     public float Height = 32;
+    public float NodeSize = 5f;
     public Orientation InDoor = Orientation.None;
     [HideInInspector]
     public bool[] Doors = new bool[4];
@@ -15,6 +16,25 @@ public class Map : MonoBehaviour {
     public bool EastDoor => Doors[2];
     public bool WestDoor => Doors[3];
     public float DoorProbability = .5f;
+
+    int mapOffsetX = 0;
+    int mapOffsetY = 0;
+    int mapSizeX = 0;
+    int mapSizeY = 0;
+    MapNode[,] map = new MapNode[0, 0];
+    public MapNode this[int x,int y]
+    {
+        get
+        {
+            x = x + mapOffsetX;
+            y = y + mapOffsetY;
+            if (x < 0 || y < 0 || x >= mapSizeX || y >= mapSizeY)
+                return MapNode.Null;
+            return map[x, y];
+        }
+    }
+    public MapNode this[Vector2Int pos] => this[pos.x, pos.y];
+
     [HideInInspector]
     public WeightedList Walls = new WeightedList();
     [HideInInspector]
@@ -76,7 +96,27 @@ public class Map : MonoBehaviour {
         wallWest.transform.position = new Vector3(-Width / 2, 0, 0);
         wallWest.transform.rotation = Quaternion.FromToRotation(Vector3.right, Vector3.left);
 
+        // Generate map nodes
+        mapSizeX = Mathf.CeilToInt((Width / 2 - NodeSize / 2) / NodeSize) * 2 + 1;
+        mapOffsetX = mapSizeX / 2;
+        mapSizeY = Mathf.CeilToInt((Height / 2 - NodeSize / 2) / NodeSize) * 2 + 1;
+        mapOffsetY = mapSizeY / 2;
+        map = new MapNode[mapSizeX, mapSizeY];
 
+        
+    }
+
+    public Vector2Int ToMapNodeCoordinate(Vector2 position)
+    {
+        return new Vector2Int(
+            Mathf.FloorToInt((position.x + NodeSize / 2) / NodeSize),
+            Mathf.FloorToInt((position.y + NodeSize / 2) / NodeSize)
+            );
+    }
+
+    public Vector2Int ToMapNodeCoordinate(Vector3 position)
+    {
+        return ToMapNodeCoordinate(position.ToVector2XZ());
     }
 
     public GameObject GenerateWall(bool generateDoor, float length)
@@ -93,7 +133,7 @@ public class Map : MonoBehaviour {
         mainWall = Utility.Instantiate(mainWall.gameObject, wallObj).GetComponent<Wall>();
 
         // Put the main wall to an appropriate position
-        if (mainWall.Length < length)
+        if (mainWall.Length > length)
             mainWall.transform.position = Vector3.zero;
         else
         {
