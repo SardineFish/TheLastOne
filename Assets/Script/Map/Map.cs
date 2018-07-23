@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class Map : MonoBehaviour {
     public float Height = 32;
     public float NodeSize = 5f;
     public Orientation InDoor = Orientation.None;
+    [NonSerialized]
+    public bool Generated = false;
     [HideInInspector]
     public bool[] Doors = new bool[4];
     public bool NorthDoor => Doors[0];
@@ -17,10 +20,17 @@ public class Map : MonoBehaviour {
     public bool WestDoor => Doors[3];
     public float DoorProbability = .5f;
 
+    [SerializeField]
     int mapOffsetX = 0;
+    [SerializeField]
     int mapOffsetY = 0;
+    [SerializeField]
     int mapSizeX = 0;
+    [SerializeField]
     int mapSizeY = 0;
+    public RangeInt RangeX;
+    public RangeInt RangeY;
+    [SerializeField]
     MapNode[,] map = new MapNode[0, 0];
     public MapNode this[int x,int y]
     {
@@ -68,7 +78,7 @@ public class Map : MonoBehaviour {
         for(var i = 0; i < 4; i++)
         {
             Doors[i] = false;
-            if (Random.value < DoorProbability)
+            if (UnityEngine.Random.value < DoorProbability)
             {
                 Doors[i] = true;
             }
@@ -102,8 +112,28 @@ public class Map : MonoBehaviour {
         mapSizeY = Mathf.CeilToInt((Height / 2 - NodeSize / 2) / NodeSize) * 2 + 1;
         mapOffsetY = mapSizeY / 2;
         map = new MapNode[mapSizeX, mapSizeY];
+        RangeX = new RangeInt(
+            Mathf.FloorToInt((-Width / 2 + NodeSize / 2) / NodeSize),
+            Mathf.FloorToInt((Width / 2 + NodeSize / 2) / NodeSize)
+            );
+        RangeY = new RangeInt(
+            Mathf.FloorToInt((-Height / 2 + NodeSize / 2) / NodeSize),
+            Mathf.FloorToInt((Height / 2 + NodeSize / 2) / NodeSize)
+            );
+        // Init map nodes
+        for (var y = 0; y < mapSizeY; y++)
+            for (var x = 0; x < mapSizeX; x++)
+                map[x, y] = new MapNode() { Type = MapNodeType.Empty };
+        ForEach((node, x, y) =>
+        {
+            if (y == RangeY.start || y == RangeY.end || x == RangeX.start || x == RangeX.end)
+            {
+                node.Type = MapNodeType.Wall;
+            }
+            node.Center = new Vector3(x * NodeSize, 0, y * NodeSize);
+        });
 
-        
+        Generated = true;
     }
 
     public Vector2Int ToMapNodeCoordinate(Vector2 position)
@@ -138,7 +168,7 @@ public class Map : MonoBehaviour {
         else
         {
             var range = length - mainWall.Length;
-            var pos = Random.Range(-range / 2, range / 2);
+            var pos = UnityEngine.Random.Range(-range / 2, range / 2);
             mainWall.transform.position = new Vector3(0, 0, pos);
 
             // Fill the rest space
@@ -162,6 +192,21 @@ public class Map : MonoBehaviour {
         }
 
         return wallObj;
+    }
+
+    public void ForEach(Action<MapNode,Vector2Int> callback)
+    {
+        for (var y = RangeY.start; y <= RangeY.end; y++)
+            for (var x = RangeX.start; x <= RangeX.end; x++)
+                callback?.Invoke(this[x, y], new Vector2Int(x, y));
+    }
+
+    public void ForEach(Action<MapNode> callback) => ForEach((node, pos) => callback?.Invoke(node));
+    public void ForEach(Action<MapNode, int, int> callback) => ForEach((node, pos) => callback?.Invoke(node, pos.x, pos.y));
+
+    private void OnDrawGizmos()
+    {
+        
     }
 }
 

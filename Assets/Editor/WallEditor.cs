@@ -28,11 +28,6 @@ namespace Assets.Editor
         {
             var wall = target as Wall;
             base.OnInspectorGUI();
-            var collider = wall.GetComponent<BoxCollider>();
-            wall.Bottom = Vector3.down * (collider.center.y - collider.size.y / 2);
-            wall.Normal = Vector3.right;
-            wall.Length = collider.size.z;
-            wall.Width = collider.size.x;
         }
     }
 }
