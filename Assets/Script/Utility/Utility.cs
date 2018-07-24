@@ -13,7 +13,7 @@ public static class Utility
         foreach (var item in ts)
             callback(item);
     }
-    public static IEnumerable<T> RandomTake<T>(this IEnumerable<T> list, int count) where T : IWeightedObject
+    public static IEnumerable<T> WeightedRandomTake<T>(this IEnumerable<T> list, int count) where T : IWeightedObject
     {
         var source = list.ToArray();
         var idxMap = source.Select((item, idx) => idx).ToArray();
@@ -38,7 +38,18 @@ public static class Utility
                     totalWeight -= source[idxMap[j]].Weight;
             }
         }
+    }
 
+    public static IEnumerable<T> RandomTake<T>(this IEnumerable<T> list,int count)
+    {
+        var source = list.ToArray();
+
+        for (var i = 0; i < count; i++)
+        {
+            var idx = UnityEngine.Random.Range(0, source.Length - i);
+            yield return source[idx];
+            source[idx] = source[count - i - 1];
+        }
     }
 
     public static IEnumerable<GameObject> GetChildren(this GameObject gameObject)

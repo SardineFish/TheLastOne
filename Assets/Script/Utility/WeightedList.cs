@@ -59,7 +59,7 @@ public class WeightedList : IList<WeightedItem>
 
     public IEnumerable<UnityEngine.Object> RandomTake(int count)
     {
-        return internalList.RandomTake(count).Select(item => item.Object);
+        return internalList.WeightedRandomTake(count).Select(item => item.Object);
     }
 
     public bool Remove(WeightedItem item)

@@ -9,6 +9,7 @@ public class Map : MonoBehaviour {
     public float Width = 32;
     public float Height = 32;
     public float NodeSize = 5f;
+    public int GenerateObstacle = 0;
     public Orientation InDoor = Orientation.None;
     [NonSerialized]
     public bool Generated = false;
@@ -133,6 +134,25 @@ public class Map : MonoBehaviour {
             node.Center = new Vector3(x * NodeSize, 0, y * NodeSize);
         });
 
+        // Generate obstacles
+        var obstacleCount = Mathf.FloorToInt(GenerateObstacle * Mathf.Sqrt(UnityEngine.Random.value));
+
+        GetNodes()
+            .Where(node => node.Type == MapNodeType.Empty)
+            .RandomTake(obstacleCount)
+            .ForEach(node =>
+            {
+                var obstacle = Utility.Instantiate(
+                    Obstacles
+                        .WeightedRandomTake(1)
+                        .Select(item => item.Object as GameObject)
+                        .FirstOrDefault(),
+                    gameObject);
+
+                obstacle.transform.position = node.Center;
+                node.Type = MapNodeType.Obstacle;
+            });
+        
         Generated = true;
     }
 
@@ -192,6 +212,13 @@ public class Map : MonoBehaviour {
         }
 
         return wallObj;
+    }
+
+    public IEnumerable<MapNode> GetNodes()
+    {
+        for (var y = RangeY.start; y <= RangeY.end; y++)
+            for (var x = RangeX.start; x <= RangeX.end; x++)
+                yield return this[x, y];
     }
 
     public void ForEach(Action<MapNode,Vector2Int> callback)
