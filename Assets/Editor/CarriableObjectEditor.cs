@@ -19,16 +19,26 @@ namespace Assets.Editor
 
             float radius = 0.2f;
 
-            obj.CarryPostion = obj.transform.worldToLocalMatrix.MultiplyPoint(Handles.PositionHandle(obj.transform.localToWorldMatrix.MultiplyPoint(obj.CarryPostion), obj.transform.rotation));
+            obj.CarryPostion = obj.transform.worldToLocalMatrix.MultiplyPoint(Handles.PositionHandle(obj.transform.localToWorldMatrix.MultiplyPoint(obj.CarryPostion), obj.transform.rotation * obj.CarryRotation));
+            obj.CarryRotation =Quaternion.Inverse(obj.transform.rotation) * Handles.RotationHandle(obj.transform.rotation * obj.CarryRotation, obj.transform.localToWorldMatrix.MultiplyPoint(obj.CarryPostion));
 
             Handles.color = EditorUtility.HTMLColor("#FFC107");
-            Handles.DrawWireDisc(obj.transform.localToWorldMatrix.MultiplyPoint(obj.CarryPostion), obj.transform.forward, radius);
+            Handles.DrawWireDisc(obj.transform.localToWorldMatrix.MultiplyPoint(obj.CarryPostion), obj.CarryRotation * obj.transform.forward, radius);
             Handles.color = EditorUtility.HTMLColor("#FFE08233");
-            Handles.DrawSolidDisc(obj.transform.localToWorldMatrix.MultiplyPoint(obj.CarryPostion), obj.transform.forward, radius);
+            Handles.DrawSolidDisc(obj.transform.localToWorldMatrix.MultiplyPoint(obj.CarryPostion), obj.CarryRotation * obj.transform.forward, radius);
 
 
         }
 
-
+        public override void OnInspectorGUI()
+        {
+            var obj = target as CarriableObject;
+            obj.CarryPostion = EditorGUILayout.Vector3Field("Carry Position", obj.CarryPostion);
+            if (GUILayout.Button("SetPosition"))
+            {
+                
+            }
+            obj.CarryRotation = Quaternion.Euler(EditorGUILayout.Vector3Field("Carry Rotation", obj.CarryRotation.eulerAngles));
+        }
     }
 }

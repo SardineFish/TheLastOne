@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+[ExecuteInEditMode]
 public class CarriableObject : MonoBehaviour
 {
     public Vector3 CarryPostion;
@@ -18,7 +19,7 @@ public class CarriableObject : MonoBehaviour
         if(transform.parent)
         {
             transform.localRotation = CarryRotation;
-            transform.localPosition = -CarryPostion;
+            transform.localPosition = -(CarryRotation * CarryPostion);
         }
     }
 
