@@ -37,7 +37,7 @@ namespace Assets.Editor
 
         public static bool DrawFoldList(string lable, bool show,int count, Action<int> itemRenderingCallback)
         {
-            EditorGUILayout.BeginHorizontal();
+            //EditorGUILayout.BeginHorizontal();
             show = EditorGUILayout.Foldout(show, lable);
                 
             if (show)
