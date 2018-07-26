@@ -44,6 +44,7 @@ public class Bone : MonoBehaviour
     void Start()
     {
         lastRotation = transform.localRotation;
+        mesh = new Mesh();
     }
 
     [ExecuteInEditMode]
@@ -127,10 +128,11 @@ public class Bone : MonoBehaviour
         return rotation;
     }
 
+    Mesh mesh;//= new Mesh();
     [ExecuteInEditMode]
     private void OnDrawGizmos()
     {
-        var mesh = new Mesh();
+        mesh.Clear();
         var V = new Vector3[]
         {
                 new Vector3(0, 0, 0),

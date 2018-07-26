@@ -92,10 +92,10 @@ public class Map : MonoBehaviour {
         wallNorth.transform.position = new Vector3(0, 0, Height / 2);
         wallNorth.transform.rotation = Quaternion.FromToRotation(Vector3.right, Vector3.forward);
 
-        var wallSouth = GenerateWall(SouthDoor, Width);
+        /*var wallSouth = GenerateWall(SouthDoor, Width);
         wallSouth.transform.parent = gameObject.transform;
         wallSouth.transform.position = new Vector3(0, 0, -Height / 2);
-        wallSouth.transform.rotation = Quaternion.FromToRotation(Vector3.right, Vector3.back);
+        wallSouth.transform.rotation = Quaternion.FromToRotation(Vector3.right, Vector3.back);*/
 
         var wallEast = GenerateWall(EastDoor, Height);
         wallEast.transform.parent = gameObject.transform;
