@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Map : MonoBehaviour {
+public class Map : Singleton<Map> {
     public float Width = 32;
     public float Height = 32;
     public float NodeSize = 5f;
@@ -71,9 +71,11 @@ public class Map : MonoBehaviour {
         gameObject.GetChildren().ForEach(child => Destroy(child));
         // Generate ground
         var ground = Instantiate(GroundPrefab, Vector3.zero, Quaternion.identity);
-        ground.transform.localScale = new Vector3(Width / 10, 1, Height / 10);
+        //ground.transform.localScale = new Vector3(Width / 10, 1, Height / 10);
+        this.NextFrame(() => ground.transform.localScale = new Vector3(Width / 10, 1, Height / 10));
         SceneManager.MoveGameObjectToScene(ground, gameObject.scene);
         ground.transform.parent = transform;
+        //ground.GetComponent<MeshCollider>().
 
         // Generate doors
         for(var i = 0; i < 4; i++)

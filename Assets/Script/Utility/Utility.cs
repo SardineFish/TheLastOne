@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public static class Utility
 {
@@ -123,5 +124,23 @@ public static class Utility
             obj.ClearChildImmediate();
             GameObject.DestroyImmediate(obj);
         }
+    }
+
+    public static void SetLayerRecursive(this GameObject gameObject,int layer)
+    {
+        gameObject.layer = layer;
+        gameObject.GetChildren().ForEach(child => child.SetLayerRecursive(layer));
+    }
+
+    public static void NextFrame(this MonoBehaviour context, Action callback)
+    {
+        context.StartCoroutine(NextFrameCoroutine(callback));
+    }
+
+    public static IEnumerator NextFrameCoroutine(Action callback)
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        callback?.Invoke();
     }
 }

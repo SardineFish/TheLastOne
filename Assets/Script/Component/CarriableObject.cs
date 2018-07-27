@@ -18,13 +18,14 @@ public class CarriableObject : MonoBehaviour
     {
         if(transform.parent)
         {
-            transform.localRotation = CarryRotation;
-            transform.localPosition = -(CarryRotation * CarryPostion);
+            transform.localRotation = Quaternion.Inverse(CarryRotation);
+            transform.localPosition = -(Quaternion.Inverse(CarryRotation) * CarryPostion);
         }
     }
 
     public void AttachTo(Carrier carrier)
     {
+        gameObject.SetLayerRecursive(carrier.gameObject.layer);
         SceneManager.MoveGameObjectToScene(gameObject, carrier.gameObject.scene);
         gameObject.layer = carrier.gameObject.layer;
         carrier.Carrying?.Detach();

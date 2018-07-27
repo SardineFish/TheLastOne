@@ -88,12 +88,20 @@ public class CustomRigidBody:MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        /*if (collision.gameObject.layer == 10)
+            OnGround = true;
+        Debug.Log("Enter");
+        return;*/
         ground += 1;
         OnGround = ground > 0;
     }
 
     private void OnCollisionExit(Collision collision)
     {
+        /*if (collision.gameObject.layer == 10)
+            OnGround = false;
+        Debug.Log("Exit");
+        return;*/
         ground -= 1;
         OnGround = ground > 0;
     }

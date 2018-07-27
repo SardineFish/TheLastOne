@@ -9,8 +9,17 @@ using UnityEngine;
 public class GameSystem : Singleton<GameSystem>
 {
     public Entity PlayerInControl;
+    void Start()
+    {
+        if (Application.isPlaying)
+            this.NextFrame(() =>
+            {
+                //Map.Instance.Generate();
+            });
+    }
     void Update()
     {
         PlayerInputManager.Instance.PlayerInControl = PlayerInControl;
+
     }
 }
