@@ -34,6 +34,7 @@ public class ActionManager : EntityBehavior<LifeBody>
     {
         animator = Entity.GetComponent<Animator>();
         playableGraph = PlayableGraph.Create();
+        playableGraph.SetTimeUpdateMode(DirectorUpdateMode.GameTime);
         playableOutput = AnimationPlayableOutput.Create(playableGraph, "Animation", Entity.GetComponent<Animator>());
         previousAnimator = AnimatorControllerPlayable.Create(playableGraph, DefaultMovement);
         currentAnimator = AnimatorControllerPlayable.Create(playableGraph, DefaultMovement);
@@ -42,6 +43,7 @@ public class ActionManager : EntityBehavior<LifeBody>
         playableGraph.Connect(currentAnimator, 0, mixPlayable, 1);
 
         playableOutput.SetSourcePlayable(mixPlayable);
+        mixPlayable.SetInputWeight(0,1);
         playableGraph.Play();
         currentAnimatorController = DefaultMovement;
 
@@ -90,11 +92,14 @@ public class ActionManager : EntityBehavior<LifeBody>
         if (!animator)
             animator = Entity.GetComponent<Animator>();
         if (currentAnimatorController == controller)
+        {
             return true;
+        }
         if(!hasFirstAnimator)
         {
             ChangeAnimation(controller, 0.2f);
             hasFirstAnimator = true;
+            Debug.Log("Change To " + controller.name);
             return true;
         }
         var state = CurrentAnimatorController.GetCurrentAnimatorStateInfo(0);
@@ -102,6 +107,7 @@ public class ActionManager : EntityBehavior<LifeBody>
         {
             ChangeAnimation(controller, 0.2f);
 
+            Debug.Log("Change To " + controller.name);
             return true;
         }
         return false;

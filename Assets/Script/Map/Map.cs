@@ -72,7 +72,7 @@ public class Map : Singleton<Map> {
         // Generate ground
         var ground = Instantiate(GroundPrefab, Vector3.zero, Quaternion.identity);
         //ground.transform.localScale = new Vector3(Width / 10, 1, Height / 10);
-        this.NextFrame(() => ground.transform.localScale = new Vector3(Width / 10, 1, Height / 10));
+        //this.NextFrame(() => ground.transform.localScale = new Vector3(Width / 10, 1, Height / 10));
         SceneManager.MoveGameObjectToScene(ground, gameObject.scene);
         ground.transform.parent = transform;
         //ground.GetComponent<MeshCollider>().

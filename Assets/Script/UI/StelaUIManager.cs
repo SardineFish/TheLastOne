@@ -47,13 +47,13 @@ public class StelaUIManager : Singleton<StelaUIManager>
     }
     void Update()
     {
-        if (PreviewSkill)
-        {
-            var previewPlayer = GameObject.FindGameObjectWithTag("PreviewPlayer");
-            previewPlayer.GetComponent<SkillController>().ActivateSkill(0, previewPlayer.transform.position + previewPlayer.transform.forward * 2);
-        }
         if (Visible)
         {
+            if (PreviewSkill)
+            {
+                var previewPlayer = GameObject.FindGameObjectWithTag("PreviewPlayer");
+                previewPlayer.GetComponent<SkillController>().ActivateSkill(0, previewPlayer.transform.position + previewPlayer.transform.forward * 2);
+            }
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Close();
