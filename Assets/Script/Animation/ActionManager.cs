@@ -24,6 +24,7 @@ public class ActionManager : EntityBehavior<LifeBody>
     AnimationMixerPlayable mixPlayable;
     Animator animator;
     RuntimeAnimatorController currentAnimatorController;
+    AnimationLayerMixerPlayable layerMixer;
     bool init = false;
     bool hasFirstAnimator = false;
     float transTime = 0;
@@ -41,15 +42,21 @@ public class ActionManager : EntityBehavior<LifeBody>
         previousAnimator = AnimatorControllerPlayable.Create(playableGraph, null);
         currentAnimatorPlayable = AnimatorControllerPlayable.Create(playableGraph, null);
         movementController = AnimatorControllerPlayable.Create(playableGraph, DefaultMovement);
-        mixPlayable = AnimationMixerPlayable.Create(playableGraph, 3);
+        mixPlayable = AnimationMixerPlayable.Create(playableGraph, 2);
         playableGraph.Connect(previousAnimator, 0, mixPlayable, 0);
         playableGraph.Connect(currentAnimatorPlayable, 0, mixPlayable, 1);
-        playableGraph.Connect(movementController, 0, mixPlayable, 2);
+        //playableGraph.Connect(movementController, 0, mixPlayable, 2);
 
-        playableOutput.SetSourcePlayable(mixPlayable);
         mixPlayable.SetInputWeight(0, 0);
         mixPlayable.SetInputWeight(1, 0);
-        mixPlayable.SetInputWeight(2, 1);
+        //mixPlayable.SetInputWeight(2, 1);
+        layerMixer = AnimationLayerMixerPlayable.Create(playableGraph, 2);
+        playableGraph.Connect(mixPlayable, 0, layerMixer, 0);
+        playableGraph.Connect(movementController, 0, layerMixer, 1);
+        layerMixer.SetInputWeight(0, 1);
+        layerMixer.SetInputWeight(1, 1);
+        //layerMixer.SetLayerAdditive(0, true);
+        playableOutput.SetSourcePlayable(layerMixer);
         playableGraph.Play();
         currentAnimatorController = null;
 
@@ -58,6 +65,14 @@ public class ActionManager : EntityBehavior<LifeBody>
 	
 	// Update is called once per frame
 	void Update () {
+        if (!CurrentAnimatorController.IsNull() && CurrentAnimatorController.GetCurrentAnimatorStateInfo(0).IsTag(AnimTagLock))
+        {
+            layerMixer.SetInputWeight(1, 0);
+        }
+        else
+        {
+            layerMixer.SetInputWeight(1, 1);
+        }
         if (transTotalTime <= 0)
             weight = 1;
         else

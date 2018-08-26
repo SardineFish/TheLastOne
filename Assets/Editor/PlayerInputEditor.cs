@@ -71,6 +71,7 @@ namespace Assets.Editor
                 //var keyName = EditorGUILayout.
                 //playerInput.SkillKeys[i] = InputManager.Current.KeyCodeList.Where(key=>key.ToString().ToLower() == editorgui)
             });
+            UnityEditor.EditorUtility.SetDirty(target);
         }
     }
 }
