@@ -143,4 +143,15 @@ public static class Utility
         yield return new WaitForEndOfFrame();
         callback?.Invoke();
     }
+
+    public static IEnumerator Animate(float time,Action<float> callback)
+    {
+        var startTime = Time.time;
+        for (float t = 0; t < time; t = Time.time - startTime)
+        {
+            callback(t / time);
+            yield return new WaitForEndOfFrame();
+        }
+        callback(1);
+    }
 }

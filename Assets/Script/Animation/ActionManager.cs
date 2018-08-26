@@ -9,16 +9,18 @@ public class ActionManager : EntityBehavior<LifeBody>
     public const string AnimTagEnd = "End";
     public const string AnimTagBegin = "Begin";
     public const string AnimTagGap = "Gap";
+    public const string AnimTagLock = "Lock";
 
     public RuntimeAnimatorController DefaultMovement;
 
-    public AnimatorControllerPlayable CurrentAnimatorController{ get { return currentAnimator; } }
+    public AnimatorControllerPlayable CurrentAnimatorController{ get { return currentAnimatorPlayable; } }
 
     PlayableGraph playableGraph;
     PlayableOutput playableOutput;
     AnimatorControllerPlayable NULLAnimatorControllerPlayable;
+    AnimatorControllerPlayable movementController;
     AnimatorControllerPlayable previousAnimator;
-    AnimatorControllerPlayable currentAnimator;
+    AnimatorControllerPlayable currentAnimatorPlayable;
     AnimationMixerPlayable mixPlayable;
     Animator animator;
     RuntimeAnimatorController currentAnimatorController;
@@ -27,7 +29,7 @@ public class ActionManager : EntityBehavior<LifeBody>
     float transTime = 0;
     float transTotalTime = 0;
     float weight = 1;
-    int currentConnected = 1;
+    int currentConnectedIdx = 1;
 
     // Use this for initialization
     void Start ()
@@ -36,19 +38,22 @@ public class ActionManager : EntityBehavior<LifeBody>
         playableGraph = PlayableGraph.Create();
         playableGraph.SetTimeUpdateMode(DirectorUpdateMode.GameTime);
         playableOutput = AnimationPlayableOutput.Create(playableGraph, "Animation", Entity.GetComponent<Animator>());
-        previousAnimator = AnimatorControllerPlayable.Create(playableGraph, DefaultMovement);
-        currentAnimator = AnimatorControllerPlayable.Create(playableGraph, DefaultMovement);
-        mixPlayable = AnimationMixerPlayable.Create(playableGraph, 2);
+        previousAnimator = AnimatorControllerPlayable.Create(playableGraph, null);
+        currentAnimatorPlayable = AnimatorControllerPlayable.Create(playableGraph, null);
+        movementController = AnimatorControllerPlayable.Create(playableGraph, DefaultMovement);
+        mixPlayable = AnimationMixerPlayable.Create(playableGraph, 3);
         playableGraph.Connect(previousAnimator, 0, mixPlayable, 0);
-        playableGraph.Connect(currentAnimator, 0, mixPlayable, 1);
+        playableGraph.Connect(currentAnimatorPlayable, 0, mixPlayable, 1);
+        playableGraph.Connect(movementController, 0, mixPlayable, 2);
 
         playableOutput.SetSourcePlayable(mixPlayable);
-        mixPlayable.SetInputWeight(0,1);
+        mixPlayable.SetInputWeight(0, 0);
+        mixPlayable.SetInputWeight(1, 0);
+        mixPlayable.SetInputWeight(2, 1);
         playableGraph.Play();
-        currentAnimatorController = DefaultMovement;
+        currentAnimatorController = null;
 
         init = true;
-        hasFirstAnimator = false;
     }
 	
 	// Update is called once per frame
@@ -58,8 +63,8 @@ public class ActionManager : EntityBehavior<LifeBody>
         else
             weight = Mathf.Clamp01(transTime / transTotalTime);
         transTime += Time.deltaTime;
-        mixPlayable.SetInputWeight((currentConnected +1 )%2, 1 - weight);
-        mixPlayable.SetInputWeight(currentConnected, weight);
+        mixPlayable.SetInputWeight((currentConnectedIdx +1 )%2, 1 - weight);
+        mixPlayable.SetInputWeight(currentConnectedIdx, weight);
         //weight = transTotalTime
 	}
 
@@ -69,18 +74,20 @@ public class ActionManager : EntityBehavior<LifeBody>
         {
             Start();
         }
-        currentConnected = (currentConnected + 1) % 2;
-        previousAnimator = currentAnimator;
-        currentAnimator = AnimatorControllerPlayable.Create(playableGraph, animatorController);
-        playableGraph.Disconnect(mixPlayable, currentConnected);
+        currentConnectedIdx = (currentConnectedIdx + 1) % 2;
+        previousAnimator = currentAnimatorPlayable;
+        currentAnimatorPlayable = AnimatorControllerPlayable.Create(playableGraph, animatorController);
+        
+        playableGraph.Disconnect(mixPlayable, currentConnectedIdx);
         //mixPlayable = AnimationMixerPlayable.Create(playableGraph, 2);
         //mixPlayable.ConnectInput(0, previousAnimator, 0);
-        mixPlayable.ConnectInput(currentConnected, currentAnimator, 0);
+        mixPlayable.ConnectInput(currentConnectedIdx, currentAnimatorPlayable, 0);
         //playableOutput.SetSourcePlayable(mixPlayable);
         transTime = 0;
         transTotalTime = time;
         weight = 0;
-        Debug.Log(currentAnimatorController.ToString() + "->" + animatorController.ToString());
+        if (currentAnimatorController)
+            Debug.Log(currentAnimatorController.ToString() + "->" + animatorController.ToString());
 
         currentAnimatorController = animatorController;
 
@@ -95,10 +102,9 @@ public class ActionManager : EntityBehavior<LifeBody>
         {
             return true;
         }
-        if(!hasFirstAnimator)
+        if(!currentAnimatorController)
         {
             ChangeAnimation(controller, 0.2f);
-            hasFirstAnimator = true;
             Debug.Log("Change To " + controller.name);
             return true;
         }
@@ -116,5 +122,22 @@ public class ActionManager : EntityBehavior<LifeBody>
     public bool EnableMovement()
     {
         return Entity.GetComponent<SkillController>().MovementSkill.Activate();
+    }
+
+    public bool Move(Vector2 movement)
+    {
+        Debug.Log(movement);
+        if (!CurrentAnimatorController.IsNull() && CurrentAnimatorController.GetCurrentAnimatorStateInfo(0).IsTag(AnimTagLock))
+        {
+            movementController.SetFloat("x", 0);
+            movementController.SetFloat("y", 0);
+            return false;
+        } 
+        else
+        {
+            movementController.SetFloat("x", movement.x);
+            movementController.SetFloat("y", movement.y);
+            return true;
+        }
     }
 }

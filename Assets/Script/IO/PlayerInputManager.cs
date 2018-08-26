@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-[ExecuteInEditMode]
+
 public class PlayerInputManager : Singleton<PlayerInputManager>
 {
     public Entity PlayerInControl;
 
-    public EntityController EntityController;
+    public PlayerController PlayerController;
 
     public SkillController SkillController;
 
@@ -20,27 +20,20 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
     public List<KeyCode> SkillKeys = new List<KeyCode>();
 
     public MovementInput MovementInput;
-
-    [ExecuteInEditMode]
+    
     private void OnEnable()
     {
         MovementInput = GetComponent<MovementInput>();
         if (!MovementInput)
             MovementInput = GetComponentInChildren<MovementInput>();
-        
+        SkillController = PlayerInControl.GetComponent<SkillController>();
+        PlayerController = PlayerInControl.GetComponent<PlayerController>();
     }
 
     public void Update()
     {
         if (!PlayerInControl)
             throw new Exception("A player is required to be controled.");
-        SkillController = PlayerInControl.GetComponent<SkillController>();
-        EntityController = PlayerInControl.GetComponent<EntityController>();
-        if(!SkillController)
-        {
-            SkillController = PlayerInControl.GetComponent<SkillController>();
-            EntityController = PlayerInControl.GetComponent<EntityController>();
-        }
         for(var i=0;i<SkillKeys.Count;i++)
         {
             if(InputManager.Instance.GetKeyDown(SkillKeys[i]))
@@ -56,7 +49,10 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
         {
             PlayerInControl.GetComponent<Equipments>().Switch();
         }
-        SkillController.ActivateMovementSkill(MovementInput.GetMovement());
+        PlayerController.Move(MovementInput.GetMovement());
+        PlayerController.FaceTo(InputManager.Instance.MouseOnGround() - PlayerInControl.transform.position);
+        //SkillController.ActivateMovementSkill(MovementInput.GetMovement());
+        
     }
 
 

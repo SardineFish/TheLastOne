@@ -65,7 +65,7 @@ public class KeyboardMovement : MovementInput
 
     public override Vector2 GetMovement()
     {
-        return InputDirection.normalized;
+        return InputDirection;
     }
 
     public override void Interrupt()
@@ -108,6 +108,7 @@ public class KeyboardMovement : MovementInput
         }
 
         InputDirection = HorizontalInputs[HorizontalInputs.Count - 1] + VerticalInputs[VerticalInputs.Count - 1];
+
 
         /*
         if (InputManager.Current.GetKeyDown(HorizontalPositive))
