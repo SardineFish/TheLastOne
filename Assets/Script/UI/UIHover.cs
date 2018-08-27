@@ -15,13 +15,16 @@ public class UIHover : EntityBehavior<Entity>
     // Use this for initialization
     void Start()
     {
-        if (!UIObject)
+        Utility.NextFrame(this, () =>
         {
-            UIObject = Instantiate(UIPrefab);
-            UIHoverManager.Instance.Register(this);
-            UIObject.GetComponent<Billboard>().BindTarget = Entity.gameObject;
-            UIObject.GetComponent<Billboard>().RelativePosition = UIPosition;
-        } 
+            if (!UIObject)
+            {
+                UIObject = Instantiate(UIPrefab);
+                UIHoverManager.Instance.Register(this);
+                UIObject.GetComponent<Billboard>().BindTarget = Entity.gameObject;
+                UIObject.GetComponent<Billboard>().RelativePosition = UIPosition;
+            }
+        });
     }
 
     // Update is called once per frame
