@@ -8,5 +8,6 @@ using System.Threading.Tasks;
 public class StelaData
 {
     public SkillActionLib.AssetObject[] SkillActions = new SkillActionLib.AssetObject[0];
-    public SkillImpactSystem.AssetObject[] SkillImpacts = new SkillImpactSystem.AssetObject[0];
+    // public SkillImpactSystem.AssetObject[] SkillImpacts = new SkillImpactSystem.AssetObject[0];
+    public Dictionary<SkillActionLib.AssetObject, SkillImpactSystem.AssetObject[]> SkillImpactDict = new Dictionary<SkillActionLib.AssetObject, SkillImpactSystem.AssetObject[]>();
 }

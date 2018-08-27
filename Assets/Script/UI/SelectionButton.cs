@@ -2,11 +2,11 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class SelectionButton : EventBus
+public class SelectionButton : MonoBehaviour
 {
     public SelectionGroup SelectionGroup = null;
-    public int Index = 0;
-    public bool Selected = false;
+    public int Index => SelectionGroup.IndexOf(this);
+    public bool Selected => SelectionGroup.Selected == this;
 
     public string SelectAnimatorParam = "Selected";
 
@@ -24,14 +24,22 @@ public class SelectionButton : EventBus
 
     public void Select()
     {
-        SelectionGroup?.OnSelectedCallback(this);
-        Selected = true;
-        GetComponent<Animator>().SetBool(SelectAnimatorParam, true);
+        SelectionGroup.Select(this);
     }
 
     public void Deselect()
     {
-        Selected = false;
+        if (Selected)
+            SelectionGroup.SelectedIndex = -1;
+    }
+
+    public void OnSelectedCallback()
+    {
+        GetComponent<Animator>().SetBool(SelectAnimatorParam, true);
+    }
+
+    public void onDeselectedCallback()
+    {
         GetComponent<Animator>().SetBool(SelectAnimatorParam, false);
     }
 }

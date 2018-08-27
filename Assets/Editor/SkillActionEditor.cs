@@ -22,6 +22,19 @@ namespace Assets.Editor
                 (key) => WeaponSystemEditor.AssetObjectField(key),
                 (value) => EditorUtility.ObjectField(value)
                 );
+
+            var impactTypes = Enum.GetValues(typeof(ImpactType)).Cast<ImpactType>().ToArray();
+
+            EditorUtility.DrawFoldList("Available Impact Types", true, impactTypes.Length, (i) =>
+            {
+                var result = EditorGUILayout.ToggleLeft(impactTypes[i].ToString(), (skillAction.AvailableImpactType & impactTypes[i]) == impactTypes[i]);
+                skillAction.AvailableImpactType |= impactTypes[i];
+                if (!result)
+                    skillAction.AvailableImpactType ^= impactTypes[i];
+            });
+            
+
+            
             //serializedObject.ApplyModifiedProperties();
             //AssetDatabase.SaveAssets();
             //AssetDatabase.Refresh();

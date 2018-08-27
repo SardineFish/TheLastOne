@@ -1,16 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public enum ImpactType
+public enum ImpactType : int
 {
-    Targeted,
-    Collisional,
-    Areal,
-    Penetrative,
+    Collisional = 1,
+    Areal = 2,
+    Penetrative = 4,
+    Self = 8,
+    Targeted = 16,
 }
 public class SkillImpact : MonoBehaviour,IWeightedObject {
+    public static ImpactType[] ImpactTypes { get { return Enum.GetValues(typeof(ImpactType)).Cast<ImpactType>().ToArray(); } }
     public ImpactType ImpactType;
     public Entity Creator;
     public Entity ImpactTarget = null;
@@ -55,7 +58,7 @@ public class SkillImpact : MonoBehaviour,IWeightedObject {
 
     public void Distruct()
     {
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 
     private void FixedUpdate()

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,14 +9,21 @@ public class EntityBehavior<TEntity> : MonoBehaviour,IEventBehaviour where TEnti
     {
         get
         {
-            var trans = transform;
-            Next:
-            if (!trans)
-                return null;
-            if (trans.GetComponent<TEntity>())
-                return trans.GetComponent<TEntity>();
-            trans = trans.parent;
-            goto Next;
+            try
+            {
+                var trans = transform;
+                Next:
+                if (!trans)
+                    return null;
+                if (trans.GetComponent<TEntity>())
+                    return trans.GetComponent<TEntity>();
+                trans = trans.parent;
+                goto Next;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 

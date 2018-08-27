@@ -8,16 +8,26 @@ using UnityEngine.Events;
 
 public class SelectionGroup : EventBus
 {
+    private int selectedIndex = -1;
     public int SelectedIndex
     {
-        get { return SelectionButtons.IndexOf(Selected); }
-        set
-        {
-            SelectionButtons[value].Select();
-        }
+        get { return selectedIndex; }
+        set { Select(value); }
     }
 
-    public SelectionButton Selected = null;
+    public SelectionButton Selected
+    {
+        get
+        {
+            if (SelectedIndex < 0)
+                return null;
+            return SelectionButtons[SelectedIndex];
+        }
+        set
+        {
+            Select(value);
+        }
+    }
     public List<SelectionButton> SelectionButtons = new List<SelectionButton>();
     public const string EVENT_ON_SELECT_CHANGE = "OnSelectChange";
 
@@ -27,26 +37,39 @@ public class SelectionGroup : EventBus
         SelectionButtons = selections.ToList();
         for(var i=0;i<selections.Length;i++)
         {
-            selections[i].Index = i;
             selections[i].SelectionGroup = this;
         }
+
     }
 
     public void ClearSelection()
     {
-        foreach (var select in SelectionButtons)
-            select.Deselect();
-        SelectedIndex = -1;
-        Selected = null;
+        Select(-1);
     }
 
-    public void OnSelectedCallback(SelectionButton selectionButton)
+    public int IndexOf(SelectionButton selectionButton)
     {
-        SelectionButtons
-            .Where(selection => selection != selectionButton)
-            .ForEach(selection => selection.Deselect());
-        //SelectedIndex = SelectionButtons.IndexOf(selectionButton);
-        Selected = selectionButton;
-        Dispatch(EVENT_ON_SELECT_CHANGE, selectionButton);
+        return SelectionButtons.IndexOf(selectionButton);
+    }
+
+    public void Select(SelectionButton selectionButton)
+    {
+        Select(IndexOf(selectionButton));
+    }
+
+    public void Select(int idx)
+    {
+        if (idx == selectedIndex)
+            return;
+        if (idx >= SelectionButtons.Count)
+        {
+            throw new IndexOutOfRangeException();
+        }
+        Selected?.onDeselectedCallback();
+        selectedIndex = idx;
+        if (idx < 0)
+            return;
+        Selected?.OnSelectedCallback();
+        Dispatch(EVENT_ON_SELECT_CHANGE, SelectionButtons[idx]);
     }
 }

@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "SkillAction", menuName = "SkillAction")]
 public class SkillAction : ScriptableObject,IWeightedObject
@@ -12,6 +13,8 @@ public class SkillAction : ScriptableObject,IWeightedObject
     public SkillActionDict ActionsPerWeapon = new SkillActionDict();
     public Sprite Icon;
     public string DisplayName = "";
+    [HideInInspector]
+    public ImpactType AvailableImpactType;
 
     [SerializeField]
     private float weight = 1;

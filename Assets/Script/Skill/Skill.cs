@@ -5,6 +5,7 @@ public abstract class Skill : EntityBehavior<Entity>
 {
     public float CoolDown = 1;
 
+    public float MaxDistance = 5;
     protected float lastActiveTime = 0;
     // Use this for initialization
     void Start()
