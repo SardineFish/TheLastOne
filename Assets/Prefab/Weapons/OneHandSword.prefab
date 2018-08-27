@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4436810600314476}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: dagger_obj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 4283795231169356}
   - component: {fileID: 33723589699210158}
   - component: {fileID: 23989410504748100}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: 05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 4728494410532682}
   - component: {fileID: 114836660766067540}
   - component: {fileID: 114332701232255584}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: OneHandSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4800811665182230}
   - component: {fileID: 33845311625237528}
   - component: {fileID: 23114195343002094}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: 01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,9 +110,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1827701157343890}
-  m_LocalRotation: {x: 0.7069847, y: -0.000000020207931, z: -0.000000020200956, w: -0.70722884}
-  m_LocalPosition: {x: -298.51022, y: -2.1045542, z: -112.88612}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.7069847, y: 0.000000096752366, z: -0.000000097363596, w: 0.70722884}
+  m_LocalPosition: {x: 0.02338378, y: -0.073666126, z: 2.2188041}
+  m_LocalScale: {x: 1, y: 1.0000008, z: 0.99999964}
   m_Children:
   - {fileID: 4800811665182230}
   - {fileID: 4436810600314476}
@@ -244,5 +244,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba534e657269724991db02748efde47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CarryPostion: {x: -0.023369888, y: 2.218532, z: 0.0728839}
-  CarryRotation: {x: 0.70710677, y: 3.209045e-15, z: -3.209045e-15, w: 0.70710677}
+  CarryPostion: {x: -0.023402218, y: 2.2188349, z: 0.07297541}
+  CarryRotation: {x: 0.7069847, y: -0.00000009866116, z: 0.0000000986271, w: 0.70722884}

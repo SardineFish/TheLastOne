@@ -141,7 +141,6 @@ public class ActionManager : EntityBehavior<LifeBody>
 
     public bool Move(Vector2 movement)
     {
-        Debug.Log(movement);
         if (!CurrentAnimatorController.IsNull() && CurrentAnimatorController.GetCurrentAnimatorStateInfo(0).IsTag(AnimTagLock))
         {
             movementController.SetFloat("x", 0);

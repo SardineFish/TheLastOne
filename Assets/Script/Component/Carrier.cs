@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
+[ExecuteInEditMode]
 public class Carrier : MonoBehaviour
 {
     public CarriableObject Carrying;
@@ -16,6 +16,17 @@ public class Carrier : MonoBehaviour
     {
         if (!Carrying)
             Carrying = GetComponentInChildren<CarriableObject>();
+        if (Carrying && ! Carrying.Carrier)
+        {
+            var carryObj = Carrying;
+            Carrying = null;
+            carryObj.AttachTo(this);
+        }
+    }
+
+    void Attach()
+    {
+
     }
 
     public void Release()

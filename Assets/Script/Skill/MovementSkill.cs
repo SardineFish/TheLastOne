@@ -42,8 +42,8 @@ public class MovementSkill : AnimationSkill
 
     void RelaseCarry()
     {
-        (Entity as LifeBody).PrimaryHand?.Release();
-        (Entity as LifeBody).SecondaryHand?.Release();
+        //(Entity as LifeBody).PrimaryHand?.Release();
+        //(Entity as LifeBody).SecondaryHand?.Release();
 
     }
 
