@@ -65,8 +65,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1934435838546862}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.514617, y: 1.09652146e-17, z: -5.6489143}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.8, y: 0, z: -15.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4030222416757828}
@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82fd0e3b16e7bc04c91792806aa4e86f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NearRange: 1.89
 --- !u!114 &114486796545775616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -212,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09915f41d29731d44b0be573ca6f36b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ImpactType: 3
+  ImpactType: 4
   Creator: {fileID: 0}
   ImpactTarget: {fileID: 0}
   Collider: {fileID: 0}

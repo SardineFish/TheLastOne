@@ -23,7 +23,7 @@ public class SkillImpact : MonoBehaviour,IWeightedObject {
     public float ImpactAngle = 360;
     public float ImpactHeight = 4;
     public float PenetrateDistance = 1;
-    public float ImpactTime = 1;
+    public float LifeTime = 1;
     [SerializeField]
     public string DisplayName;
     public bool SingleDamage = false;
@@ -40,6 +40,7 @@ public class SkillImpact : MonoBehaviour,IWeightedObject {
         set { weight = value; }
     }
 
+    bool damageStarted = false;
     float ImpactStartTime;
     List<Entity> hitEntities = new List<Entity>();
     // Use this for initialization
@@ -63,7 +64,7 @@ public class SkillImpact : MonoBehaviour,IWeightedObject {
 
     private void FixedUpdate()
     {
-        if (ImpactTime > 0 && Time.fixedTime - ImpactStartTime > ImpactTime)
+        if (LifeTime > 0 && Time.fixedTime - ImpactStartTime > LifeTime)
         {
             Distruct();
             return;
@@ -71,6 +72,10 @@ public class SkillImpact : MonoBehaviour,IWeightedObject {
         if (SingleDamage && hitEntities.Count > 0)
             return;
 
+        if (!damageStarted)
+            return;
+
+        // Do damage
         if (ImpactType == ImpactType.Areal)
         {
             var colliders = Physics.OverlapCapsule(transform.position, transform.position + transform.up * ImpactHeight, ImpactRadius);
@@ -117,13 +122,10 @@ public class SkillImpact : MonoBehaviour,IWeightedObject {
 
     private void OnTriggerStay(Collider other)
     {
+        if (!damageStarted)
+            return;
         if(ImpactType == ImpactType.Collisional)
         {
-            if (ImpactTime > 0 && Time.fixedTime - ImpactStartTime > ImpactTime)
-            {
-                Distruct();
-                return;
-            }
             if (SingleDamage && hitEntities.Count > 0)
                 return;
 
@@ -170,6 +172,16 @@ public class SkillImpact : MonoBehaviour,IWeightedObject {
         ImpactStartPosition = position;
         ImpactDirection = direction;
         Activate();
+    }
+
+    public void StartDamage()
+    {
+        damageStarted = true;
+    }
+
+    public void EndDamage()
+    {
+        damageStarted = false;
     }
 
     private void OnDrawGizmos()

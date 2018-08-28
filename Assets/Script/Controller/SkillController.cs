@@ -33,13 +33,13 @@ public class SkillController : EntityBehavior<Entity> {
     public void OnWeaponDamageStart()
     {
         if(ActiveSkill)
-            ActiveSkill.OnWeaponDamageStart();
+            ActiveSkill.OnSkillDamageStart();
     }
 
     public void OnWeaponDamageEnd()
     {
         if(ActiveSkill)
-            ActiveSkill.OnWeaponDamageEnd();
+            ActiveSkill.OnSkillDamageEnd();
     }
 
     public bool ActivateSkill(int idx)

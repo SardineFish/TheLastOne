@@ -150,24 +150,40 @@ public class ConfigurableSkill : AnimationSkill
         }
     }
 
-    public override void OnWeaponDamageStart()
+    public override void OnSkillDamageStart()
     {
         SkillImpactInstance = Instantiate(SkillImpactPrefab);
         var impact = SkillImpactInstance.GetComponent<SkillImpact>();
         impact.Creator = Entity;
         impact.SkillEffects = CalculateSkillEffect();
-        impact.Activate(activatePos, activateDirection);
         impact.ImpactTarget = targetedEntity;
         impact.ImpactRadius = ImpactRadius;
         impact.ImpactAngle = ImpactAngle;
-
+        switch (ActivateMethod)
+        {
+            case ActivateMethod.Direction:
+                impact.Activate(Entity.transform.position, Entity.transform.forward);
+                break;
+            case ActivateMethod.Local:
+                impact.Activate(Entity);
+                break;
+            case ActivateMethod.Position:
+                impact.Activate(activatePos, activatePos);
+                break;
+            case ActivateMethod.TargetedEntity:
+                impact.Activate(targetedEntity);
+                break;
+        }
+        impact.StartDamage();
     }
 
 
-    public override void OnWeaponDamageEnd()
+    public override void OnSkillDamageEnd()
     {
         if (SkillImpactInstance)
-            SkillImpactInstance.GetComponent<SkillImpact>().Distruct();
+        {
+            SkillImpactInstance.GetComponent<SkillImpact>().EndDamage();
+        }
     }
 
     public void SetSkillData(SkillData skillData)
@@ -176,6 +192,20 @@ public class ConfigurableSkill : AnimationSkill
         ActivateMethod = ActivateMethod.Position;
         SkillImpactPrefab = skillData.SkillImpact.Asset as GameObject;
         SkillEffects = skillData.SkillEffect;
+        switch (skillData.SkillImpact.Asset.GetComponent<SkillImpact>().ImpactType)
+        {
+            case ImpactType.Areal:
+            case ImpactType.Collisional:
+            case ImpactType.Penetrative:
+                ActivateMethod = ActivateMethod.Direction;
+                break;
+            case ImpactType.Self:
+                ActivateMethod = ActivateMethod.Local;
+                break;
+            case ImpactType.Targeted:
+                ActivateMethod = ActivateMethod.TargetedEntity;
+                break;
+        }
     }
 
     public SkillEffectData[] CalculateSkillEffect()

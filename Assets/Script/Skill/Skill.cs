@@ -34,11 +34,11 @@ public abstract class Skill : EntityBehavior<Entity>
         return true;
     }
 
-    public virtual void OnWeaponDamageStart()
+    public virtual void OnSkillDamageStart()
     {
 
     }
-    public virtual void OnWeaponDamageEnd() 
+    public virtual void OnSkillDamageEnd() 
     {
 
     }
