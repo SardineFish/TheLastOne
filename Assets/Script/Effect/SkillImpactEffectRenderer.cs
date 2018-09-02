@@ -13,6 +13,10 @@ public class SkillImpactEffectRenderer : MonoBehaviour
             transform.Translate(Vector3.forward * NearRange, Space.Self);
             transform.localScale = new Vector3(1, 1, skillImpact.PenetrateDistance-NearRange);
         }
+        else if(skillImpact.ImpactType == ImpactType.Areal)
+        {
+            transform.localScale = new Vector3((skillImpact.ImpactRadius + NearRange) * 2, 1, skillImpact.ImpactRadius + NearRange);
+        }
     }
 
     // Update is called once per frame
