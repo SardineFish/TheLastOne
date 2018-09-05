@@ -4,6 +4,14 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
+public enum ActionFigure
+{
+    Sweep,
+    UpSlash,
+    DownAttack,
+    Stab,
+    TurnAround
+}
 [CreateAssetMenu(fileName = "SkillAction", menuName = "SkillAction")]
 public class SkillAction : ScriptableObject,IWeightedObject
 {
@@ -13,6 +21,7 @@ public class SkillAction : ScriptableObject,IWeightedObject
     public SkillActionDict ActionsPerWeapon = new SkillActionDict();
     public Sprite Icon;
     public string DisplayName = "";
+    public ActionFigure ActionFigure;
     [HideInInspector]
     public ImpactType AvailableImpactType;
 
