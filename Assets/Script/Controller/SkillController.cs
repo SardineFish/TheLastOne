@@ -49,6 +49,7 @@ public class SkillController : EntityBehavior<Entity> {
             if (Skills[idx].Activate())
             {
                 ActiveSkill = Skills[idx];
+                Debug.Log("Activated " + ActiveSkill.name);
                 return true;
             }
         }
@@ -62,6 +63,7 @@ public class SkillController : EntityBehavior<Entity> {
             if (Skills[idx].Activate(target))
             {
                 ActiveSkill = Skills[idx];
+                Debug.Log("Activated " + ActiveSkill.name);
                 return true;
             }
         }
@@ -75,6 +77,7 @@ public class SkillController : EntityBehavior<Entity> {
             if (Skills[idx].Activate(target))
             {
                 ActiveSkill = Skills[idx];
+                Debug.Log("Activated " + ActiveSkill.name);
                 return true;
             }
         }
@@ -86,6 +89,7 @@ public class SkillController : EntityBehavior<Entity> {
         if( MovementSkill.Activate(movement.ToVector3XZ()))
         {
             ActiveSkill = MovementSkill;
+            Debug.Log("Activated " + ActiveSkill.name);
             return true;
         }
         return false;

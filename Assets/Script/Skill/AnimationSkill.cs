@@ -32,7 +32,7 @@ public class AnimationSkill:Skill
                 return true;
             }
         }
-        return true;
+        return false;
     }
 
     public override bool Activate(Vector3 target, params object[] additionalData)
@@ -47,7 +47,7 @@ public class AnimationSkill:Skill
                 return true;
             }
         }
-        return true;
+        return false;
     }
 
     public override bool Activate(Entity target, params object[] additionalData)
@@ -62,7 +62,7 @@ public class AnimationSkill:Skill
                 return true;
             }
         }
-        return true;
+        return false;
     }
 
     public virtual void Update()
