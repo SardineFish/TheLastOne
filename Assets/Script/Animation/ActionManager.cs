@@ -31,6 +31,7 @@ public class ActionManager : EntityBehavior<LifeBody>
     float transTotalTime = 0;
     float weight = 1;
     int currentConnectedIdx = 1;
+    float movementLayerWeight = 1;
 
     // Use this for initialization
     void Start ()
@@ -67,12 +68,20 @@ public class ActionManager : EntityBehavior<LifeBody>
 	void Update () {
         if (!CurrentAnimatorController.IsNull() && CurrentAnimatorController.GetCurrentAnimatorStateInfo(0).IsTag(AnimTagLock))
         {
+            movementLayerWeight -= 0.2f / Time.deltaTime;
+            movementLayerWeight = movementLayerWeight < 0 ? 0 : movementLayerWeight;
             layerMixer.SetInputWeight(1, 0);
         }
         else
         {
+            movementLayerWeight += 0.2f / Time.deltaTime;
+            movementLayerWeight = movementLayerWeight > 1 ? 1 : movementLayerWeight;
             layerMixer.SetInputWeight(1, 1);
         }
+
+        /*layerMixer.SetInputWeight(1, movementLayerWeight);
+        layerMixer.SetInputWeight(0, 1 - movementLayerWeight);*/
+
         if (transTotalTime <= 0)
             weight = 1;
         else

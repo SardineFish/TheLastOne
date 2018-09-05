@@ -144,18 +144,12 @@ public static class Utility
         callback?.Invoke();
     }
 
-    public static void WaitForSecond(this MonoBehaviour context, Action callback, float seconds = 0)
+    public static Coroutine NumericAnimate(this MonoBehaviour context, float time, Action<float> callback)
     {
-        context.StartCoroutine(WaitForSecondEnumerator(callback, seconds));
+        return context.StartCoroutine(NumericAnimateEnumerator(time, callback));
     }
 
-    public static IEnumerator WaitForSecondEnumerator(Action callback,float seconds = 0)
-    {
-        yield return new WaitForSeconds(seconds);
-        callback?.Invoke();
-    }
-
-    public static IEnumerator Animate(float time,Action<float> callback)
+    public static IEnumerator NumericAnimateEnumerator(float time, Action<float> callback)
     {
         var startTime = Time.time;
         for (float t = 0; t < time; t = Time.time - startTime)
@@ -164,5 +158,17 @@ public static class Utility
             yield return new WaitForEndOfFrame();
         }
         callback(1);
+    }
+
+    public static void WaitForSecond(this MonoBehaviour context, Action callback, float seconds = 0)
+    {
+        context.StartCoroutine(WaitForSecondEnumerator(callback, seconds));
+        
+    }
+
+    public static IEnumerator WaitForSecondEnumerator(Action callback,float seconds = 0)
+    {
+        yield return new WaitForSeconds(seconds);
+        callback?.Invoke();
     }
 }

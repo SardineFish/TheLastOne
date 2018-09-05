@@ -1957,6 +1957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoolDown: 1
+  MaxDistance: 5
   AnimatorController: {fileID: 9100000, guid: 5c123c3d567181c449e307b3cd30152e, type: 2}
   MaxSpeed: 1
   TurnSpeed: 360
@@ -2023,7 +2024,7 @@ MonoBehaviour:
   Selected: {fileID: 1827701157343890, guid: 7b050e5cc46d62b499d9cfe6ea2d10e7, type: 2}
   Items:
   - {fileID: 1827701157343890, guid: 7b050e5cc46d62b499d9cfe6ea2d10e7, type: 2}
-  - {fileID: 1956231425985240, guid: 13a594947e1e8d84990ff4d41f04fc54, type: 2}
+  - {fileID: 1039136269929878, guid: 549201fae4fca3c4197d62158dea4d55, type: 2}
 --- !u!114 &114800603662223780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2102,6 +2103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoolDown: 1
+  MaxDistance: 5
   AnimatorController: {fileID: 0}
 --- !u!114 &114985110927280898
 MonoBehaviour:
