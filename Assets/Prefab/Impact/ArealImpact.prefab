@@ -53,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1160942105668764}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.4173048, y: 2.970196e-17, z: -15.301462}
+  m_LocalPosition: {x: 6.0663934, y: 1.752552e-17, z: -6.3142343}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4920274345362170}
@@ -68,7 +68,7 @@ Transform:
   m_GameObject: {fileID: 1199177486496320}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.04, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4637580735089018}
   m_RootOrder: 0
@@ -88,7 +88,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: f8af10ae2c674e569782e57b09c76a13, type: 2}
+  - {fileID: 2100000, guid: 32b3bdbf45916ad488a76dd4b8750895, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NearRange: 1.8
+  EffectVisibleTime: 0.05
 --- !u!114 &114244650437261154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -164,7 +165,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0.5}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 2100000, guid: f8af10ae2c674e569782e57b09c76a13, type: 2}
+    _mat: {fileID: 2100000, guid: 32b3bdbf45916ad488a76dd4b8750895, type: 2}
     manualUV: 1
     textureGroup: -1
   _sharedIndices:

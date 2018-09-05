@@ -144,6 +144,17 @@ public static class Utility
         callback?.Invoke();
     }
 
+    public static void WaitForSecond(this MonoBehaviour context, Action callback, float seconds = 0)
+    {
+        context.StartCoroutine(WaitForSecondEnumerator(callback, seconds));
+    }
+
+    public static IEnumerator WaitForSecondEnumerator(Action callback,float seconds = 0)
+    {
+        yield return new WaitForSeconds(seconds);
+        callback?.Invoke();
+    }
+
     public static IEnumerator Animate(float time,Action<float> callback)
     {
         var startTime = Time.time;
