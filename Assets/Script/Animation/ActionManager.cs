@@ -163,4 +163,18 @@ public class ActionManager : EntityBehavior<LifeBody>
             return true;
         }
     }
+
+    public bool Turn(float angle)
+    {
+        if (!CurrentAnimatorController.IsNull() && CurrentAnimatorController.GetCurrentAnimatorStateInfo(0).IsTag(AnimTagLock))
+        {
+            return false;
+        }
+        else
+        {
+
+            Entity.transform.Rotate(0, -angle, 0, Space.Self);
+            return true;
+        }
+    }
 }

@@ -19,6 +19,6 @@ public class PlayerController : EntityController
         if (Mathf.Abs(ang) > TurnSpeed * Time.deltaTime)
             ang = Mathf.Sign(ang) * TurnSpeed * Time.deltaTime;
 
-        Entity.transform.Rotate(0, -ang, 0, Space.Self);
+        GetComponent<ActionManager>().Turn(ang);
     }
 }
