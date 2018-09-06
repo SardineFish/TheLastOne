@@ -18,14 +18,14 @@ public class UIHoverManager: Singleton<UIHoverManager>
             var obj = transform.GetChild(i).gameObject;
             if (!UIHoverList.ContainsValue(obj))
             {
-                if(Application.isPlaying)
+                try
                 {
                     Destroy(obj);
                 }
-                else
+                catch
                 {
                     DestroyImmediate(obj);
-                    i--;
+                    //i--;
                 }
             }
         }
