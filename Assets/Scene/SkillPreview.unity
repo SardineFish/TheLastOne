@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44636285, g: 0.49617064, b: 0.5746874, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -288,6 +288,7 @@ GameObject:
   - component: {fileID: 1698356190}
   - component: {fileID: 1698356189}
   - component: {fileID: 1698356188}
+  - component: {fileID: 1698356191}
   m_Layer: 8
   m_Name: PreviewCamera
   m_TagString: Untagged
@@ -322,9 +323,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 26.991467
+  near clip plane: 0.1
+  far clip plane: 5000
+  field of view: 40
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -348,13 +349,30 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1698356187}
-  m_LocalRotation: {x: 0.1332981, y: -0, z: -0, w: 0.991076}
-  m_LocalPosition: {x: -0.16, y: 6.02, z: -14.05}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.43, z: -8.669998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1536811933}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 15.320001, y: 0, z: 0}
+--- !u!114 &1698356191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1698356187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f784ad15c2b0a48b0933799bf94af6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BindTo: {fileID: 2009277321}
+  BindPosition: 1
+  BindRotation: 1
+  targetOriginRotation: {x: -0, y: 0.81530064, z: -0, w: 0.57903796}
+  relativeRotation: {x: 0, y: -0.81530064, z: 0, w: 0.57903796}
+  relativePosition: {x: 8.18604, y: 2.43, z: 2.8561594}
 --- !u!1 &1817590691
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,5 +820,10 @@ Prefab:
 --- !u!4 &2009277320 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4784288646392814, guid: 31e1ecceba02c474fb1f6f0689d0bdbf,
+    type: 2}
+  m_PrefabInternal: {fileID: 2009277319}
+--- !u!1 &2009277321 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1649042922696496, guid: 31e1ecceba02c474fb1f6f0689d0bdbf,
     type: 2}
   m_PrefabInternal: {fileID: 2009277319}
