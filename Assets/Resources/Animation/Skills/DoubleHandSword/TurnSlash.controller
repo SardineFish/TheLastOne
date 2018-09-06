@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Slash-Light-Retatus-2
+  m_Name: TurnSlash
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: active
@@ -30,7 +30,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Base Layer
     m_StateMachine: {fileID: 1107824617098834110}
-    m_Mask: {fileID: 31900000, guid: 3fb39d11a7733364491f60a238c1872d, type: 2}
+    m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -39,6 +39,30 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
+--- !u!1101 &1101122787579413542
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: active
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 1102554190224651406}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.08512545
+  m_TransitionOffset: 0
+  m_ExitTime: 0.9574373
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1101 &1101208765327641756
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -105,30 +129,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1101 &1101537264727381760
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: active
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 1102554190224651406}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0.02302897
-  m_TransitionOffset: 0
-  m_ExitTime: 0.9881903
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
 --- !u!1102 &1102046554333254108
 AnimatorState:
   serializedVersion: 5
@@ -139,11 +139,11 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: 1101537264727381760}
+  - {fileID: 1101122787579413542}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
+  m_WriteDefaultValues: 0
   m_Mirror: 0
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
@@ -161,7 +161,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Slash
+  m_Name: TurnSlash
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -175,8 +175,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2a67d9f412477734390ed1948ffb807d, type: 2}
-  m_Tag: 
+  m_Motion: {fileID: 7400000, guid: 4764f2581f5b14e4d8ba7c6457ad874f, type: 2}
+  m_Tag: Lock
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 

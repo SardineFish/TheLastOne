@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Slash-Light-Retatus-2
+  m_Name: JumpAttack
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: active
@@ -30,7 +30,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Base Layer
     m_StateMachine: {fileID: 1107824617098834110}
-    m_Mask: {fileID: 31900000, guid: 3fb39d11a7733364491f60a238c1872d, type: 2}
+    m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -121,9 +121,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.02302897
+  m_TransitionDuration: 0.29901457
   m_TransitionOffset: 0
-  m_ExitTime: 0.9881903
+  m_ExitTime: 0.9174247
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -143,7 +143,7 @@ AnimatorState:
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
+  m_WriteDefaultValues: 0
   m_Mirror: 0
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
@@ -161,7 +161,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Slash
+  m_Name: JumpAttack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -175,8 +175,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2a67d9f412477734390ed1948ffb807d, type: 2}
-  m_Tag: 
+  m_Motion: {fileID: 7400000, guid: d9283759e90299c45936bf952dd2cfb9, type: 2}
+  m_Tag: Lock
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
