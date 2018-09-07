@@ -44,4 +44,15 @@ public class EntityController : EntityBehavior<Entity>
     {
         CurrentFacing = new Vector2(transform.forward.x, transform.forward.z);
     }
+
+    public virtual void Move(Vector2 direction)
+    {
+        var forward = CurrentFacing.ToVector3XZ();
+        var right = Vector3.Cross(Vector3.up, forward).ToVector2XZ().normalized;
+        var relativeDir = new Vector2(Vector2.Dot(direction, right), Vector2.Dot(direction, CurrentFacing.normalized));
+
+    }
+    public virtual void FaceTo(Vector3 direction)
+    {
+    }
 }
