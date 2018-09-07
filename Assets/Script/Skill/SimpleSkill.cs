@@ -3,6 +3,7 @@ using System.Collections;
 
 public class SimpleSkill : AnimationSkill
 {
+    public SkillImpact SkillImpact;
     public override bool Activate(params object[] additionalData)
     {
         if (!base.Activate(additionalData))
