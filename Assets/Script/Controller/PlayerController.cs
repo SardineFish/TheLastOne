@@ -9,7 +9,7 @@ public class PlayerController : EntityController
         var forward = CurrentFacing.ToVector3XZ();
         var right = Vector3.Cross( Vector3.up, forward).ToVector2XZ().normalized;
         var relativeDir = new Vector2(Vector2.Dot(direction,right),Vector2.Dot(direction,CurrentFacing.normalized));
-        GetComponent<ActionManager>().Move(relativeDir);
+        GetComponent<PlayerActionManager>().Move(relativeDir);
 
     }
     public override void FaceTo(Vector3 direction)
@@ -19,6 +19,6 @@ public class PlayerController : EntityController
         if (Mathf.Abs(ang) > TurnSpeed * Time.deltaTime)
             ang = Mathf.Sign(ang) * TurnSpeed * Time.deltaTime;
 
-        GetComponent<ActionManager>().Turn(ang);
+        GetComponent<PlayerActionManager>().Turn(ang);
     }
 }

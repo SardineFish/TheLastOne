@@ -38,12 +38,12 @@ GameObject:
   - component: {fileID: 54085690803202328}
   - component: {fileID: 114532146700222938}
   - component: {fileID: 95747169387647066}
-  - component: {fileID: 114313838624962136}
   - component: {fileID: 114459740616320830}
-  - component: {fileID: 114699991253156372}
   - component: {fileID: 114758794316281428}
   - component: {fileID: 114218040104641148}
   - component: {fileID: 114834123720345644}
+  - component: {fileID: 114386139228676230}
+  - component: {fileID: 114530862953282116}
   m_Layer: 14
   m_Name: Monster-Mouse
   m_TagString: Untagged
@@ -551,7 +551,7 @@ MonoBehaviour:
     max: 100
   Value: 100
   UIObject: {fileID: 0}
---- !u!114 &114313838624962136
+--- !u!114 &114386139228676230
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -559,7 +559,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1100841684186396}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c9e4da34f9d2f140acd4f5a2fb5d571, type: 3}
+  m_Script: {fileID: 11500000, guid: beb60c5cdaacd2c4ebb5974f914b8dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultMovement: {fileID: 9100000, guid: 442ff1a801d3c8e41aaede94d01bc74a, type: 2}
@@ -579,6 +579,30 @@ MonoBehaviour:
   - {fileID: 114773241681386948}
   ActiveSkill: {fileID: 114773241681386948}
   MovementSkill: {fileID: 114773241681386948}
+--- !u!114 &114530862953282116
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1100841684186396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9122d5280f2623428227f88a3373123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WalkSpeed: 0
+  TurnSpeed: 180
+  RunSpeed: 0
+  JumpSpeed: 0
+  FlySpeed: 0
+  Animator: {fileID: 95747169387647066}
+  CurrentFacing: {x: -0.716761, y: -0.69731915}
+  CurrentMovement: {x: 0, y: 0}
+  CurrentSpeed: 0
+  MovementSkill: {fileID: 0}
+  MovementAnimator: {fileID: 0}
+  AttackAnimator: {fileID: 0}
+  DeathAnimator: {fileID: 0}
 --- !u!114 &114532146700222938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -596,27 +620,6 @@ MonoBehaviour:
   GroundDrag: 3
   AirDrag: 0
   OnGround: 0
---- !u!114 &114699991253156372
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1100841684186396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3a37d15ad527c748bed6a52de30e24f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WalkSpeed: 1
-  TurnSpeed: 0
-  RunSpeed: 0
-  JumpSpeed: 0
-  FlySpeed: 0
-  Animator: {fileID: 95747169387647066}
-  CurrentFacing: {x: -0.716761, y: -0.69731915}
-  CurrentMovement: {x: 0, y: 0}
-  CurrentSpeed: 0
-  MovementSkill: {fileID: 0}
 --- !u!114 &114758794316281428
 MonoBehaviour:
   m_ObjectHideFlags: 1

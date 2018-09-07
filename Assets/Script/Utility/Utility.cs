@@ -144,20 +144,21 @@ public static class Utility
         callback?.Invoke();
     }
 
-    public static Coroutine NumericAnimate(this MonoBehaviour context, float time, Action<float> callback)
+    public static Coroutine NumericAnimate(this MonoBehaviour context, float time, Action<float> tick, Action complete = null)
     {
-        return context.StartCoroutine(NumericAnimateEnumerator(time, callback));
+        return context.StartCoroutine(NumericAnimateEnumerator(time, tick, complete));
     }
 
-    public static IEnumerator NumericAnimateEnumerator(float time, Action<float> callback)
+    public static IEnumerator NumericAnimateEnumerator(float time, Action<float> callback, Action complete)
     {
         var startTime = Time.time;
         for (float t = 0; t < time; t = Time.time - startTime)
         {
-            callback(t / time);
+            callback?.Invoke(t / time);
             yield return new WaitForEndOfFrame();
         }
-        callback(1);
+        callback?.Invoke(1);
+        complete?.Invoke();
     }
 
     public static void WaitForSecond(this MonoBehaviour context, Action callback, float seconds = 0)

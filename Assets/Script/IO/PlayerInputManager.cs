@@ -9,7 +9,7 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
 {
     public Entity PlayerInControl;
 
-    public PlayerController PlayerController;
+    public EntityController EntityController;
 
     public SkillController SkillController;
 
@@ -27,7 +27,7 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
         if (!MovementInput)
             MovementInput = GetComponentInChildren<MovementInput>();
         SkillController = PlayerInControl.GetComponent<SkillController>();
-        PlayerController = PlayerInControl.GetComponent<PlayerController>();
+        EntityController = PlayerInControl.GetComponent<EntityController>();
     }
 
     public void Update()
@@ -49,8 +49,8 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
         {
             PlayerInControl.GetComponent<Equipments>().Switch();
         }
-        PlayerController.Move(MovementInput.GetMovement());
-        PlayerController.FaceTo(InputManager.Instance.MouseOnGround() - PlayerInControl.transform.position);
+        EntityController.Move(MovementInput.GetMovement());
+        EntityController.FaceTo(InputManager.Instance.MouseOnGround() - PlayerInControl.transform.position);
         //SkillController.ActivateMovementSkill(MovementInput.GetMovement());
         
     }

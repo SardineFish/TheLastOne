@@ -13,9 +13,23 @@ public class SimpleLifeController : EntityController
 
     public override void Move(Vector2 direction)
     {
+        if (direction.magnitude <= 0.01)
+        {
+            Entity.GetComponent<SimpleActionManager>().Move(new Vector2(0, 0));
+            return;
+        }
         var forward = CurrentFacing.ToVector3XZ();
         var right = Vector3.Cross(Vector3.up, forward).ToVector2XZ().normalized;
         var relativeDir = new Vector2(Vector2.Dot(direction, right), Vector2.Dot(direction, CurrentFacing.normalized));
+
+        var ang = MathUtility.MapAngle(MathUtility.ToAng(direction) - MathUtility.ToAng(CurrentFacing));
+
+        if (Mathf.Abs(ang) > TurnSpeed * Time.deltaTime)
+            ang = Mathf.Sign(ang) * TurnSpeed * Time.deltaTime;
+        
+        Entity.transform.Rotate(0, -ang, 0, Space.Self);
+
+        Entity.GetComponent<SimpleActionManager>().Move(new Vector2(0, 1));
     }
 
     public override void FaceTo(Vector3 direction)

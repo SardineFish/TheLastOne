@@ -21,7 +21,7 @@ public class Equipments : EntityBehavior<LifeBody>
     GameObject weaponToDraw;
     public void Switch()
     {
-        var actionManager = Entity.GetComponent<ActionManager>();
+        var actionManager = Entity.GetComponent<PlayerActionManager>();
         if (Selected && !actionManager.ChangeAction(actionManager.SheathSword.GetAction(Selected)))
         {
             return;
@@ -47,7 +47,7 @@ public class Equipments : EntityBehavior<LifeBody>
 
     public void OnEndUnequip()
     {
-        var actionManager = Entity.GetComponent<ActionManager>();
+        var actionManager = Entity.GetComponent<PlayerActionManager>();
         if (weaponToDraw)
         {
             if (!actionManager.ChangeAction(actionManager.DrawSword.GetAction(weaponToDraw)))

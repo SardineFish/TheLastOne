@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Playables;
 
-public class ActionManager : EntityBehavior<LifeBody>
+public class PlayerActionManager : EntityBehavior<LifeBody>
 {
     public const string AnimTagEnd = "End";
     public const string AnimTagBegin = "Begin";
