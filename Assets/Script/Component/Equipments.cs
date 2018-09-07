@@ -3,7 +3,7 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 
-public class Equipments : MonoBehaviour
+public class Equipments : EntityBehavior<LifeBody>
 {
     public GameObject Selected;
     public int SelectedIndex
@@ -17,8 +17,46 @@ public class Equipments : MonoBehaviour
         }
     }
     public List<GameObject> Items = new List<GameObject>();
+
+    GameObject weaponToDraw;
     public void Switch()
     {
-        Selected = Items[(Items.IndexOf(Selected) + 1) % Items.Count];
+        var actionManager = Entity.GetComponent<ActionManager>();
+        if (Selected && !actionManager.ChangeAction(actionManager.SheathSword.GetAction(Selected)))
+        {
+            return;
+        }
+        weaponToDraw = Selected = Items[(Items.IndexOf(Selected) + 1) % Items.Count];
+    }
+
+    public void OnEquip()
+    {
+        var equipment = Utility.Instantiate(Selected, Entity.gameObject.scene);
+        equipment.GetComponent<CarriableObject>().AttachTo(Entity.PrimaryHand);
+    }
+
+    public void OnUnequip()
+    {
+        Entity.PrimaryHand.Release();
+    }
+
+    public void OnEndEquip()
+    {
+
+    }
+
+    public void OnEndUnequip()
+    {
+        var actionManager = Entity.GetComponent<ActionManager>();
+        if (weaponToDraw)
+        {
+            if (!actionManager.ChangeAction(actionManager.DrawSword.GetAction(weaponToDraw)))
+            {
+                this.NextFrame(OnEndUnequip);
+                return;
+            }
+            Selected = weaponToDraw;
+            weaponToDraw = null;
+        }
     }
 }

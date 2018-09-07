@@ -137,6 +137,7 @@ public class ConfigurableSkill : AnimationSkill
 
     private void AttachWeapon()
     {
+        return;
         var carrier = (Entity as LifeBody).PrimaryHand;
 
         if (Entity.GetComponent<SkillController>().ActiveSkill == this && carrier.Carrying)

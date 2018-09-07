@@ -32,4 +32,9 @@ public class SkillAction : ScriptableObject,IWeightedObject
         get { return weight; }
         set { weight = value; }
     }
+
+    public RuntimeAnimatorController GetAction(GameObject weapon)
+    {
+        return ActionsPerWeapon[WeaponSystem.Instance.GetAssetObject<WeaponSystem.AssetObject>(weapon)];
+    }
 }

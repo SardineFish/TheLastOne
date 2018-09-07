@@ -12,6 +12,8 @@ public class ActionManager : EntityBehavior<LifeBody>
     public const string AnimTagLock = "Lock";
 
     public RuntimeAnimatorController DefaultMovement;
+    public SkillAction DrawSword;
+    public SkillAction SheathSword;
 
     public AnimatorControllerPlayable CurrentAnimatorController{ get { return currentAnimatorPlayable; } }
 
