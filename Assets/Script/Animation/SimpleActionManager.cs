@@ -119,4 +119,13 @@ public class SimpleActionManager : ActionManagerBase
         CurrentAnimatorPlayable.SetFloat("y", movement.y);
         return true;
     }
+
+    public override bool Turn(float angle)
+    {
+        if (!ChangeAction(DefaultMovement))
+            return false;
+        
+        Entity.transform.Rotate(0, -angle, 0, Space.Self);
+        return true;
+    }
 }

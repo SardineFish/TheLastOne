@@ -162,7 +162,7 @@ public class PlayerActionManager : ActionManagerBase
         }
     }
 
-    public bool Turn(float angle)
+    public override bool Turn(float angle)
     {
         if (!CurrentAnimatorPlayable.IsNull() && CurrentAnimatorPlayable.GetCurrentAnimatorStateInfo(0).IsTag(AnimTagLock))
         {

@@ -15,4 +15,5 @@ public abstract class ActionManagerBase : EntityBehavior<LifeBody>
     public abstract bool ChangeAction(RuntimeAnimatorController animatorController);
 
     public abstract bool Move(Vector2 movement);
+    public abstract bool Turn(float angle);
 }
