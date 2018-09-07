@@ -203,6 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NearRange: 1.89
   EffectVisibleTime: 0.05
+  ImpactEffectType: 1
 --- !u!114 &114486796545775616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -219,6 +220,7 @@ MonoBehaviour:
   ImpactTarget: {fileID: 0}
   Collider: {fileID: 0}
   SkillEffects: []
+  Skill: {fileID: 0}
   ImpactRadius: 0.92
   ImpactAngle: 80
   ImpactHeight: 4

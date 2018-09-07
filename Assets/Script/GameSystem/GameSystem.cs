@@ -9,6 +9,7 @@ using UnityEngine;
 public class GameSystem : Singleton<GameSystem>
 {
     public Entity PlayerInControl;
+    public Camera MainCamera => GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
     void Start()
     {
         if (Application.isPlaying)

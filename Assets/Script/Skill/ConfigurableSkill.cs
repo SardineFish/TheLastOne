@@ -155,6 +155,7 @@ public class ConfigurableSkill : AnimationSkill
     {
         SkillImpactInstance = Instantiate(SkillImpactPrefab);
         var impact = SkillImpactInstance.GetComponent<SkillImpact>();
+        impact.Skill = this;
         impact.Creator = Entity;
         impact.SkillEffects = CalculateSkillEffect();
         impact.ImpactTarget = targetedEntity;
