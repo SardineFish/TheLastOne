@@ -21,15 +21,15 @@ public class MovementSkill : AnimationSkill
     public virtual void Jump()
     {
         if (Activate())
-            Entity.GetComponent<PlayerActionManager>().CurrentAnimatorController.SetTrigger(AnimJump);
+            Entity.GetComponent<PlayerActionManager>().CurrentAnimatorPlayable.SetTrigger(AnimJump);
     }
     public virtual void KnockBack(Vector3 direction)
     {
         Entity.GetComponent<CustomRigidBody>().AddForce(direction, ForceMode.Impulse);
         if (Activate())
         {
-            if (!Entity.GetComponent<PlayerActionManager>().CurrentAnimatorController.GetCurrentAnimatorStateInfo(0).IsName(AnimNameKnockBack))
-                Entity.GetComponent<PlayerActionManager>().CurrentAnimatorController.SetTrigger(AnimKnockBack);
+            if (!Entity.GetComponent<PlayerActionManager>().CurrentAnimatorPlayable.GetCurrentAnimatorStateInfo(0).IsName(AnimNameKnockBack))
+                Entity.GetComponent<PlayerActionManager>().CurrentAnimatorPlayable.SetTrigger(AnimKnockBack);
             TurnImmediate(-direction);
         }
     }
@@ -64,18 +64,18 @@ public class MovementSkill : AnimationSkill
         {
             if (Entity.GetComponent<SkillController>().ActiveSkill == this)
             {
-                Entity.GetComponent<PlayerActionManager>().CurrentAnimatorController.SetFloat(AnimSpeed, 0);
-                Entity.GetComponent<PlayerActionManager>().CurrentAnimatorController.SetFloat(AnimMoveX, 0);
-                Entity.GetComponent<PlayerActionManager>().CurrentAnimatorController.SetFloat(AnimMoveY, 0);
+                Entity.GetComponent<PlayerActionManager>().CurrentAnimatorPlayable.SetFloat(AnimSpeed, 0);
+                Entity.GetComponent<PlayerActionManager>().CurrentAnimatorPlayable.SetFloat(AnimMoveX, 0);
+                Entity.GetComponent<PlayerActionManager>().CurrentAnimatorPlayable.SetFloat(AnimMoveY, 0);
                 RelaseCarry();
                 return true;
             }
         }
         else if (Entity.GetComponent<PlayerActionManager>().ChangeAction(AnimatorController))
         {
-            Entity.GetComponent<PlayerActionManager>().CurrentAnimatorController.SetFloat(AnimSpeed, Mathf.Clamp01(direction.magnitude) * MaxSpeed);
-            Entity.GetComponent<PlayerActionManager>().CurrentAnimatorController.SetFloat(AnimMoveX, direction.x);
-            Entity.GetComponent<PlayerActionManager>().CurrentAnimatorController.SetFloat(AnimMoveY, direction.z);
+            Entity.GetComponent<PlayerActionManager>().CurrentAnimatorPlayable.SetFloat(AnimSpeed, Mathf.Clamp01(direction.magnitude) * MaxSpeed);
+            Entity.GetComponent<PlayerActionManager>().CurrentAnimatorPlayable.SetFloat(AnimMoveX, direction.x);
+            Entity.GetComponent<PlayerActionManager>().CurrentAnimatorPlayable.SetFloat(AnimMoveY, direction.z);
 
             var ang = MathUtility.MapAngle(MathUtility.ToAng(direction.ToVector2XZ()) - MathUtility.ToAng(Entity.GetComponent<EntityController>().CurrentFacing));
 

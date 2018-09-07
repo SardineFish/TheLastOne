@@ -10,7 +10,7 @@ public class AnimationSkill:Skill
 {
     public const string AnimActiveTrigger = "active";
     public RuntimeAnimatorController AnimatorController;
-    PlayerActionManager actionManager => Entity.GetComponent<PlayerActionManager>();
+    ActionManagerBase actionManager => Entity.GetComponent<ActionManagerBase>();
 
     [ExecuteInEditMode]
     private void OnEnable()
@@ -24,10 +24,10 @@ public class AnimationSkill:Skill
     {
         if (base.Activate(additionalData) && actionManager)
         {
-            if(Entity.GetComponent<PlayerActionManager>().ChangeAction(AnimatorController))
+            if(Entity.GetComponent<ActionManagerBase>().ChangeAction(AnimatorController))
             {
                 lastActiveTime = Time.time;
-                Entity.GetComponent<PlayerActionManager>().CurrentAnimatorController.SetTrigger(AnimActiveTrigger);
+                Entity.GetComponent<ActionManagerBase>().CurrentAnimatorPlayable.SetTrigger(AnimActiveTrigger);
                 //animator.SetTrigger(AnimActiveTrigger);
                 return true;
             }
@@ -39,10 +39,10 @@ public class AnimationSkill:Skill
     {
         if(base.Activate(target,additionalData) && actionManager)
         {
-            if (Entity.GetComponent<PlayerActionManager>().ChangeAction(AnimatorController))
+            if (Entity.GetComponent<ActionManagerBase>().ChangeAction(AnimatorController))
             {
                 lastActiveTime = Time.time;
-                Entity.GetComponent<PlayerActionManager>().CurrentAnimatorController.SetTrigger(AnimActiveTrigger);
+                Entity.GetComponent<ActionManagerBase>().CurrentAnimatorPlayable.SetTrigger(AnimActiveTrigger);
                 //animator.SetTrigger(AnimActiveTrigger);
                 return true;
             }
@@ -54,10 +54,10 @@ public class AnimationSkill:Skill
     {
         if (base.Activate(target,additionalData) && actionManager)
         {
-            if (Entity.GetComponent<PlayerActionManager>().ChangeAction(AnimatorController))
+            if (Entity.GetComponent<ActionManagerBase>().ChangeAction(AnimatorController))
             {
                 lastActiveTime = Time.time;
-                Entity.GetComponent<PlayerActionManager>().CurrentAnimatorController.SetTrigger(AnimActiveTrigger);
+                Entity.GetComponent<ActionManagerBase>().CurrentAnimatorPlayable.SetTrigger(AnimActiveTrigger);
                 //animator.SetTrigger(AnimActiveTrigger);
                 return true;
             }
@@ -73,10 +73,10 @@ public class AnimationSkill:Skill
             return;
         if(actionManager)
         { 
-            var state = actionManager.CurrentAnimatorController.GetCurrentAnimatorStateInfo(0);
-            if (state.IsTag(PlayerActionManager.AnimTagEnd) && Entity.GetComponent<PlayerActionManager>())
+            var state = actionManager.CurrentAnimatorPlayable.GetCurrentAnimatorStateInfo(0);
+            if (state.IsTag(ActionManagerBase.AnimTagEnd) && Entity.GetComponent<ActionManagerBase>())
             {
-                Entity.GetComponent<PlayerActionManager>().EnableMovement();
+                //Entity.GetComponent<ActionManagerBase>().EnableMovement();
                 return;
             }
         }

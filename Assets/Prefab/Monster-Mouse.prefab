@@ -34,10 +34,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4174747879704010}
+  - component: {fileID: 95747169387647066}
   - component: {fileID: 136430105681677148}
   - component: {fileID: 54085690803202328}
   - component: {fileID: 114532146700222938}
-  - component: {fileID: 95747169387647066}
   - component: {fileID: 114459740616320830}
   - component: {fileID: 114758794316281428}
   - component: {fileID: 114218040104641148}
@@ -134,7 +134,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4567026793145100}
-  - component: {fileID: 114166485439260544}
+  - component: {fileID: 114102774979618642}
   m_Layer: 14
   m_Name: Attack
   m_TagString: Untagged
@@ -248,22 +248,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1952362407149266
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4889127865538822}
-  - component: {fileID: 114773241681386948}
-  m_Layer: 14
-  m_Name: Movement
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &4005297109956696
 Transform:
   m_ObjectHideFlags: 1
@@ -289,7 +273,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4567026793145100}
-  - {fileID: 4889127865538822}
   m_Father: {fileID: 4174747879704010}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -445,19 +428,6 @@ Transform:
   m_Father: {fileID: 4381283618682234}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4889127865538822
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1952362407149266}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4088113984445414}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4931537618213776
 Transform:
   m_ObjectHideFlags: 1
@@ -513,14 +483,14 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: 6ae8ea91a0582e645b38610695e2826f, type: 3}
   m_Controller: {fileID: 9100000, guid: 442ff1a801d3c8e41aaede94d01bc74a, type: 2}
   m_CullingMode: 1
-  m_UpdateMode: 1
+  m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114166485439260544
+--- !u!114 &114102774979618642
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -528,7 +498,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1566008039007298}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8524d00ff3009514bb2b16fd415b882a, type: 3}
+  m_Script: {fileID: 11500000, guid: 859866b1af83d194387087612ef9bf20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CoolDown: 1
@@ -575,10 +545,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skills:
-  - {fileID: 114166485439260544}
-  - {fileID: 114773241681386948}
-  ActiveSkill: {fileID: 114773241681386948}
-  MovementSkill: {fileID: 114773241681386948}
+  - {fileID: 114102774979618642}
+  ActiveSkill: {fileID: 0}
+  MovementSkill: {fileID: 0}
 --- !u!114 &114530862953282116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -637,22 +606,6 @@ MonoBehaviour:
   MaxDefence: 100
   PrimaryHand: {fileID: 0}
   SecondaryHand: {fileID: 0}
---- !u!114 &114773241681386948
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1952362407149266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ac24f742204bb04d9803fb34f3ff7e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CoolDown: 1
-  MaxDistance: 5
-  AnimatorController: {fileID: 9100000, guid: 442ff1a801d3c8e41aaede94d01bc74a, type: 2}
-  MaxSpeed: 1
-  TurnSpeed: 360
 --- !u!114 &114834123720345644
 MonoBehaviour:
   m_ObjectHideFlags: 1

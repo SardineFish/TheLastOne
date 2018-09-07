@@ -4,18 +4,14 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Playables;
 
-public class PlayerActionManager : EntityBehavior<LifeBody>
+public class PlayerActionManager : ActionManagerBase
 {
-    public const string AnimTagEnd = "End";
-    public const string AnimTagBegin = "Begin";
-    public const string AnimTagGap = "Gap";
-    public const string AnimTagLock = "Lock";
 
     public RuntimeAnimatorController DefaultMovement;
     public SkillAction DrawSword;
     public SkillAction SheathSword;
 
-    public AnimatorControllerPlayable CurrentAnimatorController{ get { return currentAnimatorPlayable; } }
+    public override AnimatorControllerPlayable CurrentAnimatorPlayable{ get { return currentAnimatorPlayable; } }
 
     PlayableGraph playableGraph;
     PlayableOutput playableOutput;
@@ -68,7 +64,7 @@ public class PlayerActionManager : EntityBehavior<LifeBody>
 	
 	// Update is called once per frame
 	void Update () {
-        if (!CurrentAnimatorController.IsNull() && CurrentAnimatorController.GetCurrentAnimatorStateInfo(0).IsTag(AnimTagLock))
+        if (!CurrentAnimatorPlayable.IsNull() && CurrentAnimatorPlayable.GetCurrentAnimatorStateInfo(0).IsTag(AnimTagLock))
         {
             movementLayerWeight -= 0.2f / Time.deltaTime;
             movementLayerWeight = movementLayerWeight < 0 ? 0 : movementLayerWeight;
@@ -120,7 +116,7 @@ public class PlayerActionManager : EntityBehavior<LifeBody>
         //playableGraph.Play();
     }
 
-    public bool ChangeAction(RuntimeAnimatorController controller)
+    public override bool ChangeAction(RuntimeAnimatorController controller)
     {
         if (!animator)
             animator = Entity.GetComponent<Animator>();
@@ -134,7 +130,7 @@ public class PlayerActionManager : EntityBehavior<LifeBody>
             Debug.Log("Change To " + controller.name);
             return true;
         }
-        var state = CurrentAnimatorController.GetCurrentAnimatorStateInfo(0);
+        var state = CurrentAnimatorPlayable.GetCurrentAnimatorStateInfo(0);
         if(/*state.IsTag(AnimTagBegin) || */state.IsTag(AnimTagEnd) || state.IsTag(AnimTagGap))
         {
             ChangeAnimation(controller, 0.2f);
@@ -150,9 +146,9 @@ public class PlayerActionManager : EntityBehavior<LifeBody>
         return Entity.GetComponent<SkillController>().MovementSkill.Activate();
     }
 
-    public bool Move(Vector2 movement)
+    public override bool Move(Vector2 movement)
     {
-        if (!CurrentAnimatorController.IsNull() && CurrentAnimatorController.GetCurrentAnimatorStateInfo(0).IsTag(AnimTagLock))
+        if (!CurrentAnimatorPlayable.IsNull() && CurrentAnimatorPlayable.GetCurrentAnimatorStateInfo(0).IsTag(AnimTagLock))
         {
             movementController.SetFloat("x", 0);
             movementController.SetFloat("y", 0);
@@ -168,7 +164,7 @@ public class PlayerActionManager : EntityBehavior<LifeBody>
 
     public bool Turn(float angle)
     {
-        if (!CurrentAnimatorController.IsNull() && CurrentAnimatorController.GetCurrentAnimatorStateInfo(0).IsTag(AnimTagLock))
+        if (!CurrentAnimatorPlayable.IsNull() && CurrentAnimatorPlayable.GetCurrentAnimatorStateInfo(0).IsTag(AnimTagLock))
         {
             return false;
         }

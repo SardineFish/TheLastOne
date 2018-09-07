@@ -3,20 +3,28 @@ using System.Collections;
 using UnityEngine.Animations;
 using UnityEngine.Playables;
 
-public class SimpleActionManager : EntityBehavior<LifeBody>
+public class SimpleActionManager : ActionManagerBase
 {
-    public const string AnimTagEnd = "End";
-    public const string AnimTagBegin = "Begin";
-    public const string AnimTagGap = "Gap";
-    public const string AnimTagLock = "Lock";
 
     public RuntimeAnimatorController DefaultMovement;
+    public override AnimatorControllerPlayable CurrentAnimatorPlayable
+    {
+        get
+        {
+            if (transit)
+                return animatorPlayables[next];
+            else
+                return animatorPlayables[current];
+        }
+    }
 
     bool init = false;
+    bool transit = false;
     PlayableGraph playableGraph;
     PlayableOutput playableOutput;
     AnimatorControllerPlayable[] animatorPlayables;
     AnimationMixerPlayable mixPlayable;
+
 
     int _currentPlayable = 0;
     int current
@@ -29,8 +37,10 @@ public class SimpleActionManager : EntityBehavior<LifeBody>
         get { return (_currentPlayable + 1) % animatorPlayables.Length; }
     }
 
-    public RuntimeAnimatorController CurrentAnimatorController { get; private set; }
-    public RuntimeAnimatorController NextAnimatorController { get; private set; }
+    RuntimeAnimatorController currentAnimatorController;
+    RuntimeAnimatorController nextAnimatorController;
+    RuntimeAnimatorController activatedAnimatorController => transit ? nextAnimatorController : currentAnimatorController;
+    
 
     private void Start()
     {
@@ -52,39 +62,44 @@ public class SimpleActionManager : EntityBehavior<LifeBody>
         mixPlayable.SetInputWeight(1, 0);
         playableOutput.SetSourcePlayable(mixPlayable);
         playableGraph.Play();
-        CurrentAnimatorController = DefaultMovement;
+        currentAnimatorController = DefaultMovement;
     }
 
     public bool ChangeAnimation(RuntimeAnimatorController animatorController, float time)
     {
         StopAllCoroutines();
         animatorPlayables[next] = AnimatorControllerPlayable.Create(playableGraph, animatorController);
+        playableGraph.Disconnect(mixPlayable, next);
         playableGraph.Connect(animatorPlayables[next], 0, mixPlayable, next);
         mixPlayable.SetInputWeight(current, 1);
         mixPlayable.SetInputWeight(next, 0);
-        NextAnimatorController = animatorController;
+        nextAnimatorController = animatorController;
+        transit = true;
         this.NumericAnimate(time, tick: (t) =>
         {
+            //Debug.Log(t);
             mixPlayable.SetInputWeight(current, 1 - t);
             mixPlayable.SetInputWeight(next, t);
         }, complete: () =>
         {
-            mixPlayable.SetInputWeight(current, 1);
-            mixPlayable.SetInputWeight(next, 0);
+            mixPlayable.SetInputWeight(current, 0);
+            mixPlayable.SetInputWeight(next, 1);
             current++;
-            CurrentAnimatorController = NextAnimatorController;
-            NextAnimatorController = null;
+            currentAnimatorController = nextAnimatorController;
+            nextAnimatorController = null;
+            transit = false;
         });
         return true;
     }
 
-    public bool ChangeAction(RuntimeAnimatorController animatorController)
+    public override bool ChangeAction(RuntimeAnimatorController animatorController)
     {
         if (!init)
             Start();
-        if (CurrentAnimatorController == animatorController)
+
+        else if (activatedAnimatorController == animatorController)
             return true;
-        var state = animatorPlayables[current].GetCurrentAnimatorStateInfo(0);
+        var state = CurrentAnimatorPlayable.GetCurrentAnimatorStateInfo(0);
         if (state.IsTag(AnimTagEnd) || state.IsTag(AnimTagGap))
         {
             ChangeAnimation(animatorController, 0.2f);
@@ -95,21 +110,13 @@ public class SimpleActionManager : EntityBehavior<LifeBody>
         return false;
     }
 
-    public bool Move(Vector2 movement)
+    public override bool Move(Vector2 movement)
     {
         if (!ChangeAction(DefaultMovement))
             return false;
-        Debug.Log(movement);
-        if (NextAnimatorController)
-        {
-            animatorPlayables[next].SetFloat("x", movement.x);
-            animatorPlayables[next].SetFloat("y", movement.y);
-        }
-        else
-        {
-            animatorPlayables[current].SetFloat("x", movement.x);
-            animatorPlayables[current].SetFloat("y", movement.y);
-        }
+
+        CurrentAnimatorPlayable.SetFloat("x", movement.x);
+        CurrentAnimatorPlayable.SetFloat("y", movement.y);
         return true;
     }
 }
