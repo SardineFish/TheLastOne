@@ -20,6 +20,7 @@ namespace Assets.Editor
             {
                 weapon.SkillEffects.Add(new SkillEffectData());
             });
+            UnityEditor.EditorUtility.SetDirty(target);
         }
     }
 }

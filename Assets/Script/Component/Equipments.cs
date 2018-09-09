@@ -18,6 +18,15 @@ public class Equipments : EntityBehavior<LifeBody>
     }
     public List<GameObject> Items = new List<GameObject>();
 
+    void Start()
+    {
+        this.WaitForSecond(() =>
+        {
+            Selected = null;
+            Switch();
+        }, 0.1f);
+    }
+
     GameObject weaponToDraw;
     public void Switch()
     {
@@ -26,7 +35,13 @@ public class Equipments : EntityBehavior<LifeBody>
         {
             return;
         }
-        weaponToDraw = Selected = Items[(Items.IndexOf(Selected) + 1) % Items.Count];
+        if (!Selected)
+        {
+            weaponToDraw = Selected = Items[(Items.IndexOf(Selected) + 1) % Items.Count];
+            OnEndUnequip();
+        }
+        else
+            weaponToDraw = Selected = Items[(Items.IndexOf(Selected) + 1) % Items.Count];
     }
 
     public void OnEquip()

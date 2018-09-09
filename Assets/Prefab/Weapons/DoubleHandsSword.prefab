@@ -99,8 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9eb3c1eee87f44498896c227b76f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultEffects: []
-  SkillEffects: []
+  SkillEffects:
+  - SkillEffect:
+      name: PhysicalDamage
+    Multiple: 2
   weight: 1
 --- !u!114 &114368037784310702
 MonoBehaviour:
@@ -114,4 +116,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CarryPostion: {x: 0.000000015139605, y: 9.536487e-10, z: 0.000000047512458}
-  CarryRotation: {x: 0, y: 0.7071069, z: 0, w: -0.7071069}
+  CarryRotation: {x: 0, y: 0.70710677, z: 0, w: -0.70710677}
