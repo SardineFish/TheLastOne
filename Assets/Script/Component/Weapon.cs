@@ -6,7 +6,7 @@ using System;
 
 public class Weapon : OwnedObject,IWeightedObject {
     WeaponData data;
-    public SkillEffectData[] DefaultEffects = new SkillEffectData[0];
+    [HideInInspector]
     public List<SkillEffectData> SkillEffects = new List<SkillEffectData>();
     public WeaponData WeaponData
     {
@@ -14,7 +14,7 @@ public class Weapon : OwnedObject,IWeightedObject {
         set
         {
             data = value;
-            SkillEffects = value.SkillEffects.ToList();
+            //SkillEffects = value.SkillEffects.ToList();
         }
     }
     [SerializeField]

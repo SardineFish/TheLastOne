@@ -153,5 +153,24 @@ namespace Assets.Editor
                    list.Add(new WeightedItem(null, 1));
                });
         }
+
+        public static TAssetObject EditAssetObject<TAssetLib,TAsset,TAssetObject>(TAssetLib assetLib, TAssetObject  assetObj)
+            where TAssetObject:AssetsLib<TAssetLib,TAsset>.AssetObjectBase,new()
+            where TAssetLib: AssetsLib<TAssetLib,TAsset>
+            where TAsset:UnityEngine.Object
+        {
+            var obj = assetObj?.Asset;
+            obj = EditorGUILayout.ObjectField(obj, typeof(TAsset), true) as TAsset;
+            return obj == null ? null : assetLib.GetAssetObject<TAssetObject>(obj);
+        }
+
+        public static SkillEffectData EditSkillEffectData(string lable,SkillEffectData data)
+        {
+            EditorGUILayout.BeginHorizontal();
+            data.SkillEffect = EditAssetObject<SkillEffectSystem, SkillEffect, SkillEffectSystem.AssetObject>(SkillEffectSystem.Instance, data.SkillEffect);
+            data.Multiple = EditorGUILayout.FloatField(data.Multiple);
+            EditorGUILayout.EndHorizontal();
+            return data;
+        }
     }
 }

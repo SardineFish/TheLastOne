@@ -26,4 +26,8 @@ public class SkillEffectData:IDocumented
         SkillEffect = skillEffectAssetObject;
         Multiple = multiple;
     }
+    public SkillEffectData()
+    {
+
+    }
 }
