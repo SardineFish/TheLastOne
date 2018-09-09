@@ -5,13 +5,15 @@ public enum ImpactEffectType
 {
     Billboard,
     Penetrative,
-    RangePlane
+    RangePlane,
+    Collider
 }
 public class SkillImpactEffectRenderer : MonoBehaviour
 {
     public float NearRange = 0;
     public float EffectVisibleTime = 1;
     public ImpactEffectType ImpactEffectType;
+    public bool KeepVisible = false;
     // Use this for initialization
     void Start()
     {
@@ -25,10 +27,17 @@ public class SkillImpactEffectRenderer : MonoBehaviour
         {
             transform.localScale = new Vector3((skillImpact.ImpactRadius + NearRange) * 2, 1, skillImpact.ImpactRadius + NearRange);
         }
-        this.WaitForSecond(() =>
+        else if (ImpactEffectType == ImpactEffectType.Collider)
         {
-            GetComponent<Renderer>().enabled = false;
-        }, EffectVisibleTime);
+            transform.localScale = new Vector3(skillImpact.ImpactRadius * 2, 1, skillImpact.ImpactRadius);
+        }
+        if (!KeepVisible)
+        {
+            this.WaitForSecond(() =>
+            {
+                GetComponent<Renderer>().enabled = false;
+            }, EffectVisibleTime);
+        }
     }
 
     // Update is called once per frame

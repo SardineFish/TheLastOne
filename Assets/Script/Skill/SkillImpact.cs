@@ -13,6 +13,9 @@ public enum ImpactType : int
     Targeted = 16,
 }
 public class SkillImpact : MonoBehaviour,IWeightedObject {
+    public const float BaseArialRadius = 2.85f;
+    public const float BaseCollisionRadius = 1;
+    
     public static ImpactType[] ImpactTypes { get { return Enum.GetValues(typeof(ImpactType)).Cast<ImpactType>().ToArray(); } }
     public ImpactType ImpactType;
     public Entity Creator;
@@ -119,12 +122,16 @@ public class SkillImpact : MonoBehaviour,IWeightedObject {
                 Impact(entity);
             }
         }
+        else if (ImpactType == ImpactType.Collisional)
+        {
+            transform.position = new Vector3(transform.position.x, ImpactHeight, transform.position.z);
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (!damageStarted)
-            return;
+        /*if (!damageStarted)
+            return;*/
         if(ImpactType == ImpactType.Collisional)
         {
             if (SingleDamage && hitEntities.Count > 0)
@@ -150,11 +157,21 @@ public class SkillImpact : MonoBehaviour,IWeightedObject {
 
     public void Activate()
     {
+
         if(ImpactType == ImpactType.Targeted)
         {
             Impact(ImpactTarget);
             Distruct();
             return;
+        }
+        else if (ImpactType == ImpactType.Areal)
+        {
+            ImpactRadius = ImpactRadius * BaseArialRadius;
+        }
+        else if (ImpactType == ImpactType.Collisional)
+        {
+            ImpactRadius = ImpactRadius * BaseCollisionRadius;
+            GetComponent<SphereCollider>().radius = ImpactRadius;
         }
         transform.position = ImpactStartPosition;
         transform.rotation *= Quaternion.FromToRotation(transform.forward, ImpactDirection);

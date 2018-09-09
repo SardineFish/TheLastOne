@@ -35,7 +35,7 @@ public class ConfigurableSkill : AnimationSkill
     public GameObject SkillImpactInstance;
     public SkillEffectData[] SkillEffects;
     public ActivateMethod ActivateMethod;
-    public float ImpactRadius = 2.85f;
+    public float ImpactRadius = 1;
     public float ImpactAngle = 360;
     public Vector3 ActivatePosition;
 
