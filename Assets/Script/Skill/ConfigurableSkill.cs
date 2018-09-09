@@ -224,7 +224,7 @@ public class ConfigurableSkill : AnimationSkill
                         return effectData;
                     }))
             .ToArray();*/
-        return SkillEffects.Concat(weapon.SkillEffects)
+        return SkillEffects.Concat(weapon.SkillEffects).Concat(SkillData.SkillAction.Asset.SkillEffects)
             .GroupBy(effect => effect.SkillEffect, effect => effect.Multiple)
             .Select(group => new SkillEffectData(group.Key, group.Sum()))
             .ToArray();

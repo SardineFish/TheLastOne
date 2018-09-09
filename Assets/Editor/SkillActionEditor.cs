@@ -32,7 +32,14 @@ namespace Assets.Editor
                 if (!result)
                     skillAction.AvailableImpactType ^= impactTypes[i];
             });
-            
+
+            EditorUtility.DrawFoldList("Skill Effects", true, skillAction.SkillEffects.Count, (i) =>
+            {
+                EditorUtility.EditSkillEffectData(skillAction.SkillEffects[i]);
+            }, () =>
+            {
+                skillAction.SkillEffects.Add(new SkillEffectData());
+            });
 
             
             //serializedObject.ApplyModifiedProperties();

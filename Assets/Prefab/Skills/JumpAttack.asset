@@ -22,4 +22,11 @@ MonoBehaviour:
   DisplayName: Jump Attack
   ActionFigure: 2
   AvailableImpactType: 23
+  SkillEffects:
+  - SkillEffect:
+      name: CameraShakeEffect
+    Multiple: 1
+  - SkillEffect:
+      name: PhysicalDamage
+    Multiple: 1
   weight: 1

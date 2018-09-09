@@ -15,7 +15,7 @@ public class MagicalDamageEffect:SkillEffect
         Damage = damage;
     }
     public MagicalDamageEffect():base()
-    {https://www.mcmod.cn/item/list/2-1.html
+    {
         DisplayName = "Magical Damage";
     }
 

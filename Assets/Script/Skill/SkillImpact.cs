@@ -157,20 +157,24 @@ public class SkillImpact : MonoBehaviour,IWeightedObject {
 
     public void Activate()
     {
-
-        if(ImpactType == ImpactType.Targeted)
-        {
-            Impact(ImpactTarget);
-            Distruct();
-            return;
-        }
-        else if (ImpactType == ImpactType.Areal)
+        if (ImpactType == ImpactType.Areal)
         {
             ImpactRadius = ImpactRadius * BaseArialRadius;
         }
         else if (ImpactType == ImpactType.Collisional)
         {
             ImpactRadius = ImpactRadius * BaseCollisionRadius;
+        }
+        SkillEffects.Where(effect => effect.SkillEffect.Asset is PropertyEffect)
+            .ForEach(effect => (effect.SkillEffect.Asset as PropertyEffect).ApplyEffect(this, effect.Multiple));
+        if(ImpactType == ImpactType.Targeted)
+        {
+            Impact(ImpactTarget);
+            Distruct();
+            return;
+        }
+        else if (ImpactType == ImpactType.Collisional)
+        {
             GetComponent<SphereCollider>().radius = ImpactRadius;
         }
         transform.position = ImpactStartPosition;

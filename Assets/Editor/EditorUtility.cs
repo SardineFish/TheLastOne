@@ -164,7 +164,7 @@ namespace Assets.Editor
             return obj == null ? null : assetLib.GetAssetObject<TAssetObject>(obj);
         }
 
-        public static SkillEffectData EditSkillEffectData(string lable,SkillEffectData data)
+        public static SkillEffectData EditSkillEffectData(SkillEffectData data)
         {
             EditorGUILayout.BeginHorizontal();
             data.SkillEffect = EditAssetObject<SkillEffectSystem, SkillEffect, SkillEffectSystem.AssetObject>(SkillEffectSystem.Instance, data.SkillEffect);

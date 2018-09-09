@@ -15,7 +15,7 @@ namespace Assets.Editor
 
             EditorUtility.DrawFoldList("Skill Effect", true, weapon.SkillEffects.Count, (i) =>
             {
-                EditorUtility.EditSkillEffectData(null, weapon.SkillEffects[i]);
+                EditorUtility.EditSkillEffectData(weapon.SkillEffects[i]);
             }, () =>
             {
                 weapon.SkillEffects.Add(new SkillEffectData());

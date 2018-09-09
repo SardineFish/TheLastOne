@@ -71437,6 +71437,13 @@ AnimationClip:
   m_GenerateMotionCurves: 1
   m_Events:
   - time: 0.73333335
+    functionName: OnWeaponDamageStart
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.9
     functionName: OnWeaponDamageEnd
     data: 
     objectReferenceParameter: {fileID: 0}

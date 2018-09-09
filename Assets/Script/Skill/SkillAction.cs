@@ -24,6 +24,8 @@ public class SkillAction : ScriptableObject,IWeightedObject
     public ActionFigure ActionFigure;
     [HideInInspector]
     public ImpactType AvailableImpactType;
+    [HideInInspector]
+    public List<SkillEffectData> SkillEffects = new List<SkillEffectData>();
 
     [SerializeField]
     private float weight = 1;
