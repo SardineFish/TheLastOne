@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Cinemachine;
 
 [ExecuteInEditMode]
 public class GameSystem : Singleton<GameSystem>
@@ -15,8 +16,11 @@ public class GameSystem : Singleton<GameSystem>
         if (Application.isPlaying)
             this.NextFrame(() =>
             {
-                //Map.Instance.Generate();
+                Map.Instance?.Generate();
             });
+        var vm = GameObject.FindWithTag("VirtualCamera").GetComponent<CinemachineVirtualCamera>();
+        vm.Follow = PlayerInControl.transform;
+        vm.LookAt = PlayerInControl.transform;
     }
     void Update()
     {
